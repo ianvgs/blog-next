@@ -21,9 +21,9 @@ interface IBlogTags {
 const BlogTags: React.FC<IBlogTags> = (props) => {
     return (
         <HStack spacing={2} marginTop={props.marginTop}>
-            {props.tags.map((tag) => {
+            {props.tags.map((tag, index) => {
                 return (
-                    <Tag size={"md"} variant="solid" colorScheme="orange" key={'oi'}>
+                    <Tag size={"md"} variant="solid" colorScheme="orange" key={index}>
                         {tag}
                     </Tag>
                 );

@@ -15,6 +15,7 @@ const Links = ['Dashboard', 'Projects', 'Mercado', 'Tecnologia', 'Educação'];
 
 const NavLink = ({ children }: { children: ReactNode }) => (
     <Link
+        key={children}>
         px={2}
         py={1}
         rounded={'md'}
@@ -46,7 +47,7 @@ export default function NavBarBlank() {
                             spacing={4}
                             display={{ base: 'none', md: 'flex' }}>
                             {Links.map((link) => (
-                                <Box pr={35}  >
+                                <Box pr={35} key={link} >
                                     <NavLink key={link}>{link}</NavLink>
                                 </Box>
                             ))}
@@ -58,7 +59,7 @@ export default function NavBarBlank() {
                 <Box pb={4} display={{ md: 'none' }}>
                     <Stack as={'nav'} spacing={4}>
                         {Links.map((link) => (
-                            <Box padding={10}>
+                            <Box padding={10} key={link}>
                                 <NavLink key={link}>{link}</NavLink>
                             </Box>
                         ))}

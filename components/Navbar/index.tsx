@@ -24,6 +24,7 @@ const Links = ["Inicio", "Quem somos"];
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
+    key={children}
     px={2}
     py={1}
     rounded={"md"}
@@ -48,7 +49,7 @@ export default function NavBar({ user }: any) {
             <HStack as={"nav"} spacing={1}>
               {Links.map((link) => (
 
-                <Button colorScheme="whiteAlpha"><NavLink key={link}>{link}</NavLink></Button>
+                <Button colorScheme="whiteAlpha" key={link}><NavLink key={link}>{link}</NavLink></Button>
 
               ))}
             </HStack>
