@@ -15,15 +15,14 @@ const Links = ['Dashboard', 'Projects', 'Mercado', 'Tecnologia', 'Educação'];
 
 const NavLink = ({ children }: { children: ReactNode }) => (
     <Link
-        key={children}>
         px={2}
         py={1}
         rounded={'md'}
         _hover={{
             textDecoration: 'none',
-            bg: useColorModeValue('gray.200', 'gray.700'),
+            bg: useColorModeValue('gray.200', 'gray.700')
         }}
-        href={children?.toLowerCase()}>
+        href={children?.toLowerCase()} >
         {children}
     </Link>
 );
