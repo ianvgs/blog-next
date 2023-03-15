@@ -26,7 +26,7 @@ export const getStaticProps: GetStaticProps = async (ctx: any) => {
 
     data = response.data;
   } catch (error) {
-    console.log(error);
+
   }
   if (!data) {
     return {

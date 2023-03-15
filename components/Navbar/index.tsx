@@ -14,12 +14,13 @@ import {
   MenuDivider,
   useDisclosure,
   useColorModeValue,
+  Heading,
   Stack,
   Image,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, AddIcon } from "@chakra-ui/icons";
 
-const Links = ["Inicio", "Sobre mim"];
+const Links = ["Inicio", "Quem somos"];
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
@@ -30,8 +31,7 @@ const NavLink = ({ children }: { children: ReactNode }) => (
       textDecoration: "none",
       bg: useColorModeValue("gray.200", "gray.700"),
     }}
-    href={"#"}
-  >
+    href={children?.trim().toLowerCase()}>
     {children}
   </Link>
 );
@@ -43,32 +43,25 @@ export default function NavBar({ user }: any) {
   return (
     <>
       <Box bg="#002D4B" px={4}>
-        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <IconButton
-            size={"md"}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={"Open Menu"}
-            display={{ md: "none" }}
-            onClick={isOpen ? onClose : onOpen}
-          />
+        <Flex h={16} /* alignItems={"center"}  */ justifyContent={"space-between"} >
           <HStack spacing={2} alignItems={"center"}>
-            <Box>
-              <Image
-                boxSize="70px"
-                bg="white"
-                src="../../public/"
-                alt="test"
-              />
-            </Box>
             <HStack as={"nav"} spacing={1}>
               {Links.map((link) => (
-                <NavLink key={link}>
-                  {" "}
-                  <Button colorScheme="whiteAlpha">{link} </Button>{" "}
-                </NavLink>
+
+                <Button colorScheme="whiteAlpha"><NavLink key={link}>{link}</NavLink></Button>
+
               ))}
             </HStack>
           </HStack>
+          <Box justifyContent="center">
+            <Heading color="white"><p>MEUSITE.COM</p></Heading>
+            {/* <Image
+              boxSize="70px"
+              bg="white"
+              src="../../public/"
+              alt="test"
+            /> */}
+          </Box>
           <Flex alignItems={"center"}>
             <Button
               colorScheme="blackAlpha"

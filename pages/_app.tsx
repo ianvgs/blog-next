@@ -2,8 +2,10 @@ import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { ChakraProvider, Box } from "@chakra-ui/react";
-import Footer from "components/Footer";
-import NavBar from "components/Navbar";
+import Footer from "@/components/Footer";
+import NavBar from "@/components/Navbar";
+import NavBarBlank from '@/components/NavBarBlank';
+
 
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -18,6 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <ChakraProvider>
         <Box>
           <NavBar />
+          <NavBarBlank />
           <Component {...pageProps} />
           <Footer />
         </Box>

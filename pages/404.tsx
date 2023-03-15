@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function PaginaNaoEncontrada() {
   return (
-    <Box textAlign="center" py={10} px={6}>
+    <Box textAlign="center" height="60vh" p={120}>
       <Heading
         as="h2"
         display="inline-block"
