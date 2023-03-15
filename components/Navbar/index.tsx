@@ -24,7 +24,7 @@ const Links = ["Inicio", "Quem somos"];
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
-    key={children}
+
     px={2}
     py={1}
     rounded={"md"}
