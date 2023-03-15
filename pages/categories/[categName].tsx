@@ -1,20 +1,20 @@
 import axiosNest from "@/services/axiosNest";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import IdeiasList from "@components/IdeiasList";
 import PaginaNaoEncontrada from "@/pages/404";
+import CategoriesList from "@/components/CategoriesList";
 
 const EventoHome: NextPage = (props: any) => {
-  if (props.hasError) {
+  /* if (props.hasError) {
     return (
       <>
         <PaginaNaoEncontrada />
       </>
     );
-  }
+  } */
 
   return (
     <>
-      <IdeiasList eventAndIdeias={props.evento} />;
+      <CategoriesList /* eventAndIdeias={props.evento} */ />;
     </>
   );
 };
@@ -27,26 +27,26 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (ctx: any) => {
-  let data: any = [];
-  try {
-    const response = await axiosNest.get(
-      `http://localhost:3335/api/banco-ideias/evento/${ctx.params.categName}`
-    );
-
-    data = response.data;
-  } catch (error) {
-
-  }
-
-  if (!data) {
-    return {
-      props: { hasError: true },
-    };
-  }
-
+  /*  let data: any = [];
+   try {
+     const response = await axiosNest.get(
+       `http://localhost:3335/api/banco-ideias/evento/${ctx.params.categName}`
+     );
+ 
+     data = response.data;
+   } catch (error) {
+ 
+   }
+ 
+   if (!data) {
+     return {
+       props: { hasError: true },
+     };
+   }
+  */
   return {
     props: {
-      evento: data,
+      /* evento: data, */
     },
     revalidate: 10,
   };
