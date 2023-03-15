@@ -60,8 +60,6 @@ export const BlogAuthor: React.FC<BlogAuthorProps> = (props) => {
   );
 };
 
-
-
 export default function Home() {
   return (
     <Container maxW={'7xl'} p="12">
