@@ -54,7 +54,7 @@ const BlogTags: React.FC<IBlogTags> = (props) => {
     )
 };
 
-export default function HomeCards(props) {
+export default function HomeCards(props: any) {
 
     return (
         <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '22%' }}>
