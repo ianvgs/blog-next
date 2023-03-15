@@ -17,95 +17,73 @@ import {
     VStack,
 
 } from '@chakra-ui/react';
-import styles from '@/styles/Home.module.css'
-import { GetServerSideProps } from "next";
-import PostCards from './components/posts';
-/* import axiosNest from "@services/axiosNest"; */
+import HomeCards from './components/HomeCards';
 
-interface IBlogTags {
-    tags: Array<string>;
-    marginTop?: SpaceProps['marginTop'];
-}
+/* const inter = Inter({ subsets: ['latin'] }) */
 
-const inter = Inter({ subsets: ['latin'] })
-
-interface BlogAuthorProps {
-    date: Date;
-    name: string;
-}
-
-const BlogTags: React.FC<IBlogTags> = (props) => {
-    return (
-        <HStack spacing={2} marginTop={props.marginTop}>
-            {props.tags.map((tag) => {
-                return (
-                    <Tag size={'md'} variant="solid" colorScheme="orange" key={tag}>
-                        {tag}
-                    </Tag>
-                )
-            })}
-        </HStack>
-    )
-};
-
-export const BlogAuthor: React.FC<BlogAuthorProps> = (props) => {
-    return (
-        <VStack marginTop="2" spacing="2" display="flex" alignItems="center">
-            <Image
-                borderRadius="full"
-                boxSize="40px"
-                src="https://100k-faces.glitch.me/random-image"
-                alt={`Avatar of ${props.name}`}
-            />
-            <Text fontWeight="medium">{props.name}</Text>
-
-            <Text>{props.date.toLocaleDateString()}</Text>
-        </VStack>
-    );
-};
 
 export default function Index() {
-    const array = [{}, {}, {}, {}, {}, {},]
+    // os 6 ultimos mais recentes
+    const array = [{ categorie: "Inovação", title: "Méliuz reduz prejuízo em 82% no 4º trimestre de 2022, para R$ 5,4 milhões" }, {
+        categorie: "Inovação", title: "Méliuz reduz prejuízo em 82% no 4º trimestre de 2022, para R$ 5,4 milhões"
+    },
+    {
+        categorie: "Diversificação", title: "Ao menos 8 FIIs têm operações relacionadas ao Minha Casa, Minha Vida; como eles lucram?"
+    }, {
+        categorie: "Inovação", title: "ChatGPT-4: OpenAI anuncia atualização no modelo de linguagem do aplicativo"
+    }, {
+        categorie: "Formação de talentos", title: "Faculdade XP oferece 200 bolsas integrais para quem quer se tornar assessor de investimentos"
+    }, {
+        categorie: "Stock Pickers", title: "'Mundo estava acabando': ex-BC relembra discussões para levar a Selic a 2% em 2020"
+    },]
+
+    // carroussel 
+    const carroussel = [{ id: 1, title: "Feijão com arroz faz mal", resumo: "Méliuz reduz prejuízo em 82% no 4º trimestre de 2022, para R$ 5,4 milhões", imgUrl: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80', tags: ['Tests', 'Covid'] }, { id: 2, title: "Arroz e macarrão tambem", resumo: "Méliuz reduz prejuízo em 82% no 4º trimestre de 2022, para R$ 5,4 milhões", imgUrl: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80', tags: ['Engeneering', 'Product'] }, { id: 3, title: "Inovação", resumo: "Méliuz reduz prejuízo em 82% no 4º trimestre de 2022, para R$ 5,4 milhões", imgUrl: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80', tags: ['Sexo', 'Amor'] }, { id: 3, title: "Inovação", resumo: "Méliuz reduz prejuízo em 82% no 4º trimestre de 2022, para R$ 5,4 milhões", imgUrl: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80', tags: ['Sexo', 'Amor'] }]
 
     return (
-        <Container maxW={'7xl'} pr="12" pl="12">
+        <Container maxW={'8xl'}>
             <Box
                 marginTop={{ base: '1', sm: '5' }}
                 display="flex"
-                flexDirection={{ base: 'column', sm: 'row' }}
-                justifyContent="space-between">
-                <Box
-                    display="flex"
-                    flex="5"
-                    marginRight="3"
-                    position="relative"
-                    alignItems="center">
-                    <Box
+                flexDirection={{ base: 'column', sm: 'row' }}            >
+                <Box flex="5">
+                    <Box display="flex"
+                        flexDirection="column"
                         width={{ base: '100%', sm: '85%' }}
                         zIndex="2"
                         marginLeft={{ base: '0', sm: '5%' }}
-                        marginTop="5%">
-                        <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-                            <Image
-                                borderRadius="lg"
-                                src={
-                                    'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
-                                }
-                                alt="some good alt text"
-                                objectFit="contain"
-                            />
-                        </Link>
-                    </Box>
-                    <Box zIndex="1" width="100%" position="absolute" height="100%">
-                        <Box
-                            bgGradient={useColorModeValue(
-                                'radial(orange.600 1px, transparent 1px)',
-                                'radial(orange.300 1px, transparent 1px)'
-                            )}
-                            backgroundSize="20px 20px"
-                            opacity="0.4"
-                            height="100%"
-                        />
+                        marginTop="13%">
+                        <Box flex="2">
+                            <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
+                                <Image
+                                    borderRadius="lg"
+                                    src={
+                                        'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
+                                    }
+                                    alt="some good alt text"
+                                    objectFit="contain"
+                                />
+                            </Link>
+                        </Box>
+                        <Box flex="1" >
+                            <VStack display="flex-start" textDecoration="none" alignContent="center" >
+                                <Heading fontSize="xl" marginTop="2">
+                                    <Link textDecoration="none" _hover={{ textDecoration: 'none', color: 'blue' }}>
+                                        Some blog Title
+                                    </Link>
+                                </Heading>
+                                <Heading fontSize="xl" marginTop="2">
+                                    <Link textDecoration="none" _hover={{ textDecoration: 'none', color: 'blue' }}>
+                                        Some blog Title
+                                    </Link>
+                                </Heading>
+                                <Heading fontSize="xl" marginTop="2">
+                                    <Link textDecoration="none" _hover={{ textDecoration: 'none', color: 'blue' }}>
+                                        Some blog Title
+                                    </Link>
+                                </Heading>
+                            </VStack>
+                        </Box>
                     </Box>
                 </Box>
 
@@ -117,176 +95,34 @@ export default function Index() {
                     flexDirection="row"
                     marginTop={{ base: '3', sm: '0' }}>
                     <Wrap spacing="30px" marginTop="5">
-                        {array.map((unique) => (<WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '22%' }}>
-                            <Box w="100%">
-                                <Box borderRadius="lg" overflow="hidden">
-                                    <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-                                        <Image
-                                            transform="scale(1.0)"
-                                            src={
-                                                'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
-                                            }
-                                            alt="some text"
-                                            objectFit="contain"
-                                            width="100%"
-                                            transition="0.3s ease-in-out"
-                                            _hover={{
-                                                transform: 'scale(1.05)',
-                                            }}
-                                        />
-                                    </Link>
-                                </Box>
-                                <BlogTags tags={['Engineering', 'Product']} marginTop="3" />
-                                <Heading fontSize="xl" marginTop="2">
-                                    <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-                                        Some blog title
-                                    </Link>
-                                </Heading>
-                                <Text as="p" fontSize="md" marginTop="2" maxH={"80px"} overflow={"hidden"}>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting
-                                    industry. Lorem Ipsum has been the industry's standard dummy text
-                                    ever since the 1500s, when an unknown printer took a galley of
-                                    type and scrambled it to make a type specimen book.
-                                </Text>
-                                <BlogAuthor
-                                    name="John Doe"
-                                    date={new Date('2021-04-06T19:01:27Z')}
-                                />
-                            </Box>
-                        </WrapItem>))}
-
-
-
-
+                        {array.map((unique, index) => (
+                            <HomeCards key={index} mural data={unique} />
+                        ))}
                     </Wrap>
-
-
-
-
-
-
-
-
                 </Box>
             </Box>
+
+            <Divider marginTop="5" />
             <Heading as="h2" marginTop="5">
                 Latest articles
             </Heading>
-            <Divider marginTop="5" />
             <Wrap spacing="30px" marginTop="5">
-                <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '22%' }}>
-                    <Box w="100%">
-                        <Box borderRadius="lg" overflow="hidden">
-                            <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-                                <Image
-                                    transform="scale(1.0)"
-                                    src={
-                                        'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
-                                    }
-                                    alt="some text"
-                                    objectFit="contain"
-                                    width="100%"
-                                    transition="0.3s ease-in-out"
-                                    _hover={{
-                                        transform: 'scale(1.05)',
-                                    }}
-                                />
-                            </Link>
-                        </Box>
-                        <BlogTags tags={['Engineering', 'Product']} marginTop="3" />
-                        <Heading fontSize="xl" marginTop="2">
-                            <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-                                Some blog title
-                            </Link>
-                        </Heading>
-                        <Text as="p" fontSize="md" marginTop="2">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry. Lorem Ipsum has been the industry's standard dummy text
-                            ever since the 1500s, when an unknown printer took a galley of
-                            type and scrambled it to make a type specimen book.
-                        </Text>
-                        <BlogAuthor
-                            name="John Doe"
-                            date={new Date('2021-04-06T19:01:27Z')}
-                        />
-                    </Box>
-                </WrapItem>
-                <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '22%' }}>
-                    <Box w="100%">
-                        <Box borderRadius="lg" overflow="hidden">
-                            <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-                                <Image
-                                    transform="scale(1.0)"
-                                    src={
-                                        'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
-                                    }
-                                    alt="some text"
-                                    objectFit="contain"
-                                    width="100%"
-                                    transition="0.3s ease-in-out"
-                                    _hover={{
-                                        transform: 'scale(1.05)',
-                                    }}
-                                />
-                            </Link>
-                        </Box>
-                        <BlogTags tags={['Engineering', 'Product']} marginTop="3" />
-                        <Heading fontSize="xl" marginTop="2">
-                            <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-                                Some blog title
-                            </Link>
-                        </Heading>
-                        <Text as="p" fontSize="md" marginTop="2">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry. Lorem Ipsum has been the industry's standard dummy text
-                            ever since the 1500s, when an unknown printer took a galley of
-                            type and scrambled it to make a type specimen book.
-                        </Text>
-                        <BlogAuthor
-                            name="John Doe"
-                            date={new Date('2021-04-06T19:01:27Z')}
-                        />
-                    </Box>
-                </WrapItem>
-                <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '22%' }}>
-                    <Box w="100%">
-                        <Box borderRadius="lg" overflow="hidden">
-                            <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-                                <Image
-                                    transform="scale(1.0)"
-                                    src={
-                                        'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
-                                    }
-                                    alt="some text"
-                                    objectFit="contain"
-                                    width="100%"
-                                    transition="0.3s ease-in-out"
-                                    _hover={{
-                                        transform: 'scale(1.05)',
-                                    }}
-                                />
-                            </Link>
-                        </Box>
-                        <BlogTags tags={['Engineering', 'Product']} marginTop="3" />
-                        <Heading fontSize="xl" marginTop="2">
-                            <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-                                Some blog title
-                            </Link>
-                        </Heading>
-                        <Text as="p" fontSize="md" marginTop="2">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry. Lorem Ipsum has been the industry's standard dummy text
-                            ever since the 1500s, when an unknown printer took a galley of
-                            type and scrambled it to make a type specimen book.
-                        </Text>
-                        <BlogAuthor
-                            name="John Doe"
-                            date={new Date('2021-04-06T19:01:27Z')}
-                        />
-                    </Box>
-                </WrapItem>
-
+                {carroussel.map((unique, index) => (
+                    <HomeCards key={index} mural={false} data={unique} />
+                ))}
             </Wrap>
+
+            <Divider marginTop="5" />
+            <Heading as="h2" marginTop="5">
+                Latest articles
+            </Heading>
+            <Wrap spacing="30px" marginTop="5">
+                {carroussel.map((unique, index) => (
+                    <HomeCards key={index} mural={false} data={unique} />
+                ))}
+            </Wrap>
+
+
             <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
                 <Heading as="h2">What we write about</Heading>
                 <Text as="p" fontSize="lg">
@@ -297,7 +133,6 @@ export default function Index() {
                     sapien. Suspendisse placerat vulputate posuere. Curabitur neque
                     tortor, mattis nec lacus non, placerat congue elit.
                 </Text>
-
             </VStack>
         </Container >
     )
