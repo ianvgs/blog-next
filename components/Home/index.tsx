@@ -22,8 +22,10 @@ import HomeCards from './components/HomeCards';
 /* const inter = Inter({ subsets: ['latin'] }) */
 
 
-export default function Index() {
-    // os 6 ultimos mais recentes
+export default function Index({ homeData }) {
+    console.log(homeData)
+
+    // 7 noticias ordenadas por data(tit, id, imagem)
     const array = [{ categorie: "Inovação", title: "Méliuz reduz prejuízo em 82% no 4º trimestre de 2022, para R$ 5,4 milhões" }, {
         categorie: "Inovação", title: "Méliuz reduz prejuízo em 82% no 4º trimestre de 2022, para R$ 5,4 milhões"
     },
@@ -37,7 +39,7 @@ export default function Index() {
         categorie: "Stock Pickers", title: "'Mundo estava acabando': ex-BC relembra discussões para levar a Selic a 2% em 2020"
     },]
 
-    // carroussel mais lidos
+    //4 noticias mais lidas ultimo x mes()
     const carroussel = [{ id: 1, title: "Feijão com arroz faz mal", resumo: "Méliuz reduz prejuízo em 82% no 4º trimestre de 2022, para R$ 5,4 milhões", imgUrl: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80', tags: ['Tests', 'Covid'] }, { id: 2, title: "Arroz e macarrão tambem", resumo: "Méliuz reduz prejuízo em 82% no 4º trimestre de 2022, para R$ 5,4 milhões", imgUrl: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80', tags: ['Engeneering', 'Product'] }, { id: 3, title: "Inovação", resumo: "Méliuz reduz prejuízo em 82% no 4º trimestre de 2022, para R$ 5,4 milhões", imgUrl: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80', tags: ['Sexo', 'Amor'] }, { id: 3, title: "Inovação", resumo: "Méliuz reduz prejuízo em 82% no 4º trimestre de 2022, para R$ 5,4 milhões", imgUrl: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80', tags: ['Sexo', 'Amor'] }]
 
     return (
