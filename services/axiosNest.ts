@@ -4,7 +4,7 @@ import * as https from "https";
 const axiosNest = axios.create({
     baseURL: process.env.BACKEND_URL,
     httpsAgent: new https.Agent({ rejectUnauthorized: false }),
-    withCredentials: true,
+    /*  withCredentials: true, */
     headers: {
         "Content-Type": "application/json",
         Accept:
