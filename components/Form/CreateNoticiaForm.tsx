@@ -31,8 +31,8 @@ const cadastrarIdeiaSchema = yup
   })
   .required();
 
-export default function CreateNoticiaForm({ categs, tags }: any) {
-  const colabs = [{ value: 1, label: "Ian" }]
+export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
+
   const toast = useToast();
   const [data, setData] = useState();
 
@@ -40,6 +40,7 @@ export default function CreateNoticiaForm({ categs, tags }: any) {
     register,
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<CreateNoticiaFormValues>({
     resolver: yupResolver(cadastrarIdeiaSchema),
@@ -53,12 +54,14 @@ export default function CreateNoticiaForm({ categs, tags }: any) {
       observacao: data?.observacao,
       idCategoria: data?.idCategoria?.value,
       idColaborador: data?.idColaborador?.value,
+      tags: data?.tags
     }
     axiosNest
       .post("http://localhost:8000/api/news/noticia", {
         ...noticiaData
       })
       .then((res) => {
+        reset();
         toast({
           title: "Noticia Cadastrada com sucesso!",
           status: "success",
@@ -66,7 +69,6 @@ export default function CreateNoticiaForm({ categs, tags }: any) {
           isClosable: true,
         });
         console.log(res.data)
-        /* setData(data); */
       })
       .catch(() => {
         toast({
@@ -91,21 +93,25 @@ export default function CreateNoticiaForm({ categs, tags }: any) {
               control={control}
               placeholder="Selecione uma categoria"
             />
+            <span role="alert">{errors.idCategoria?.message}</span>
             <ReactSelect
               key="idColaborador"
               name={"idColaborador"}
               options={colabs}
               control={control}
-              placeholder="Selecione uma categoria"
+              placeholder="Selecione um colaborador"
             />
+            <span role="alert">{errors.idColaborador?.message}</span>
           </div>
           <Input type="text" placeholder="Título" {...register("titulo")} />
+          <span role="alert">{errors.titulo?.message}</span>
           <Input
             h={100}
             type="text"
             placeholder="Escreva um resumo..."
             {...register("resumo")}
           />
+          <span role="alert">{errors.resumo?.message}</span>
           <Input
             type="text"
             placeholder="Observação"

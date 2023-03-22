@@ -4,8 +4,8 @@ import CreateNoticiaForm from "@/components/Form/CreateNoticiaForm";
 import axiosNest from "@/services/axiosNest";
 
 const CadastrarNoticia: NextPage = (props: any) => {
-  const { categorias, tags } = props.data;
-  return <CreateNoticiaForm categs={categorias} tags={tags} />;
+  const { categorias, tags, colaboradores } = props.data;
+  return <CreateNoticiaForm categs={categorias} tags={tags} colabs={colaboradores} />;
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx: {
