@@ -16,7 +16,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: {
   try {
     const response = await axiosNest.get("/news/cad-noticia-form");
     data = response.data[0];
-    console.log(data)
+
   } catch { }
   return {
     props: {

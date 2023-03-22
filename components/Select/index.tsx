@@ -72,6 +72,7 @@ export const ReactSelect = /* <
 
     //conversor do value(do select)
     const valueInterceptor = (value: string) => {
+      /* console.log(value) */
       if (typeof value === "string" && value === "") {
         return options.find(
           (option: { value: string; label: string }) =>
@@ -91,8 +92,6 @@ export const ReactSelect = /* <
         closeMenuOnSelect={isColored ? false : true}
         styles={isColored ? colourStyles : ""}
         noOptionsMessage={() => null}
-
-
       />
     );
   };

@@ -23,7 +23,7 @@ import HomeCards from './components/HomeCards';
 
 
 export default function Index({ homeData }) {
-    console.log(homeData)
+
 
     // 7 noticias ordenadas por data(tit, id, imagem)
     const array = [{ categorie: "Inovação", title: "Méliuz reduz prejuízo em 82% no 4º trimestre de 2022, para R$ 5,4 milhões" }, {

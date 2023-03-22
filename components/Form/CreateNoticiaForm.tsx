@@ -21,7 +21,6 @@ type CreateNoticiaFormValues = {
   observacao: string;
   idColaborador: number;
   idCategoria: number;
-  ativo: "S" | "N";
 };
 
 const cadastrarIdeiaSchema = yup
@@ -68,7 +67,8 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
           duration: 3000,
           isClosable: true,
         });
-        console.log(res.data)
+        /*  setData(data) */
+        /*  console.log(res.data) */
       })
       .catch(() => {
         toast({
@@ -121,8 +121,8 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
           <div style={{ width: 500 }}>
             <ReactSelect
               key="tags"
-              isColored
               name={"tags"}
+              isColored
               options={tags}
               control={control}
               isMulti
