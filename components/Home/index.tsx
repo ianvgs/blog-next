@@ -23,8 +23,7 @@ import HomeCards from './components/HomeCards';
 
 
 export default function Index({ homeData }) {
-
-
+    const homeNoticias = homeData;
     // 7 noticias ordenadas por data(tit, id, imagem)
     const array = [{ categorie: "Inovação", title: "Méliuz reduz prejuízo em 82% no 4º trimestre de 2022, para R$ 5,4 milhões" }, {
         categorie: "Inovação", title: "Méliuz reduz prejuízo em 82% no 4º trimestre de 2022, para R$ 5,4 milhões"
@@ -47,48 +46,31 @@ export default function Index({ homeData }) {
             <Box
                 marginTop={{ base: '1', sm: '5' }}
                 display="flex"
-                flexDirection={{ base: 'column', sm: 'row' }}            >
+                flexDirection={{ base: 'column', md: 'row' }}            >
                 <Box flex="5">
-                    <Box display="flex"
-                        flexDirection="column"
+                    <Box
+                        mt={5}
                         width={{ base: '100%', sm: '85%' }}
                         zIndex="2"
                         marginLeft={{ base: '0', sm: '5%' }}
-                        marginTop="13%">
-                        <Box flex="2">
-                            <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-                                <Image
-                                    borderRadius="lg"
-                                    src={
-                                        'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
-                                    }
-                                    alt="some good alt text"
-                                    objectFit="contain"
-                                />
+                    >
+                        <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
+                            <Image
+                                borderRadius="lg"
+                                src={
+                                    'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
+                                }
+                                alt="some good alt text"
+                                objectFit="cover"
+                            />
+                        </Link>
+                        <Heading fontSize="25" fontWeight={"bold"} position={"relative"} mt={5} ml={5} >
+                            <Link textDecoration="none" _hover={{ textDecoration: 'none', color: 'blue' }}>
+                                <Text maxW={"90vh"}>{homeNoticias[2].noticiaPrincipal.titulo}</Text>
                             </Link>
-                        </Box>
-                        <Box flex="1" >
-                            <VStack display="flex-start" textDecoration="none" alignContent="center" >
-                                <Heading fontSize="xl" marginTop="2">
-                                    <Link textDecoration="none" _hover={{ textDecoration: 'none', color: 'blue' }}>
-                                        Some blog Title
-                                    </Link>
-                                </Heading>
-                                <Heading fontSize="xl" marginTop="2">
-                                    <Link textDecoration="none" _hover={{ textDecoration: 'none', color: 'blue' }}>
-                                        Some blog Title
-                                    </Link>
-                                </Heading>
-                                <Heading fontSize="xl" marginTop="2">
-                                    <Link textDecoration="none" _hover={{ textDecoration: 'none', color: 'blue' }}>
-                                        Some blog Title
-                                    </Link>
-                                </Heading>
-                            </VStack>
-                        </Box>
+                        </Heading>
                     </Box>
                 </Box>
-
                 <Box
                     justifyContent="flex-start"
                     display="flex"
@@ -97,7 +79,7 @@ export default function Index({ homeData }) {
                     flexDirection="row"
                     marginTop={{ base: '3', sm: '0' }}>
                     <Wrap spacing="30px" marginTop="5">
-                        {array.map((unique, index) => (
+                        {homeNoticias[0].ultimasNoticias?.map((unique, index) => (
                             <HomeCards key={index} mural data={unique} />
                         ))}
                     </Wrap>
@@ -109,33 +91,10 @@ export default function Index({ homeData }) {
                 Mais lidos
             </Heading>
             <Wrap spacing="30px" marginTop="5">
-                {carroussel.map((unique, index) => (
+                {homeNoticias[1].noticiasMaisLidas?.map((unique: any, index: number) => (
                     <HomeCards key={index} mural={false} data={unique} />
                 ))}
             </Wrap>
-
-            <Divider marginTop="5" />
-            <Heading as="h2" marginTop="5">
-                Latest articles
-            </Heading>
-            <Wrap spacing="30px" marginTop="5">
-                {carroussel.map((unique, index) => (
-                    <HomeCards key={index} mural={false} data={unique} />
-                ))}
-            </Wrap>
-
-
-            <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
-                <Heading as="h2">What we write about</Heading>
-                <Text as="p" fontSize="lg">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                    condimentum quam arcu, eu tempus tortor molestie at. Vestibulum
-                    pretium condimentum dignissim. Vestibulum ultrices vitae nisi sed
-                    imperdiet. Mauris quis erat consequat, commodo massa quis, feugiat
-                    sapien. Suspendisse placerat vulputate posuere. Curabitur neque
-                    tortor, mattis nec lacus non, placerat congue elit.
-                </Text>
-            </VStack>
         </Container >
     )
 

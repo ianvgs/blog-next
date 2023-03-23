@@ -5,6 +5,11 @@ import Index from '@/components/Home';
 import axiosNest from '@/services/axiosNest';
 
 export default function Home({ homeData }) {
+
+  //if errors
+  // returns (não foi possivel carregar a pagina)
+
+
   return (
     <Index homeData={homeData} />
   )
@@ -15,8 +20,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx: {
 }) => {
   const cookies = ctx.req.cookies;
 
-  const data = await axiosNest.get('/news/home-news')
-  const homeData = data.data
+  const response = await axiosNest.get('/news/home-news')
+  let errors = {}
+
+  if (!response.data.ultimasNoticias || !response.data.noticiasMaisLidas) {
+    //send email: HOME PAGE FORA, SEM CONEXÂO COM BACKEND
+  }
+  const homeData = response.data
+  /*  console.log(homeData) */
 
   return {
     props: {

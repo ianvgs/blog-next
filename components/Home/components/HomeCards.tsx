@@ -25,6 +25,7 @@ interface BlogAuthorProps {
 }
 
 export const BlogAuthor: React.FC<BlogAuthorProps> = (props) => {
+    /* console.log(props) */
     return (
         <HStack marginTop="2" spacing="2" display="flex" alignItems="center">
             <Image
@@ -40,13 +41,13 @@ export const BlogAuthor: React.FC<BlogAuthorProps> = (props) => {
     );
 };
 
-const BlogTags: React.FC<IBlogTags> = (props) => {
+const BlogTags: React.FC<IBlogTags> = (props: any) => {
     return (
         <HStack spacing={2} marginTop={props.marginTop}>
-            {props.tags.map((tag) => {
+            {props.tags.map((tag: any) => {
                 return (
-                    <Tag size={'md'} variant="solid" colorScheme="orange" key={tag}>
-                        {tag}
+                    <Tag size={'md'} variant="subtle" colorScheme={"red"} key={tag}>
+                        {tag.tag}
                     </Tag>
                 )
             })}
@@ -55,10 +56,18 @@ const BlogTags: React.FC<IBlogTags> = (props) => {
 };
 
 export default function HomeCards(props: any) {
+    /*  console.log(props) */
 
     return (
         <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '22%' }}>
             <Box w="100%" >
+                {props.mural ?
+                    <Heading fontSize="20" fontWeight={"bold"} color={'gray.600'} position={"relative"} >
+                        <Link textDecoration="aqua" _hover={{ color: 'gray' }}>
+                            <Text>{props.data?.categoria.nome}</Text>
+                        </Link>
+                    </Heading>
+                    : null}
                 <Box borderRadius="lg" overflow="hidden">
                     <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
                         <Image
@@ -79,7 +88,7 @@ export default function HomeCards(props: any) {
                 {props.mural ? null : <BlogTags tags={props.data?.tags || ['Engineering', 'Product']} marginTop="3" />}
                 <Heading fontSize="xl" marginTop="2">
                     <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-                        {props.data?.title || 'Some blog Title'}
+                        {props.data?.titulo || 'Some blog Title'}
                     </Link>
                 </Heading>
 

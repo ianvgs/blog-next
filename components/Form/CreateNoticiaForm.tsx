@@ -19,8 +19,9 @@ type CreateNoticiaFormValues = {
   titulo: string;
   resumo: string;
   observacao: string;
-  idColaborador: number;
-  idCategoria: number;
+  idColaborador: number | null;
+  idCategoria: number | null;
+  tags: any[];
 };
 
 const cadastrarIdeiaSchema = yup
@@ -34,6 +35,15 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
 
   const toast = useToast();
   const [data, setData] = useState();
+  const defaultValues = {
+    titulo: "",
+    resumo: "",
+    observacao: "",
+    idColaborador: null,
+    idCategoria: null,
+    tags: [""],
+  };
+
 
   const {
     register,
@@ -42,33 +52,44 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
     reset,
     formState: { errors },
   } = useForm<CreateNoticiaFormValues>({
+    defaultValues,
     resolver: yupResolver(cadastrarIdeiaSchema),
   });
 
   const onSubmit = async (data: any) => {
+    let tagArray: [] = []
 
+    if (data.tags) {
+      tagArray = data?.tags.map((each: any) => {
+        const userData = {
+          id: ""
+        }
+        userData.id = each?.value
+        return userData
+      })
+    }
     const noticiaData = {
       titulo: data?.titulo,
       resumo: data?.resumo,
       observacao: data?.observacao,
       idCategoria: data?.idCategoria?.value,
       idColaborador: data?.idColaborador?.value,
-      tags: data?.tags
+      tags: tagArray
     }
     axiosNest
       .post("http://localhost:8000/api/news/noticia", {
         ...noticiaData
       })
       .then((res) => {
-        reset();
+        reset(defaultValues);
+
         toast({
           title: "Noticia Cadastrada com sucesso!",
           status: "success",
           duration: 3000,
           isClosable: true,
         });
-        /*  setData(data) */
-        /*  console.log(res.data) */
+
       })
       .catch(() => {
         toast({
@@ -78,6 +99,7 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
           isClosable: true,
         });
       });
+    reset();
   };
 
   return (

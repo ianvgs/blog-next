@@ -3,7 +3,7 @@ import * as yup from "yup";
 export const noticiaFormValidation = {
   idCategoria: yup.object().required("Obrigatório vincular categoria."),
   idColaborador: yup.object().required("Obrigatório vincular colaborador"),
-  titulo: yup.string().min(10, "Minimo 10 letras").max(25, "Máximo de 25 letras").required("Campo Obrigatório"),
+  titulo: yup.string().min(10, "Minimo 10 letras").max(100, "Máximo de 25 letras").required("Campo Obrigatório"),
   resumo: yup
     .string()
     .min(20, "Minimo de 20 letras")
