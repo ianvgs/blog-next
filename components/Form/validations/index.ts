@@ -9,7 +9,7 @@ export const noticiaFormValidation = {
     .min(20, "Minimo de 20 letras")
     .max(100, "Máximo de 100 letras")
     .required("Campo Obrigatório"),
-  observacao: yup.string()
+  texto: yup.string()
     .max(30, "Máximo de 100 letras").required("Campo Obrigatório"),
 };
 

@@ -27,7 +27,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: {
     //send email: HOME PAGE FORA, SEM CONEXÂO COM BACKEND
   }
   const homeData = response.data
-  /*  console.log(homeData) */
 
   return {
     props: {

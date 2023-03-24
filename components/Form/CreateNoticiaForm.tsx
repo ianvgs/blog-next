@@ -18,7 +18,7 @@ import { noticiaFormValidation } from "./validations";
 type CreateNoticiaFormValues = {
   titulo: string;
   resumo: string;
-  observacao: string;
+  texto: string;
   idColaborador: number | null;
   idCategoria: number | null;
   tags: any[];
@@ -38,7 +38,7 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
   const defaultValues = {
     titulo: "",
     resumo: "",
-    observacao: "",
+    texto: "",
     idColaborador: null,
     idCategoria: null,
     tags: [""],
@@ -71,7 +71,7 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
     const noticiaData = {
       titulo: data?.titulo,
       resumo: data?.resumo,
-      observacao: data?.observacao,
+      texto: data?.texto,
       idCategoria: data?.idCategoria?.value,
       idColaborador: data?.idColaborador?.value,
       tags: tagArray
@@ -136,10 +136,10 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
           <span role="alert">{errors.resumo?.message}</span>
           <Input
             type="text"
-            placeholder="Observação"
-            {...register("observacao")}
+            placeholder="Texto"
+            {...register("texto")}
           />
-          <span role="alert">{errors.observacao?.message}</span>
+          <span role="alert">{errors.texto?.message}</span>
           <div style={{ width: 500 }}>
             <ReactSelect
               key="tags"

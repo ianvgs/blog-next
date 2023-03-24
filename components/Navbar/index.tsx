@@ -3,7 +3,9 @@ import {
   Box,
   Flex,
   Avatar,
+  HStack,
   Link,
+  IconButton,
   Button,
   Menu,
   MenuButton,
@@ -12,14 +14,20 @@ import {
   MenuDivider,
   useDisclosure,
   useColorModeValue,
-  Stack,
   useColorMode,
+  Stack,
   Center,
 } from '@chakra-ui/react';
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 
+const Links = ['Inicio', 'Quem Somos'];
+
+
+
 const NavLink = ({ children }: { children: ReactNode }) => (
-  <Link
+  < Link
     px={2}
     py={1}
     rounded={'md'}
@@ -27,23 +35,37 @@ const NavLink = ({ children }: { children: ReactNode }) => (
       textDecoration: 'none',
       bg: useColorModeValue('gray.200', 'gray.700'),
     }}
-    href={'#'}>
+    href={children}>
     {children}
-  </Link>
+  </Link >
 );
 
-export default function Nav() {
-  const { colorMode, toggleColorMode } = useColorMode();
+export default function Simple() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Flex >
-            <Box>Inicio</Box>
-            <Box mx={5}>Quem somos</Box>
-          </Flex>
-          <Box>BMIZ TECNOLOGIAS</Box>
+          <IconButton
+            size={'md'}
+            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+            aria-label={'Open Menu'}
+            display={{ md: 'none' }}
+            onClick={isOpen ? onClose : onOpen}
+          />
+          <HStack spacing={8} alignItems={'center'}>
+            <HStack
+              as={'nav'}
+              spacing={4}
+              display={{ base: 'none', md: 'flex' }}>
+              {Links.map((link) => (
+                <NavLink key={link}>{link}</NavLink>
+              ))}
+            </HStack>
+          </HStack>
+          <Box>Logo</Box>
+
           <Stack direction={'row'} spacing={7}>
             <Button onClick={toggleColorMode}>
               {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
@@ -78,8 +100,24 @@ export default function Nav() {
               </MenuList>
             </Menu>
           </Stack>
+
+
+
         </Flex>
-      </Box >
+
+        {isOpen ? (
+          <Box pb={4} display={{ md: 'none' }}>
+            <Stack as={'nav'} spacing={4}>
+              {Links.map((link) => (
+                <NavLink key={link}>{link}</NavLink>
+              ))}
+            </Stack>
+          </Box>
+        ) : null}
+      </Box>
+
     </>
   );
 }
+
+
