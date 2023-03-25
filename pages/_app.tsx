@@ -19,10 +19,10 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <ChakraProvider>
         <Box>
-          <NavBar />
-          <NavBarBlank />
+          {/*  <NavBar /> */}
+          {/*    <NavBarBlank /> */}
           <Component {...pageProps} />
-          <Footer />
+          {/*       <Footer /> */}
         </Box>
       </ChakraProvider>
     </>

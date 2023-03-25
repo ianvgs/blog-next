@@ -54,7 +54,7 @@ export const EventAuthor: React.FC<EventAuthorProps> = (props) => {
 const EventosList = (props: any) => {
   return (
     <>
-      <Flex>  
+      <Flex>
         <VStack w="250px" bg="#AFAFAF" />
         <VStack>
           <Heading as="h1">Eventos ativos</Heading>
@@ -120,93 +120,93 @@ const EventosList = (props: any) => {
       <Heading as="h1" margin={15}>
         Últimos Eventos
       </Heading>
-      <Wrap
+      <
         margin={15}
-        height={400}
-        justifyContent="center"
-        alignContent="center"
+      height={400}
+      justifyContent="center"
+      alignContent="center"
       >
-        <Divider
-          marginTop="15"
-          marginBottom="10"
-          borderWidth="1px"
-          bg="#FCFC30"
-        />
-        <WrapItem width={{ base: "100%", sm: "45%", md: "45%", lg: "15%" }}>
-          <Box>
-            <Box borderRadius="lg" overflow="hidden">
-              <Link textDecoration="none" _hover={{ textDecoration: "none" }}>
-                <Image
-                  transform="scale(1.0)"
-                  src={
-                    "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80"
-                  }
-                  alt="some text"
-                  objectFit="contain"
-                  width="100%"
-                  transition="0.3s ease-in-out"
-                  _hover={{
-                    transform: "scale(1.05)",
-                  }}
-                />
-              </Link>
-            </Box>
-            <BlogTags tags={["Engineering", "Product"]} marginTop="3" />
-            <Heading fontSize="xl" marginTop="2">
-              <Link textDecoration="none" _hover={{ textDecoration: "none" }}>
-                Some blog title
-              </Link>
-            </Heading>
-            <Text as="p" fontSize="md" marginTop="2">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
-            </Text>
-            <EventAuthor
-              name="John Doe"
-              date={new Date("2021-04-06T19:01:27Z")}
-            />
+      <Divider
+        marginTop="15"
+        marginBottom="10"
+        borderWidth="1px"
+        bg="#FCFC30"
+      />
+      <WrapItem width={{ base: "100%", sm: "45%", md: "45%", lg: "15%" }}>
+        <Box>
+          <Box borderRadius="lg" overflow="hidden">
+            <Link textDecoration="none" _hover={{ textDecoration: "none" }}>
+              <Image
+                transform="scale(1.0)"
+                src={
+                  "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80"
+                }
+                alt="some text"
+                objectFit="contain"
+                width="100%"
+                transition="0.3s ease-in-out"
+                _hover={{
+                  transform: "scale(1.05)",
+                }}
+              />
+            </Link>
           </Box>
-        </WrapItem>
-        <WrapItem width={{ base: "100%", sm: "45%", md: "45%", lg: "15%" }}>
-          <Box>
-            <Box borderRadius="lg" overflow="hidden">
-              <Link textDecoration="none" _hover={{ textDecoration: "none" }}>
-                <Image
-                  transform="scale(1.0)"
-                  src={
-                    "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80"
-                  }
-                  alt="some text"
-                  objectFit="contain"
-                  width="100%"
-                  transition="0.3s ease-in-out"
-                  _hover={{
-                    transform: "scale(1.05)",
-                  }}
-                />
-              </Link>
-            </Box>
-            <BlogTags tags={["Engineering", "Product"]} marginTop="3" />
-            <Heading fontSize="xl" marginTop="2">
-              <Link textDecoration="none" _hover={{ textDecoration: "none" }}>
-                Some blog title
-              </Link>
-            </Heading>
-            <Text as="p" fontSize="md" marginTop="2">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
-            </Text>
-            <EventAuthor
-              name="John Doe"
-              date={new Date("2021-04-06T19:01:27Z")}
-            />
+          <BlogTags tags={["Engineering", "Product"]} marginTop="3" />
+          <Heading fontSize="xl" marginTop="2">
+            <Link textDecoration="none" _hover={{ textDecoration: "none" }}>
+              Some blog title
+            </Link>
+          </Heading>
+          <Text as="p" fontSize="md" marginTop="2">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of
+            type and scrambled it to make a type specimen book.
+          </Text>
+          <EventAuthor
+            name="John Doe"
+            date={new Date("2021-04-06T19:01:27Z")}
+          />
+        </Box>
+      </WrapItem>
+      <WrapItem width={{ base: "100%", sm: "45%", md: "45%", lg: "15%" }}>
+        <Box>
+          <Box borderRadius="lg" overflow="hidden">
+            <Link textDecoration="none" _hover={{ textDecoration: "none" }}>
+              <Image
+                transform="scale(1.0)"
+                src={
+                  "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80"
+                }
+                alt="some text"
+                objectFit="contain"
+                width="100%"
+                transition="0.3s ease-in-out"
+                _hover={{
+                  transform: "scale(1.05)",
+                }}
+              />
+            </Link>
           </Box>
-        </WrapItem>
-      </Wrap>
+          <BlogTags tags={["Engineering", "Product"]} marginTop="3" />
+          <Heading fontSize="xl" marginTop="2">
+            <Link textDecoration="none" _hover={{ textDecoration: "none" }}>
+              Some blog title
+            </Link>
+          </Heading>
+          <Text as="p" fontSize="md" marginTop="2">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of
+            type and scrambled it to make a type specimen book.
+          </Text>
+          <EventAuthor
+            name="John Doe"
+            date={new Date("2021-04-06T19:01:27Z")}
+          />
+        </Box>
+      </WrapItem>
+    </Wrap >
     </>
   );
 };
