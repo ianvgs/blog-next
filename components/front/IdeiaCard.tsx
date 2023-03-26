@@ -13,7 +13,7 @@ import {
 import ProgressBar from './progressbar';
 
 
-export default function IdeiaCard({ progress }) {
+export default function IdeiaCard({ progress }: any) {
     return (
         <WrapItem  >
             <Box
