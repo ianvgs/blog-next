@@ -26,7 +26,7 @@ export default function BasicStatistics() {
                         <Heading fontSize={15} >CAMPANHA SUPER ADM -2022</Heading>
                     </span>
                 </Box>
-                <Box display={"flex"} align={'end'} mt={5}>
+                <Box display={"flex"} /* align={'end'}  */ mt={5}>
                     <Stat>
                         <Flex >
                             <Box
