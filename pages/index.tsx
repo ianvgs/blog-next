@@ -4,7 +4,7 @@ import { GetServerSideProps } from "next";
 import Index from '@/components/Home';
 import axiosNest from '@/services/axiosNest';
 
-export default function Home({ homeData }) {
+export default function Home({ homeData }: any) {
 
   //if errors
   // returns (não foi possivel carregar a pagina)
