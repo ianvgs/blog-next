@@ -26,7 +26,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 
 
-export default function Index({ homeData }) {
+export default function Index({ homeData }: any) {
     const homeNoticias = homeData;
     return (
         <Container maxW={'8xl'}>
