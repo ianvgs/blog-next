@@ -7,8 +7,8 @@ import {
 } from '@chakra-ui/react';
 
 interface FeatureProps {
-    text: string;
-    iconBg: string;
+    text?: string;
+    iconBg?: string;
     icon?: ReactElement;
 }
 export const Feature = ({ text, icon }: FeatureProps) => {
