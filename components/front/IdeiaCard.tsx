@@ -29,7 +29,7 @@ export default function IdeiaCard({ progress }: any) {
                     <Flex justifyContent={"space-between"} /* spacing='4'*/>
                         <Box className="nes-badge is-splited" w={20}>
                             <span className="is-dark">#</span>
-                            <span className="is-success">{Math.random(2)}</span>
+                            <span className="is-success">{5}</span>
                         </Box>
 
                         <Box>
