@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import ProgressBar from "./progressbar";
 
-export default function RankingCard({ progress }) {
+export default function RankingCard({ progress }: any) {
 
 
     return (<>
