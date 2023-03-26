@@ -12,7 +12,6 @@ import {
   WrapItem,
   SpaceProps,
   useColorModeValue,
-  Container,
   VStack,
   Flex,
 } from "@chakra-ui/react";
@@ -120,12 +119,12 @@ const EventosList = (props: any) => {
       <Heading as="h1" margin={15}>
         Últimos Eventos
       </Heading>
-      <
+      {/* <
         margin={15}
       height={400}
       justifyContent="center"
       alignContent="center"
-      >
+      > */}
       <Divider
         marginTop="15"
         marginBottom="10"
