@@ -119,7 +119,7 @@ export default function Index({ homeData }: any) {
                     flexDirection="row"
                     marginTop={{ base: '3', sm: '0' }}>
                     <Wrap spacing="30px" marginTop="5">
-                        {homeNoticias[0].ultimasNoticias?.map((unique, index) => (
+                        {homeNoticias[0].ultimasNoticias?.map((unique: any, index: number) => (
                             <HomeCards key={index} mural data={unique} />
                         ))}
                     </Wrap>

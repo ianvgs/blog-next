@@ -49,7 +49,7 @@ export default function SplitWithImage() {
                     <Stack px={20} >
                         <Skeleton height='15px' />
                     </Stack>
-                    {array4.map((unique, index) => (<RankingCard {...unique} key={index} />))
+                    {array4.map((unique: any, index: number) => (<RankingCard {...unique} key={index} />))
                     }
                 </Box >
             </VStack>
@@ -68,7 +68,7 @@ export default function SplitWithImage() {
 
                 </Box  >
                 <Wrap spacingX={25} spacingY={15} justify={"center"} >
-                    {array10.map((unique, index) => (
+                    {array10.map((unique: any, index: number) => (
                         <IdeiaCard {...unique} key={index} />
                     ))}
                 </Wrap>
