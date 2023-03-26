@@ -105,7 +105,7 @@ const CategoriaListaNoticias = (props: any) => {
             <Text
               as="p"
               marginTop="2"
-              color={useColorModeValue("gray.700", "gray.200")}
+              color={'gray.300'}
               fontSize="lg"
             >
               {unique.resumo}
