@@ -4,7 +4,7 @@ import NoticiaDetails from "@/components/NoticiaDetails";
 import PaginaNaoEncontrada from "@/pages/404";
 import axiosNest from "@/services/axiosNest";
 
-const IdeiaHome: NextPage = ({ hasError, noticia }) => {
+const IdeiaHome: NextPage = ({ hasError, noticia }: any) => {
   if (hasError) {
     return <PaginaNaoEncontrada />;
   }
