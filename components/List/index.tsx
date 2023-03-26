@@ -11,7 +11,6 @@ import {
   Wrap,
   WrapItem,
   SpaceProps,
-  useColorModeValue,
   VStack,
   Flex,
 } from "@chakra-ui/react";
@@ -100,7 +99,7 @@ const EventosList = (props: any) => {
                 <Text
                   as="p"
                   marginTop="2"
-                  color={useColorModeValue("gray.700", "gray.200")}
+                  color={"gray.700"}
                   fontSize="lg"
                 >
                   Pensou em algo inovador que ajudará a sua equipe? Cadastre
