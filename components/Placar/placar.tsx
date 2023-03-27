@@ -6,7 +6,8 @@ import {
     StatNumber,
     useColorModeValue,
     Image,
-    Heading
+    Heading,
+    Stack
 } from '@chakra-ui/react';
 
 import { BsPerson } from 'react-icons/bs';
@@ -18,38 +19,21 @@ import { GoLocation } from 'react-icons/go';
 export default function BasicStatistics() {
     return (
 
-        <Box display={"flex"} justifyContent={"space-between"}  >
-            <Box w={"50%"} className="nes-container with-title  is-rounded"
+        <Stack justifyContent={"space-between"} direction={{ base: 'column', md: 'row' }}
+            className='nes-container'
+            bg={"white"}
+            w={'full'}
+            boxShadow={'2xl'}
+            rounded="lg" >
+            <Box w={{ md: "100%", lg: "50%" }} className="nes-container with-title  is-rounded"
                 position={"relative"}     >
-                <Box width={500} position={"absolute"} className="nes-btn is-success" top={-6} >
-                    <span className="is-success" >
-                        <Heading fontSize={15} >CAMPANHA SUPER ADM -2022</Heading>
-                    </span>
+                <Box width={"700"} position={"absolute"} className="nes-btn is-success" top={-6} >
+                    <Heading fontSize={17} >CAMPANHA SUPER ADM -2022</Heading>
                 </Box>
-                <Box display={"flex"} /* align={'end'}  */ mt={5}>
+                <Box display={"flex"} mt={5}>
                     <Stat>
-                        <Flex >
-                            <Box
-                                my={'auto'}
-                                color={useColorModeValue('gray.800', 'gray.200')}
-                                alignContent={'center'}>
-                                <GoLocation size={'3em'} />
-                            </Box>
-                            <Box pl={{ base: 2, md: 4 }} >
-                                <StatLabel fontWeight={'medium'} isTruncated>
-                                    {'Ideias cadastradas:'}
-                                </StatLabel>
-                                <StatNumber fontSize={'2xl'} fontWeight={'medium'}>
-                                    {'15'}
-                                </StatNumber>
-                            </Box>
-
-                        </Flex>
-                    </Stat >
-
-                    <Stat>
-                        <Flex  >
-                            <Box pl={{ base: 2, md: 4 }} >
+                        <Flex justifyContent={'end'} mt={3} >
+                            <Box pl={{ base: 2, md: 4 }}   >
                                 <StatLabel fontWeight={'medium'} isTruncated>
                                     {'Valor total aplicado na campanha:'}
                                 </StatLabel>
@@ -61,8 +45,8 @@ export default function BasicStatistics() {
                                 my={'auto'}
                                 color={useColorModeValue('gray.800', 'gray.200')}
                                 alignContent={'center'}>
-
                                 <Image
+                                    maxW={"150px"}
                                     w={"60%"}
                                     src="pilecoin.png"
                                     alt="Troféu"
@@ -71,39 +55,38 @@ export default function BasicStatistics() {
                         </Flex>
                     </Stat >
                 </Box>
-
             </Box>
 
 
             <Box className="nes-container with-title  is-rounded"
-                position={"relative"}>
+                position={"relative"} >
                 <Box width={200} position={"absolute"} className="nes-btn is-success" top={-6} >
-                    <span className="is-success" >
-                        <Heading fontSize={15} >SALDO</Heading>
-                    </span>
+                    <Heading fontSize={15} >SALDO</Heading>
                 </Box>
 
-                <Stat>
-                    <Flex justifyContent={'space-between'} mt={3} >
-                        <Box pl={{ base: 2, md: 4 }} >
-                            <StatLabel fontWeight={'medium'} isTruncated>
-                                {'Saldo disponivel na campanha:'}
-                            </StatLabel>
-                            <StatNumber fontSize={'2xl'} fontWeight={'medium'}>
-                                {' $7.000,00 '}
-                            </StatNumber>
-                        </Box>
-                        <Box
-                            my={'auto'}
-                            color={useColorModeValue('gray.800', 'gray.200')}
-                            alignContent={'center'}>
+                <Box display={"flex"} mt={5}>
+                    <Stat>
+                        <Flex justifyContent={'end'} mt={3} >
+                            <Box pl={{ base: 2, md: 4 }} >
+                                <StatLabel fontWeight={'medium'} isTruncated>
+                                    {'Saldo disponivel na campanha:'}
+                                </StatLabel>
+                                <StatNumber fontSize={'2xl'} fontWeight={'medium'}>
+                                    {' $7.000,00 '}
+                                </StatNumber>
+                            </Box>
+                            <Box
+                                my={'auto'}
+                                color={useColorModeValue('gray.800', 'gray.200')}
+                                alignContent={'center'}>
 
-                            <BsPerson size={'3em'} />
-                        </Box>
-                    </Flex>
-                </Stat >
+                                <BsPerson size={'3em'} />
+                            </Box>
+                        </Flex>
+                    </Stat >
+                </Box>
             </Box>
-        </Box>
+        </Stack>
 
 
 

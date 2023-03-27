@@ -55,18 +55,7 @@ export default function SplitWithImage() {
             </VStack>
 
             <VStack w={"100%"} minH={'100%'}  >
-                <Box
-                    className='nes-container'
-                    //minimo height
-                    h={"170"}
-                    bg={"white"}
-                    w={'full'}
-                    boxShadow={'2xl'}
-                    rounded="lg"
-                >
-                    <BasicStatistics />
-
-                </Box  >
+                <BasicStatistics />
                 <Wrap spacingX={25} spacingY={15} justify={"center"} >
                     {array10.map((unique: any, index: number) => (
                         <IdeiaCard {...unique} key={index} />
