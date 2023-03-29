@@ -7,7 +7,6 @@ import {
   Heading,
   SimpleGrid,
   useColorModeValue,
-  Icon,
   HStack,
   VStack,
 } from "@chakra-ui/react";
@@ -54,16 +53,12 @@ type Noticia = {
 
 export default function NoticiaDetails(noticia: Noticia) {
   const date = moment.locale('pt-br');
+
   return (
 
-    <Stack minH={'100vh'} padding={3} direction={{ base: 'column', md: 'row' }}>
-      <VStack bg="gray.400" width={200} rounded={10}>
-
-      </VStack>
-
-
-
-      <Container maxW={'5xl'} py={12}>
+    <Stack padding={3} direction={{ base: 'column', lg: 'row' }}>
+      <VStack className="container" bg="gray.400" width={300} rounded={"lg"} />
+      <Container maxW={'7xl'} py={12}>
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
           <Flex>
             <Image
@@ -102,19 +97,17 @@ export default function NoticiaDetails(noticia: Noticia) {
               </Text>
             </HStack>
             <Heading>{noticia.titulo}</Heading>
-            <Text color={'gray.600'} fontSize={'lg'}>
+            <Text color={'gray.600'} fontSize={'lg'} textAlign={"justify"}>
               {noticia.resumo}
             </Text>
           </Stack>
         </SimpleGrid>
-        <Stack spacing={4}>
-          <Text color={'gray.600'} fontSize={'lg'}>
+        <Stack spacing={4} mt={10}>
+          <Text textAlign={"justify"} color={'gray.600'} fontSize={'lg'}>
             {noticia.texto}
           </Text>
         </Stack>
       </Container>
-
-
     </Stack>
 
 

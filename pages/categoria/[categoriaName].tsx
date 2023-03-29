@@ -5,24 +5,6 @@ import axiosNest from "@/services/axiosNest";
 import PaginaNaoEncontrada from "../404";
 
 const EventoHome: NextPage = (props: any) => {
-
-  /* categoria: {
-    id: 1,
-    nome: 'Esportes',
-    descricao: 'Sobre esportes',
-    img: 'img',
-    bloqueio: 's',
-    ativo: 's',
-    dataVencimento: null,
-    createdAt: '2023-03-23T01:27:28.317Z',
-    updatedAt: '2023-03-23T01:44:34.594Z',
-    noticias: [
-      [Object], [Object],      
-    ]
-  } */
-
-
-  console.log(props)
   if (props.hasError) {
 
     return (

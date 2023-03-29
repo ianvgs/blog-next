@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
-import { Box, SimpleGrid, Icon, Text, Stack, Flex, TableContainer, Table, TableCaption, Thead, Tr, Th, Tbody, Td, Tfoot } from '@chakra-ui/react';
-import { FcAssistant, FcDonate, FcInTransit } from 'react-icons/fc';
+import { Box, SimpleGrid, Icon, Text, Stack, Flex, TableContainer, Table, TableCaption, Thead, Tr, Th, Tbody, Td } from '@chakra-ui/react';
+import { FcPodiumWithSpeaker, FcDonate, FcSalesPerformance } from 'react-icons/fc';
 import axiosNest from '@/services/axiosNest';
 import PaginaNaoEncontrada from '../404';
 
@@ -28,13 +28,13 @@ interface TableDataProps {
 const TableDados = ({ dados }: TableDataProps) => {
     let tableTitle = ''
     if (dados[0].indice === "IPCA") {
-        tableTitle = "IPCA - INDIDE DE PREÇO"
+        tableTitle = "IPCA - Índice de Preços ao Consumidor Amplo"
     }
     if ((dados[0].indice === "INPC")) {
-        tableTitle = "INPC - INDIDE DE PREÇO"
+        tableTitle = "INPC - Índice Nacional de Preços ao Consumidor"
     }
     if ((dados[0].indice === "IGPM")) {
-        tableTitle = "IGPM - INDIDE DE PREÇO"
+        tableTitle = "IGPM -Indicador Geral de Preços do Mercado"
     }
 
     return (
@@ -51,7 +51,7 @@ const TableDados = ({ dados }: TableDataProps) => {
                 <Tbody>
                     {dados.map((indiceEconomico: any, index: number) => {
                         return (<>
-                            <Tr>
+                            <Tr key={index}>
                                 <Td>{indiceEconomico.mes}</Td>
                                 <Td isNumeric>{indiceEconomico.valor}%</Td>
                                 <Td isNumeric>{indiceEconomico.valorAcumulado}%</Td>
@@ -66,7 +66,7 @@ const TableDados = ({ dados }: TableDataProps) => {
 
 const Feature = ({ title, text, icon, tableDados }: FeatureProps) => {
     return (
-        <Stack justifyContent={"space-between"}>
+        <Stack align={"center"} w={400}>
             <Flex
                 w={16}
                 align={'center'}
@@ -89,8 +89,6 @@ const Feature = ({ title, text, icon, tableDados }: FeatureProps) => {
 };
 
 export default function SimpleThreeColumns({ dadosEconomicos, hasError }: any) {
-    const [dadosIpca, dadosInpc, dadosIgpm] = dadosEconomicos
-
     if (hasError) {
         return (
             <>
@@ -99,44 +97,45 @@ export default function SimpleThreeColumns({ dadosEconomicos, hasError }: any) {
         );
     }
 
+    const [dadosIpca, dadosInpc, dadosIgpm] = dadosEconomicos
+
     return (
-        <Box p={4}>
-            <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
-                <Feature
-                    icon={<Icon as={FcAssistant} w={10} h={10} />}
-                    title={'IPCA'}
-                    text={
-                        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...vLorem ipsum dLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..olor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor re..  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.. '
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} p={10} justifyItems={"center"} >
+            <Feature
+                icon={<Icon as={FcDonate} w={10} h={10} />}
+                title={'IPCA - Índice de Preços ao Consumidor Amplo'}
+                text={
+                    'O IPCA mede a inflação de produtos e serviços do varejo, referentes ao consumo das famílias'
 
-                    }
-                    tableDados={
-                        <TableDados dados={dadosIpca} />
-                    }
-                />
-                <Feature
-                    icon={<Icon as={FcDonate} w={10} h={10} />}
-                    title={'INPC'}
-                    text={
-                        'LorLLLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..orem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..orem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.. labore..Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..em ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...'
-                    }
-                    tableDados={
-                        <TableDados dados={dadosInpc} />
-                    }
-                />
-                <Feature
-                    icon={<Icon as={FcInTransit} w={10} h={10} />}
-                    title={'IGPM'}
-                    text={
-                        'Lorem ipsuLLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..orem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..m dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...'
-                    }
-                    tableDados={
-                        <TableDados dados={dadosIgpm} />
-                    }
-                />
-            </SimpleGrid>
+                }
+                tableDados={
+                    <TableDados dados={dadosIpca} />
+                }
+            />
+            <Feature
+                icon={<Icon as={FcPodiumWithSpeaker} w={10} h={10} />}
+                title={'INPC - Índice Nacional de Preços ao Consumidor'}
+                text={
+                    'O INPC mede a inflação da cesta de consumo da população com baixo rendimento.'
+                }
+                tableDados={
+                    <TableDados dados={dadosInpc} />
+                }
+            />
+            <Feature
+                icon={<Icon as={FcSalesPerformance} w={10} h={10} />}
+                title={'IGPM -Indicador Geral de Preços do Mercado'}
+                text={
+                    'O IGPM mede os itens do cotidiano como transporte, alimentação e vestuário.'
+                }
+                tableDados={
+                    <TableDados dados={dadosIgpm} />
+                }
+            />
+        </SimpleGrid>
 
 
-        </Box>
+
     );
 }
 

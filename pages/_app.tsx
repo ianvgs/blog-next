@@ -1,8 +1,8 @@
-import '@/styles/globals.css'
+import '@/styles/globals.css';
+import "@/styles/coresBB.css";
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { ChakraProvider, Box } from "@chakra-ui/react";
-/* import "@/node_modules/nes.css/css/nes.css" */
 import Footer from "@/components/Footer";
 import NavBar from "@/components/Navbar";
 import NavBarBlank from '@/components/NavBarBlank';
@@ -18,14 +18,17 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <ChakraProvider>
-        <Box>
-          <NavBar />
-          <NavBarBlank />
-          <Component {...pageProps} />
+        <Box height={"100vh"} display={"flex"} flexDirection={"column"} justifyContent={"space-between"}>
+          <Box>
+            <NavBar />
+            <NavBarBlank />
+          </Box>
+          <Component  {...pageProps} />
           <Footer />
         </Box>
-      </ChakraProvider>
+      </ChakraProvider >
     </>
   )
 

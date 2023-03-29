@@ -10,36 +10,12 @@ import {
     WrapItem,
     SpaceProps,
 } from '@chakra-ui/react';
-import { Inter } from 'next/font/google';
+
 
 interface IBlogTags {
     tags: Array<string>;
     marginTop?: SpaceProps['marginTop'];
 }
-
-const inter = Inter({ subsets: ['latin'] })
-
-interface BlogAuthorProps {
-    date: Date;
-    name: string;
-}
-
-export const BlogAuthor: React.FC<BlogAuthorProps> = (props) => {
-
-    return (
-        <HStack marginTop="2" spacing="2" display="flex" alignItems="center">
-            <Image
-                borderRadius="full"
-                boxSize="40px"
-                src="https://100k-faces.glitch.me/random-image"
-                alt={`Avatar of ${props.name}`}
-            />
-            <Text fontWeight="medium">{props.name}</Text>
-            <Text>—</Text>
-            <Text>{props.date.toLocaleDateString()}</Text>
-        </HStack>
-    );
-};
 
 const BlogTags: React.FC<IBlogTags> = (props: any) => {
     return (
@@ -57,12 +33,12 @@ const BlogTags: React.FC<IBlogTags> = (props: any) => {
 
 export default function HomeCards(props: any) {
     return (
-        <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '22%' }}>
-            <Box w="100%" >
+        <WrapItem width={props.mural ? { base: '100%', sm: '45%', md: '45%', lg: '32%' } : { base: '100%', sm: '45%', md: '45%', lg: '22%' }} >
+            <Box w="100%"  >
                 {props.mural ?
-                    <Heading fontSize="20" fontWeight={"bold"} color={'gray.600'} position={"relative"} mb={1} >
+                    <Heading fontSize="15" fontWeight={"bold"} color={'gray.600'} position={"relative"} mb={1} >
                         <Link textDecoration="aqua" _hover={{ color: 'gray' }}>
-                            <Text>{props.data?.categoria.nome}</Text>
+                            {props.data?.categoria.nome.toUpperCase()}
                         </Link>
                     </Heading>
                     : null}
@@ -75,7 +51,7 @@ export default function HomeCards(props: any) {
                             }
                             alt="some text"
                             objectFit="contain"
-                            width="100%"
+                            minW="230px"
                             transition="0.3s ease-in-out"
                             _hover={{
                                 transform: 'scale(1.05)',
@@ -89,10 +65,6 @@ export default function HomeCards(props: any) {
                         {props.data?.titulo || 'Some blog Title'}
                     </Link>
                 </Heading>
-                {props ? null : <BlogAuthor
-                    name="John Doe"
-                    date={new Date('2021-04-06T19:01:27Z')}
-                />}
             </Box>
         </WrapItem>
     )

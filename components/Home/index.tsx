@@ -21,9 +21,9 @@ import { Feature } from './components/Feature';
 
 
 export default function Index({ homeData }: any) {
+    const [ultimasNoticias, noticiasMaisLidas, noticiaPrincipal, dadosEconomicos] = homeData;
     const homeNoticias = homeData;
-
-    const dadosEconomicos = homeData[3].dadosEconomicos
+    /* const dadosEconomicos = homeData[3].dadosEconomicos */
 
 
 
@@ -32,7 +32,7 @@ export default function Index({ homeData }: any) {
             <Box
                 marginTop={{ base: '1', sm: '5' }}
                 display="flex"
-                flexDirection={{ base: 'column', md: 'row' }}            >
+                flexDirection={{ base: 'column', lg: 'row' }}            >
                 <Box flex="1">
                     <VStack
                         divider={<StackDivider borderColor='gray.300' />}
@@ -43,7 +43,7 @@ export default function Index({ homeData }: any) {
                         marginLeft={{ base: '0', sm: '5%' }}
                     >
                         <Box position="relative">
-                            <Link href={`categoria/noticia/${homeNoticias[2].noticiaPrincipal.id}`} textDecoration="none" _hover={{ textDecoration: 'none', color: 'blue' }}>
+                            <Link href={`categoria/noticia/${noticiaPrincipal.noticiaPrincipal.id}`} textDecoration="none" _hover={{ textDecoration: 'none', color: 'blue' }}>
                                 <Image
                                     transform="scale(1.0)"
                                     src={
@@ -61,7 +61,7 @@ export default function Index({ homeData }: any) {
                                 />
 
                                 <Heading position="absolute" bottom="5%" mx={5} color={'gray.800'}>
-                                    {homeNoticias[2].noticiaPrincipal.titulo}
+                                    {noticiaPrincipal.noticiaPrincipal.titulo}
                                 </Heading>
                             </Link>
                         </Box>
@@ -79,7 +79,7 @@ export default function Index({ homeData }: any) {
                                         <Icon as={InfoIcon} color={'gray.500'} />
                                     }
 
-                                    text={`O INPC acumulado 12 meses é de ${dadosEconomicos?.inpcAcumulado12}% e do mes de ${dadosEconomicos?.inpcMes} foi de ${dadosEconomicos?.inpcValorMes}%`}
+                                    text={`O INPC acumulado 12 meses é de ${dadosEconomicos.dadosEconomicos?.inpcAcumulado12}% e do mes de ${dadosEconomicos.dadosEconomicos?.inpcMes} foi de ${dadosEconomicos.dadosEconomicos?.inpcValorMes}%`}
                                 /> </Link>
 
 
@@ -87,7 +87,7 @@ export default function Index({ homeData }: any) {
                                 <Feature
                                     icon={<Icon as={InfoIcon} color={'gray.500'} />}
 
-                                    text={`O IPCA acumulado 12 meses é de ${dadosEconomicos?.ipcaAcumulado12}% e do mes de ${dadosEconomicos?.ipcaMes} foi de ${dadosEconomicos?.ipcaValorMes}%`}
+                                    text={`O IPCA acumulado 12 meses é de ${dadosEconomicos.dadosEconomicos?.ipcaAcumulado12}% e do mes de ${dadosEconomicos.dadosEconomicos?.ipcaMes} foi de ${dadosEconomicos.dadosEconomicos?.ipcaValorMes}%`}
                                 />
                             </Link>
                             <Link href={`dados-economicos`} textDecoration="none" _hover={{ textDecoration: 'none', color: 'gray' }}>
@@ -96,7 +96,7 @@ export default function Index({ homeData }: any) {
                                         <Icon as={InfoIcon} color={'gray.500'} />
                                     }
 
-                                    text={`O INPC acumulado 12 meses é de ${dadosEconomicos?.igpmAcumulado12}% e do mes de ${dadosEconomicos?.igpmMes} foi de ${dadosEconomicos?.igpmValorMes}%`}
+                                    text={`O INPC acumulado 12 meses é de ${dadosEconomicos.dadosEconomicos?.igpmAcumulado12}% e do mes de ${dadosEconomicos.dadosEconomicos?.igpmMes} foi de ${dadosEconomicos.dadosEconomicos?.igpmValorMes}%`}
                                 />
                             </Link>
                             <Link href={`dados-economicos`} textDecoration="none" _hover={{ textDecoration: 'none', color: 'gray' }} display={"flex"} justifyContent={"center"}>
@@ -119,24 +119,22 @@ export default function Index({ homeData }: any) {
                     flex="1"
                     flexDirection="row"
                     marginTop={{ base: '3', sm: '0' }}>
-                    <Wrap spacing="30px" marginTop="5">
-                        {homeNoticias[0].ultimasNoticias?.map((unique: any, index: number) => (
+                    <Wrap alignItems={"center"} justifyItems={"center"}>
+                        {ultimasNoticias.ultimasNoticias?.map((unique: any, index: number) => (
                             <HomeCards key={index} mural data={unique} />
                         ))}
                     </Wrap>
                 </Box>
             </Box>
             <Divider marginTop="5" />
-
-
             <Heading marginTop="5" color={'blue.400'}
                 ml={15}
                 fontWeight={700}
                 fontSize={30}>
                 Mais lidos
             </Heading>
-            <Wrap spacing="30px" marginTop="5">
-                {homeNoticias[1].noticiasMaisLidas?.map((unique: any, index: number) => (
+            <Wrap marginTop="5" spacing={30}>
+                {noticiasMaisLidas.noticiasMaisLidas?.map((unique: any, index: number) => (
                     <HomeCards key={index} mural={false} data={unique} />
                 ))}
             </Wrap>

@@ -10,8 +10,9 @@ import {
     Stack,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import { LinksCategorias } from '../../styles/index.tsx'
 
-const Links = ['Economia', 'Finanças', 'Tecnologia', 'Educação', 'Cultura', 'Dados Econômicos'];
+
 
 const NavLink = ({ children }: { children: ReactNode }) => (
     <Link
@@ -22,8 +23,8 @@ const NavLink = ({ children }: { children: ReactNode }) => (
             textDecoration: 'none',
             bg: useColorModeValue('gray.200', 'gray.700'),
         }}
-        href={`./categoria/${children?.toString().toLowerCase()}`}>
-        {children}
+        href={children.endereco.toString()}>
+        {children.nome}
     </Link >
 );
 
@@ -45,7 +46,7 @@ export default function Simple() {
                             as={'nav'}
                             spacing={4}
                             display={{ base: 'none', md: 'flex' }}>
-                            {Links.map((link: any) => (
+                            {LinksCategorias.map((link: any) => (
                                 <NavLink key={link}>{link}</NavLink>
                             ))}
                         </HStack>
@@ -54,7 +55,7 @@ export default function Simple() {
                 {isOpen ? (
                     <Box pb={4} display={{ md: 'none' }}>
                         <Stack as={'nav'} spacing={4}>
-                            {Links.map((link: any) => (
+                            {LinksCategorias.map((link: any) => (
                                 <NavLink key={link}>{link}</NavLink>
                             ))}
                         </Stack>

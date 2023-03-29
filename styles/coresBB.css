@@ -1,0 +1,105 @@
+.azul-escuro-bck {
+	background: #002D4B !important;
+}
+
+.amarelo-bck {
+	background: #FCFC30 !important;
+}
+
+.roxo-claro-bck {
+	background: #B4AFD2 !important;
+}
+
+.roxo-escuro-bck {
+	background: #9187AF !important;
+}
+
+.cinza-claro-bck {
+	background: #AFAFAF !important;
+}
+
+.cinza-escuro-bck {
+	background: #69696E !important;
+}
+
+.verde-claro-bck {
+	background: #87C3BE !important;
+}
+
+.verde-escuro-bck {
+	background: #5AAAA0 !important;
+}
+
+.rosa-claro-bck {
+	background: #DCA09B !important;
+}
+
+.rosa-escuro-bck {
+	background: #B47D7D !important;
+}
+
+/************ cores texto ************/
+
+.azul-escuro-txt {
+	color: #002D4B !important;
+}
+
+.amarelo-txt {
+	color: #FCFC30 !important;
+}
+
+.roxo-claro-txt {
+	color: #B4AFD2 !important;
+}
+
+.roxo-escuro-txt {
+	color: #9187AF !important;
+}
+
+.cinza-claro-txt {
+	color: #AFAFAF !important;
+}
+
+.cinza-escuro-txt {
+	color: #69696E !important;
+}
+
+.verde-claro-txt {
+	color: #87C3BE !important;
+}
+
+.verde-escuro-txt {
+	color: #5AAAA0 !important;
+}
+
+.rosa-claro-txt {
+	color: #DCA09B !important;
+}
+
+.rosa-escuro-txt {
+	color: #B47D7D !important;
+}
+
+.azul-escuro-txt {
+	color: #002D4B !important;
+}
+
+.branco-txt {
+	color: white !important;
+}
+
+.bb-fundo-azul-escuro {
+	background-color: #212529;
+}
+
+.bb-fundo-amarelo {
+	background-color: #fcfc30;
+}
+
+.bb-fonte-azul-escuro {
+	color: #212529;
+}
+
+.bb-fonte-amarela {
+	color: #fcfc30;
+}
