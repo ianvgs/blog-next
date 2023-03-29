@@ -1,4 +1,4 @@
-import { Inter } from 'next/font/google'
+
 import React from 'react';
 import {
     Box,
@@ -8,7 +8,6 @@ import {
     Text,
     Divider,
     Wrap,
-    useColorModeValue,
     Container,
     VStack,
     StackDivider,
@@ -17,17 +16,17 @@ import {
     SimpleGrid,
 } from '@chakra-ui/react';
 import HomeCards from './components/HomeCards';
-import { AddIcon, ArrowRightIcon, InfoIcon } from '@chakra-ui/icons';
+import { ArrowRightIcon, InfoIcon } from '@chakra-ui/icons';
 import { Feature } from './components/Feature';
-
-const inter = Inter({ subsets: ['latin'] })
-
-
-
 
 
 export default function Index({ homeData }: any) {
     const homeNoticias = homeData;
+
+    const dadosEconomicos = homeData[3].dadosEconomicos
+
+
+
     return (
         <Container maxW={'8xl'}>
             <Box
@@ -80,13 +79,15 @@ export default function Index({ homeData }: any) {
                                         <Icon as={InfoIcon} color={'gray.500'} />
                                     }
 
-                                    text={'O INPC acumulado 12 meses é de :XX e do mes de XXXX foi de'}
+                                    text={`O INPC acumulado 12 meses é de ${dadosEconomicos?.inpcAcumulado12}% e do mes de ${dadosEconomicos?.inpcMes} foi de ${dadosEconomicos?.inpcValorMes}%`}
                                 /> </Link>
+
+
                             <Link href={`dados-economicos`} textDecoration="none" _hover={{ textDecoration: 'none', color: 'gray' }}>
                                 <Feature
                                     icon={<Icon as={InfoIcon} color={'gray.500'} />}
 
-                                    text={'O IPCA acumulado 12 meses é de :XX e do mes de XXXX foi de'}
+                                    text={`O IPCA acumulado 12 meses é de ${dadosEconomicos?.ipcaAcumulado12}% e do mes de ${dadosEconomicos?.ipcaMes} foi de ${dadosEconomicos?.ipcaValorMes}%`}
                                 />
                             </Link>
                             <Link href={`dados-economicos`} textDecoration="none" _hover={{ textDecoration: 'none', color: 'gray' }}>
@@ -95,10 +96,10 @@ export default function Index({ homeData }: any) {
                                         <Icon as={InfoIcon} color={'gray.500'} />
                                     }
 
-                                    text={'O IGPM acumulado 12 meses é de :XX e do mes de XXXX foi de'}
+                                    text={`O INPC acumulado 12 meses é de ${dadosEconomicos?.igpmAcumulado12}% e do mes de ${dadosEconomicos?.igpmMes} foi de ${dadosEconomicos?.igpmValorMes}%`}
                                 />
                             </Link>
-                            <Link href={`dados-economicos`} textDecoration="none" _hover={{ textDecoration: 'none', color: 'gray' }}>
+                            <Link href={`dados-economicos`} textDecoration="none" _hover={{ textDecoration: 'none', color: 'gray' }} display={"flex"} justifyContent={"center"}>
                                 <Feature
                                     icon={
                                         <Icon as={ArrowRightIcon} color={'golden.500'} />}

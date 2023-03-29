@@ -3,12 +3,17 @@ import React from 'react';
 import { GetServerSideProps } from "next";
 import Index from '@/components/Home';
 import axiosNest from '@/services/axiosNest';
+import PaginaNaoEncontrada from './404';
 
-export default function Home({ homeData }: any) {
+export default function Home({ homeData, hasError }: any) {
 
-  //if errors
-  // returns (não foi possivel carregar a pagina)
-
+  if (hasError) {
+    return (
+      <>
+        <PaginaNaoEncontrada />
+      </>
+    );
+  }
 
   return (
     <Index homeData={homeData} />
@@ -19,14 +24,22 @@ export const getServerSideProps: GetServerSideProps = async (ctx: {
   req: { cookies: any };
 }) => {
   const cookies = ctx.req.cookies;
+  let homeData: any = [];
 
-  const response = await axiosNest.get('/news/home-news')
-  let errors = {}
+  try {
+    const response = await axiosNest.get('/news/home-news')
+    homeData = response.data
+  } catch (error) {
+    return {
+      props: { hasError: true },
+    };
 
-  if (!response.data.ultimasNoticias || !response.data.noticiasMaisLidas) {
-    //send email: HOME PAGE FORA, SEM CONEXÂO COM BACKEND
   }
-  const homeData = response.data
+  if (!homeData) {
+    return {
+      props: { hasError: true },
+    };
+  }
 
   return {
     props: {

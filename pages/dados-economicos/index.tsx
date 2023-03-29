@@ -1,6 +1,8 @@
 import { ReactElement } from 'react';
 import { Box, SimpleGrid, Icon, Text, Stack, Flex, TableContainer, Table, TableCaption, Thead, Tr, Th, Tbody, Td, Tfoot } from '@chakra-ui/react';
 import { FcAssistant, FcDonate, FcInTransit } from 'react-icons/fc';
+import axiosNest from '@/services/axiosNest';
+import PaginaNaoEncontrada from '../404';
 
 interface FeatureProps {
     title: string;
@@ -9,34 +11,53 @@ interface FeatureProps {
     tableDados: ReactElement;
 }
 
-const TableDados = () => {
+interface IndicesDataProps {
+    id: number;
+    indice: string;
+    mes: string;
+    valor: number;
+    valorAcumulado: number;
+    createdAt: string;
+    updatedAt: string;
+}
+
+interface TableDataProps {
+    dados: IndicesDataProps[]
+}
+
+const TableDados = ({ dados }: TableDataProps) => {
+    let tableTitle = ''
+    if (dados[0].indice === "IPCA") {
+        tableTitle = "IPCA - INDIDE DE PREÇO"
+    }
+    if ((dados[0].indice === "INPC")) {
+        tableTitle = "INPC - INDIDE DE PREÇO"
+    }
+    if ((dados[0].indice === "IGPM")) {
+        tableTitle = "IGPM - INDIDE DE PREÇO"
+    }
+
     return (
         <TableContainer>
-            <Table variant='striped' colorScheme='teal'>
-                <TableCaption>IPCA - Indice preço consumidor atacado</TableCaption>
+            <Table variant='striped' colorScheme='blackAlpha'>
+                <TableCaption>{tableTitle}</TableCaption>
                 <Thead>
                     <Tr>
                         <Th>Mês</Th>
                         <Th>Valor</Th>
-                        <Th isNumeric>Acumulado 12 meses</Th>
+                        <Th isNumeric>Acum 12 m</Th>
                     </Tr>
                 </Thead>
                 <Tbody>
-                    <Tr>
-                        <Td>inches</Td>
-                        <Td>12%</Td>
-                        <Td isNumeric>25.4</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>feet</Td>
-                        <Td>12%</Td>
-                        <Td isNumeric>30.4</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>yards</Td>
-                        <Td>12%</Td>
-                        <Td isNumeric>0.9</Td>
-                    </Tr>
+                    {dados.map((indiceEconomico: any, index: number) => {
+                        return (<>
+                            <Tr>
+                                <Td>{indiceEconomico.mes}</Td>
+                                <Td isNumeric>{indiceEconomico.valor}%</Td>
+                                <Td isNumeric>{indiceEconomico.valorAcumulado}%</Td>
+                            </Tr>
+                        </>)
+                    })}
                 </Tbody>
             </Table>
         </TableContainer>
@@ -67,39 +88,49 @@ const Feature = ({ title, text, icon, tableDados }: FeatureProps) => {
     );
 };
 
-export default function SimpleThreeColumns() {
+export default function SimpleThreeColumns({ dadosEconomicos, hasError }: any) {
+    const [dadosIpca, dadosInpc, dadosIgpm] = dadosEconomicos
+
+    if (hasError) {
+        return (
+            <>
+                <PaginaNaoEncontrada />
+            </>
+        );
+    }
+
     return (
         <Box p={4}>
             <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
                 <Feature
                     icon={<Icon as={FcAssistant} w={10} h={10} />}
-                    title={'Lifetime Support'}
+                    title={'IPCA'}
                     text={
                         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...vLorem ipsum dLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..olor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor re..  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.. '
 
                     }
                     tableDados={
-                        <TableDados />
+                        <TableDados dados={dadosIpca} />
                     }
                 />
                 <Feature
                     icon={<Icon as={FcDonate} w={10} h={10} />}
-                    title={'Unlimited Donations'}
+                    title={'INPC'}
                     text={
                         'LorLLLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..orem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..orem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.. labore..Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..em ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...'
                     }
                     tableDados={
-                        <TableDados />
+                        <TableDados dados={dadosInpc} />
                     }
                 />
                 <Feature
                     icon={<Icon as={FcInTransit} w={10} h={10} />}
-                    title={'Instant Delivery'}
+                    title={'IGPM'}
                     text={
                         'Lorem ipsuLLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..orem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..m dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...'
                     }
                     tableDados={
-                        <TableDados />
+                        <TableDados dados={dadosIgpm} />
                     }
                 />
             </SimpleGrid>
@@ -108,3 +139,31 @@ export default function SimpleThreeColumns() {
         </Box>
     );
 }
+
+export const getServerSideProps: GetServerSideProps = async (ctx: {
+    req: { cookies: any };
+}) => {
+
+    let dadosEconomicos: any = [];
+
+    try {
+        const response = await axiosNest.get('/news/dados-economicos-ipca-inpc-igpm')
+        dadosEconomicos = response.data
+    } catch (error) {
+        return {
+            props: { hasError: true },
+        };
+
+    }
+    if (!dadosEconomicos) {
+        return {
+            props: { hasError: true },
+        };
+    }
+
+    return {
+        props: {
+            dadosEconomicos
+        },
+    };
+};
