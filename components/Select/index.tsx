@@ -84,6 +84,7 @@ export const ReactSelect = /* <
 
     return (
       <Select
+
         {...field}
         {...rest}
         placeholder={props.placeholder}

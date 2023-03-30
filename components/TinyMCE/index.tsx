@@ -35,7 +35,7 @@ type TinyMCEProps = {
   /* key do component */
   key?: any,
   /* Funcao que é chamada quando o conteudo incial do editor foi alterado. */
-  onDirty?: () => void,
+  onEditorChange?: (e: any, editor: any) => void,
   editorRef?: MutableRefObject<any>
 }
 
@@ -86,11 +86,9 @@ export default function TinyMCE(props: TinyMCEProps) {
   return (
     <Editor
       id={editorId}
-      onEditorChange={props?.onDirty}
-      /* onDirty={props?.onDirty} */
+      onEditorChange={props?.onEditorChange}
       inline={inline}
       value={defaultValue}
-      /* initialValue={defaultValue} */
       tinymceScriptSrc="/js/tinymce.min.js"
       scriptLoading={{
         async: true
