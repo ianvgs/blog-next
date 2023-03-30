@@ -1,5 +1,6 @@
 import '@/styles/globals.css';
 import "@/styles/coresBB.css";
+import "@/styles/TinyMCE.css";
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { ChakraProvider, Box } from "@chakra-ui/react";

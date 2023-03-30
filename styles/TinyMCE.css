@@ -1,0 +1,12 @@
+/* Corrigindo estilo do tiny-mce quando usado como Inline. Remove a borda preta inserida pelo navegador. */
+.mce-content-body {
+  outline: none;
+}
+
+.tox-notifications-container {
+  display: none !important;
+}
+
+.tox-statusbar__branding {
+  display: none !important;
+}
