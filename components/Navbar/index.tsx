@@ -2,24 +2,15 @@ import { ReactNode } from 'react';
 import {
   Box,
   Flex,
-  Avatar,
   HStack,
   Link,
-  IconButton,
+  Image,
   Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  useDisclosure,
   useColorModeValue,
   useColorMode,
-  Stack,
-  Center,
-  Heading
+
 } from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { LinksMenuPrincipal } from '../../styles/index.tsx'
 
@@ -54,42 +45,23 @@ export default function NavBarUp() {
       </HStack>
       <Box className="azul-escuro-bck" width="300px" alignSelf="center">
         <Link href="/">
-          <Heading color="white">Logo</Heading>
+          <Image
+            transform="scale(1.0)"
+            src="LOGO.png"
+            alt="some text"
+            objectFit="contain"
+            width="100%"
+            transition="0.3s ease-in-out"
+            _hover={{
+              transform: "scale(1.05)",
+            }}
+          />
         </Link>
       </Box>
       <HStack>
         <Button onClick={toggleColorMode}>
           {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
         </Button>
-        <Menu>
-          <MenuButton
-            as={Button}
-            rounded={'full'}
-            variant={'link'}
-            cursor={'pointer'}
-            minW={0}>
-            <Avatar
-              size={'sm'}
-              src={'https://avatars.dicebear.com/api/male/username.svg'}
-            />
-          </MenuButton>
-          <MenuList alignItems={'center'}>
-            <br />
-            <Center>
-              <Avatar
-                size={'2xl'}
-                src={'https://avatars.dicebear.com/api/male/username.svg'}
-              />
-            </Center>
-            <br />
-            <Center>
-              <p>Olá Usuario!</p>
-            </Center>
-            <br />
-            <MenuDivider />
-            <MenuItem>Login</MenuItem>
-          </MenuList>
-        </Menu>
       </HStack>
     </Flex>
   );

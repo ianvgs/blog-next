@@ -3,6 +3,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import config from '../../public/siteConfig.json';
 
 export default function Footer() {
   return (
@@ -13,12 +14,12 @@ export default function Footer() {
     >
       <Box py={2}>
         <Text pt={6} fontSize={"sm"} textAlign={"center"} ml={6} mr={6}>
-          Nossa equipe preza a qualidade da informação em matérias jornalísticas de diversos setores, ressaltando, no entanto, que não se responsabilizando por perdas, danos (diretos, indiretos e incidentais), custos e lucros cessantes advindos da utilização de informações veiculadas, declaramos ainda que não fazemos qualquer tipo de recomendação de investimento.
+          {config.footerDisclaimer}
         </Text>
       </Box>
       <Box py={2}>
         <Text pt={6} fontSize={"sm"} textAlign={"center"}>
-          © 2023 - BMIZ
+          {config.copyrightInfo}
         </Text>
       </Box>
     </Box>
