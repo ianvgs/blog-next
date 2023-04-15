@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { LinksMenuPrincipal } from '../../styles/index.tsx'
+import { LinksMenuPrincipal } from '../../public/linksConfig.ts'
 
 
 

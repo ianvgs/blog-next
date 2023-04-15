@@ -10,7 +10,8 @@ import {
     Stack,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import { LinksCategorias } from '../../styles/index.tsx'
+import { LinksCategorias } from '../../public/linksConfig.ts'
+
 
 
 
@@ -29,6 +30,7 @@ const NavLink = ({ children }: { children: ReactNode }) => (
 );
 
 export default function Simple() {
+
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
         <>
