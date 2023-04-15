@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import {
     Box,
     Flex,
@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { LinksCategorias } from '../../public/linksConfig.ts'
+import { getLinks } from '@/public/linksConfig';
 
 
 
@@ -29,7 +30,12 @@ const NavLink = ({ children }: { children: ReactNode }) => (
     </Link >
 );
 
+
+
 export default function Simple() {
+
+    const [links, setLinks] = useState()
+    getLinks().then((res) => setLinks(res))
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
@@ -43,7 +49,7 @@ export default function Simple() {
                         display={{ md: 'none' }}
                         onClick={isOpen ? onClose : onOpen}
                     />
-                    <HStack spacing={8} alignItems={'center'}>
+                    {/*  <HStack spacing={8} alignItems={'center'}>
                         <HStack
                             as={'nav'}
                             spacing={4}
@@ -52,12 +58,22 @@ export default function Simple() {
                                 <NavLink key={link}>{link}</NavLink>
                             ))}
                         </HStack>
+                    </HStack> */}
+                    <HStack spacing={8} alignItems={'center'}>
+                        <HStack
+                            as={'nav'}
+                            spacing={4}
+                            display={{ base: 'none', md: 'flex' }}>
+                            {links?.map((link: any) => (
+                                <NavLink key={link}>{link}</NavLink>
+                            ))}
+                        </HStack>
                     </HStack>
                 </Flex>
                 {isOpen ? (
                     <Box pb={4} display={{ md: 'none' }}>
                         <Stack as={'nav'} spacing={4}>
-                            {LinksCategorias.map((link: any) => (
+                            {links?.map((link: any) => (
                                 <NavLink key={link}>{link}</NavLink>
                             ))}
                         </Stack>

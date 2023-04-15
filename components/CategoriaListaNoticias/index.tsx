@@ -8,14 +8,9 @@ import {
   HStack,
   Tag,
   SpaceProps,
-  Avatar,
   Stack,
   VStack,
   Icon,
-  Container,
-  SimpleGrid,
-  Flex,
-  useColorModeValue,
   Divider,
 } from "@chakra-ui/react";
 import { Feature } from "../Home/components/Feature";
