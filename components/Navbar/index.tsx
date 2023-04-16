@@ -50,7 +50,7 @@ export default function NavBarUp() {
         <Link href="/">
           <Image
             transform="scale(1.0)"
-            src="LOGO.png"
+            src="/LOGO.png"
             alt="some text"
             objectFit="contain"
             width="100%"

@@ -38,6 +38,7 @@ export default function Simple() {
     const [links, setLinks] = useState([])
     useEffect(() => {
         setLinks(linksHydratated)
+        console.log(links)
     }, [])
 
     const { isOpen, onOpen, onClose } = useDisclosure();

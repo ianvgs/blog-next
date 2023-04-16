@@ -6,7 +6,7 @@ import axiosNest from '@/services/axiosNest';
 import PaginaNaoEncontrada from './404';
 import { useLinkStore } from '@/contexts/linksNavBarStore';
 
-export default function Home({ homeData, navLInks, hasError }: any) {
+export default function Home({ homeData, navLinks, hasError }: any) {
   if (hasError) {
     return (
       <>
@@ -14,9 +14,10 @@ export default function Home({ homeData, navLInks, hasError }: any) {
       </>
     );
   }
-  if (navLInks) {
+  if (navLinks) {
+    console.log(navLinks)
     const addLinks = useLinkStore((state) => state.addLinks)
-    addLinks(navLInks)
+    addLinks(navLinks)
   }
 
   return (
@@ -55,6 +56,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: {
       props: { hasError: true },
     };
   }
+  /*  console.log(navLinks) */
 
   return {
     props: {
