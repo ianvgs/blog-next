@@ -13,6 +13,7 @@ import {
 
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { LinksMenuPrincipal } from '../../public/linksConfig.ts'
+import { useUserStore } from '@/contexts/userStore';
 
 
 
@@ -33,6 +34,7 @@ const NavLink = ({ children }: { children: ReactNode }) => (
 
 export default function NavBarUp() {
   const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <Flex px={10} h={16} alignItems={'end'} justifyContent={'space-between'}>
       <HStack
@@ -43,6 +45,7 @@ export default function NavBarUp() {
           <NavLink key={index}>{link}</NavLink>
         ))}
       </HStack>
+
       <Box className="azul-escuro-bck" width="300px" alignSelf="center">
         <Link href="/">
           <Image

@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import {
     Box,
     Flex,
@@ -10,8 +10,8 @@ import {
     Stack,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import { LinksCategorias } from '../../public/linksConfig.ts'
-import { getLinks } from '@/public/linksConfig';
+import { useLinkStore } from '@/contexts/linksNavBarStore';
+
 
 
 
@@ -32,10 +32,13 @@ const NavLink = ({ children }: { children: ReactNode }) => (
 
 
 
-export default function Simple() {
 
-    const [links, setLinks] = useState()
-    getLinks().then((res) => setLinks(res))
+export default function Simple() {
+    const linksHydratated = useLinkStore((state) => state.links)
+    const [links, setLinks] = useState([])
+    useEffect(() => {
+        setLinks(linksHydratated)
+    }, [])
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
@@ -49,16 +52,6 @@ export default function Simple() {
                         display={{ md: 'none' }}
                         onClick={isOpen ? onClose : onOpen}
                     />
-                    {/*  <HStack spacing={8} alignItems={'center'}>
-                        <HStack
-                            as={'nav'}
-                            spacing={4}
-                            display={{ base: 'none', md: 'flex' }}>
-                            {LinksCategorias.map((link: any) => (
-                                <NavLink key={link}>{link}</NavLink>
-                            ))}
-                        </HStack>
-                    </HStack> */}
                     <HStack spacing={8} alignItems={'center'}>
                         <HStack
                             as={'nav'}
