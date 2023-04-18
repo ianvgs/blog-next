@@ -16,3 +16,14 @@ export const noticiaFormValidation = {
 //titulo: 10-70 letras
 //resumo: 200-370 letras
 //texto: 550-1200 letras
+
+export const categoriaFormValidation = {
+  nome: yup.string().required("Nome obrigatório."),
+  descricao: yup.string().required("Descrição obrigatória."),
+  sufixurl: yup.string().required("Sufixo obrigatório."),
+};
+
+export const tagFormValidation = {
+  tag: yup.string().required("Nome obrigatório."),
+  color: yup.object().required("Cor obrigatória."),
+};

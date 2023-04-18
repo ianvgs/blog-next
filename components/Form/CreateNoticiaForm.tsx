@@ -18,7 +18,6 @@ import { ReactSelect } from "@/components/Select";
 import { noticiaFormValidation } from "./validations";
 import TinyMCE from "../TinyMCE";
 
-
 type CreateNoticiaFormValues = {
   titulo: string;
   resumo: string;
@@ -36,6 +35,7 @@ const cadastrarIdeiaSchema = yup
   .required();
 
 export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
+
 
   const toast = useToast();
   const [textContent, setTextContent] = useState('')
@@ -117,7 +117,7 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
   </Box> */}
 
   return (
-    <HStack border={"1px"} borderColor={"gray.400"} shadow={"lg"} padding={15} direction={{ base: 'column', lg: 'row' }} >
+    <HStack paddingY={30} justifyContent="space-around" >
       <form onSubmit={handleSubmit(onSubmit)}>
         <VStack border={"1px"} borderColor={"gray.400"} shadow={"lg"} w="400px" minW="400px" padding={3} rounded="lg" >
           <Heading fontSize={"lg"} as="h1"> Cadastrar Noticia</Heading >
