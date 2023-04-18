@@ -18,11 +18,13 @@ interface IBlogTags {
 }
 
 const BlogTags: React.FC<IBlogTags> = (props: any) => {
+    const colorFromScheme = [/* "whiteAlpha",  */"blackAlpha", "gray", "red", "orange", "yellow", "green", "teal", "blue", "cyan", "purple", "pink", "linkedin", "facebook", "messenger", "whatsapp", "twitter", "telegram"]
+    const typesVariants = ["subtle", "solid", "outline"]
     return (
         <HStack spacing={2} marginTop={props.marginTop}>
             {props.tags.map((tag: any) => {
                 return (
-                    <Tag size={'md'} variant="subtle" colorScheme={"red"} key={tag}>
+                    <Tag size={'md'} variant={typesVariants[1]} colorScheme={tag.color} key={tag} >
                         {tag.tag}
                     </Tag>
                 )
