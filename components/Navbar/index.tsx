@@ -8,14 +8,9 @@ import {
   Button,
   useColorModeValue,
   useColorMode,
-
 } from '@chakra-ui/react';
-
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { LinksMenuPrincipal } from '../../public/linksConfig.ts'
-import { useUserStore } from '@/contexts/userStore';
-
-
+import config from '../../public/siteConfig.json';
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   < Link
@@ -26,22 +21,21 @@ const NavLink = ({ children }: { children: ReactNode }) => (
       textDecoration: 'none',
       bg: useColorModeValue('gray.200', 'gray.700'),
     }}
-    href={children.endereco.toString()}>
-    {children.nome}
+    href={children?.endereco}>
+    {children?.nome}
   </Link >
-
 );
 
 export default function NavBarUp() {
   const { colorMode, toggleColorMode } = useColorMode();
-
+  const linkArray = config['links-navbar-up']
   return (
     <Flex px={10} h={16} alignItems={'end'} justifyContent={'space-between'}>
       <HStack
         as={'nav'}
         spacing={6}
         display={{ base: 'none', md: 'flex' }}>
-        {LinksMenuPrincipal.map((link: any, index: number) => (
+        {linkArray.map((link: any, index: number) => (
           <NavLink key={index}>{link}</NavLink>
         ))}
       </HStack>

@@ -10,15 +10,14 @@ export default function Footer() {
     <Box
       bg={useColorModeValue("gray.50", "gray.900")}
       color={useColorModeValue("gray.700", "gray.200")}
-
     >
-      <Box py={2}>
-        <Text pt={6} fontSize={"sm"} textAlign={"center"} ml={6} mr={6}>
+      <Box >
+        <Text pt={3} fontSize={10} textAlign={"center"} ml={6} mr={6}>
           {config.footerDisclaimer}
         </Text>
       </Box>
-      <Box py={2}>
-        <Text pt={6} fontSize={"sm"} textAlign={"center"}>
+      <Box >
+        <Text pt={3} fontSize={10} textAlign={"center"}>
           {config.copyrightInfo}
         </Text>
       </Box>

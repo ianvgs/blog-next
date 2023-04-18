@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode } from 'react';
 import {
     Box,
     Flex,
@@ -10,11 +10,7 @@ import {
     Stack,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import { useLinkStore } from '@/contexts/linksNavBarStore';
-
-
-
-
+import config from '../../public/siteConfig.json';
 
 const NavLink = ({ children }: { children: ReactNode }) => (
     <Link
@@ -25,22 +21,13 @@ const NavLink = ({ children }: { children: ReactNode }) => (
             textDecoration: 'none',
             bg: useColorModeValue('gray.200', 'gray.700'),
         }}
-        href={children.endereco.toString()}>
+        href={children.endereco}>
         {children.nome}
     </Link >
 );
 
-
-
-
 export default function Simple() {
-    const linksHydratated = useLinkStore((state) => state.links)
-    const [links, setLinks] = useState([])
-    useEffect(() => {
-        setLinks(linksHydratated)
-        console.log(links)
-    }, [])
-
+    const linkArray = config['links-categorias']
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
         <>
@@ -58,7 +45,7 @@ export default function Simple() {
                             as={'nav'}
                             spacing={4}
                             display={{ base: 'none', md: 'flex' }}>
-                            {links?.map((link: any) => (
+                            {linkArray?.map((link: any) => (
                                 <NavLink key={link}>{link}</NavLink>
                             ))}
                         </HStack>
@@ -67,7 +54,7 @@ export default function Simple() {
                 {isOpen ? (
                     <Box pb={4} display={{ md: 'none' }}>
                         <Stack as={'nav'} spacing={4}>
-                            {links?.map((link: any) => (
+                            {linkArray?.map((link: any) => (
                                 <NavLink key={link}>{link}</NavLink>
                             ))}
                         </Stack>
