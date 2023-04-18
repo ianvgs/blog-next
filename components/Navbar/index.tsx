@@ -33,13 +33,11 @@ export default function NavBarUp() {
     <Flex px={10} h={16} alignItems={'end'} justifyContent={'space-between'}>
       <HStack
         as={'nav'}
-        spacing={6}
         display={{ base: 'none', md: 'flex' }}>
         {linkArray.map((link: any, index: number) => (
           <NavLink key={index}>{link}</NavLink>
         ))}
       </HStack>
-
       <Box className="azul-escuro-bck" width="300px" alignSelf="center">
         <Link href="/">
           <Image
@@ -55,11 +53,8 @@ export default function NavBarUp() {
           />
         </Link>
       </Box>
-      <HStack>
-        <Button onClick={toggleColorMode}>
-          {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-        </Button>
-      </HStack>
+      <Box />
+      <Box />
     </Flex>
   );
 }

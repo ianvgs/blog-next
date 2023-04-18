@@ -10,6 +10,7 @@ import {
     WrapItem,
     SpaceProps,
 } from '@chakra-ui/react';
+import config from '../../public/siteConfig.json';
 
 
 interface IBlogTags {
@@ -18,7 +19,7 @@ interface IBlogTags {
 }
 
 const BlogTags: React.FC<IBlogTags> = (props: any) => {
-    const colorFromScheme = [/* "whiteAlpha",  */"blackAlpha", "gray", "red", "orange", "yellow", "green", "teal", "blue", "cyan", "purple", "pink", "linkedin", "facebook", "messenger", "whatsapp", "twitter", "telegram"]
+
     const typesVariants = ["subtle", "solid", "outline"]
     return (
         <HStack spacing={2} marginTop={props.marginTop}>
@@ -33,17 +34,37 @@ const BlogTags: React.FC<IBlogTags> = (props: any) => {
     )
 };
 
-export default function HomeCards(props: any) {
+export default function HomeCards({ mural, data, chosenLayout }: any) {
+
+    const muralConfigs = [
+        {
+            /* precisa inicializar esse no indice 0 */
+        },
+        { base: "100%", md: "45%", lg: "32%" },
+        { base: "100%", md: "45%" },
+    ];
+
+    const isCarouselWrapItemSettings = {
+        base: "100%",
+        sm: "45%",
+        md: "45%",
+        lg: "22%",
+    };
+
     return (
-        <WrapItem width={props.mural ? { base: '100%', sm: '45%', md: '45%', lg: '32%' } : { base: '100%', sm: '45%', md: '45%', lg: '22%' }} >
+        <WrapItem width={mural ? muralConfigs[chosenLayout] : isCarouselWrapItemSettings} >
             <Box w="100%"  >
-                {props.mural ?
+
+                {/* #Categorias em cima do titulo se  for mural */}
+                {mural ?
                     <Heading fontSize="15" fontWeight={"bold"} color={'gray.600'} position={"relative"} mb={1} >
                         <Link textDecoration="aqua" _hover={{ color: 'gray' }}>
-                            {props.data?.categoria.nome.toUpperCase()}
+                            {data?.categoria.nome.toUpperCase()}
                         </Link>
                     </Heading>
                     : null}
+
+
                 <Box borderRadius="lg" overflow="hidden">
                     <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
                         <Image
@@ -61,12 +82,20 @@ export default function HomeCards(props: any) {
                         />
                     </Link>
                 </Box>
-                {props.mural ? null : <BlogTags tags={props.data?.tags || ['Engineering', 'Product']} marginTop="3" />}
+
+                {/* #Tags se nao for mural */}
+                {mural ?
+                    null :
+                    <BlogTags tags={data?.tags || ['Engineering', 'Product']} marginTop="3" />}
+
+                {/* # Titulos com redirect  */}
                 <Heading fontSize="xl" marginTop="2">
-                    <Link href={`dados-economicos`} textDecoration="none" _hover={{ textDecoration: 'none', color: 'gray' }}>
-                        {props.data?.titulo || 'Some blog Title'}
+                    <Link href={`/categoria/noticia/${data.id}`} textDecoration="none" _hover={{ textDecoration: 'none', color: 'gray' }}>
+                        {data?.titulo}
                     </Link>
                 </Heading>
+
+
             </Box>
         </WrapItem>
     )

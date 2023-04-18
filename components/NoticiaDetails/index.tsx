@@ -2,7 +2,6 @@ import {
   Stack,
   Text,
   Heading,
-  useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
 import moment from 'moment';
@@ -49,8 +48,8 @@ type Noticia = {
 
 export default function NoticiaDetails(noticia: Noticia) {
   return (
-    <Stack direction={{ base: 'column', lg: 'row' }} my={5}>
-      <VStack bg="gray.400" width={200} minW={200} rounded={"lg"} height="100%" />
+    <Stack direction={{ base: 'column', lg: 'row' }} my={5} align="top">
+      <VStack bg="gray.400" width={250} minW={250} rounded={"lg"} height="100%" />
       <VStack>
         <VStack>
           <Text
@@ -58,7 +57,7 @@ export default function NoticiaDetails(noticia: Noticia) {
             color={'blue.400'}
             fontWeight={600}
             fontSize={'sm'}
-            bg={useColorModeValue('blue.50', 'blue.900')}
+            bg={'blue.50'}
             p={2}
             alignSelf={'flex-start'}
             rounded={'md'}>
@@ -76,7 +75,7 @@ export default function NoticiaDetails(noticia: Noticia) {
           </Text>
         </VStack>
       </VStack>
-      <VStack className="container" bg="gray.400" width={200} minW={200} rounded={"lg"} height="100%" />
+      <VStack className="container" bg="gray.400" width={250} minW={250} rounded={"lg"} height="100%" />
     </Stack>
   );
 

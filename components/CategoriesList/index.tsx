@@ -86,10 +86,10 @@ const CategoriesList = () => {
                     </Box>
                     <Box zIndex="1" width="100%" position="absolute" height="100%">
                         <Box
-                            bgGradient={useColorModeValue(
-                                "radial(orange.600 1px, transparent 1px)",
-                                "radial(orange.300 1px, transparent 1px)"
-                            )}
+                            /*  bgGradient={useColorModeValue(
+                                 "radial(orange.600 1px, transparent 1px)",
+                                 "radial(orange.300 1px, transparent 1px)"
+                             )} */
                             backgroundSize="20px 20px"
                             opacity="0.4"
                             height="100%"

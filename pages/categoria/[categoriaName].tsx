@@ -6,20 +6,15 @@ import PaginaNaoEncontrada from "../404";
 
 const EventoHome: NextPage = (props: any) => {
   if (props.hasError) {
-
     return (
-      <>
-        <PaginaNaoEncontrada />
-      </>
-    );
+      <PaginaNaoEncontrada />
+    )
   }
 
   return (
-    <>
-      <CategoriaListaNoticias {...props} />;
-    </>
-  );
-};
+    <CategoriaListaNoticias {...props} />
+  )
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {

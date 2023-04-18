@@ -4,9 +4,11 @@ import { GetServerSideProps } from "next";
 import Index from '@/components/Home';
 import axiosNest from '@/services/axiosNest';
 import PaginaNaoEncontrada from './404';
-import { useLinkStore } from '@/contexts/linksNavBarStore';
+import config from '../public/siteConfig.json'
 
-export default function Home({ homeData, navLinks, hasError }: any) {
+
+
+export default function Home({ homeData, hasError }: any) {
   if (hasError) {
     return (
       <>
@@ -14,11 +16,7 @@ export default function Home({ homeData, navLinks, hasError }: any) {
       </>
     );
   }
-  if (navLinks) {
-    console.log(navLinks)
-    const addLinks = useLinkStore((state) => state.addLinks)
-    addLinks(navLinks)
-  }
+
 
   return (
 
@@ -32,36 +30,30 @@ export const getServerSideProps: GetServerSideProps = async (ctx: {
 }) => {
   const cookies = ctx.req.cookies;
   let homeData: any = [];
-  let navLinks: any = [];
-
   try {
-    const response = await axiosNest.get('/news/home-news')
-    homeData = response.data
+    const response = await axiosNest.get('/news/home-news', {
+      params: {
+        layoutType: config.layout
+      }
+    })
 
-    const categs = await axiosNest.get('/news/categoria')
-    navLinks = categs?.data?.map(({ id, nome, sufixurl }) => ({
-      nome: nome,
-      endereco: `/categoria/${sufixurl}`,
-      id: id
-    }));
+    homeData = response.data
   } catch (error) {
     return {
       props: { hasError: true },
     };
   }
 
-
   if (!homeData) {
     return {
       props: { hasError: true },
     };
   }
-  /*  console.log(navLinks) */
+
 
   return {
     props: {
       homeData,
-      navLinks
     },
   };
 };
