@@ -5,57 +5,53 @@ import {
   HStack,
   Link,
   Image,
-  Button,
-  useColorModeValue,
-  useColorMode,
+  Text,
+  Divider
 } from '@chakra-ui/react';
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { NavLink } from '../NavLink';
 import config from '../../public/siteConfig.json';
 
-const NavLink = ({ children }: { children: ReactNode }) => (
-  < Link
-    px={2}
-    py={1}
-    rounded={'md'}
-    _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
-    }}
-    href={children?.endereco}>
-    {children?.nome}
-  </Link >
-);
+
 
 export default function NavBarUp() {
-  const { colorMode, toggleColorMode } = useColorMode();
+
   const linkArray = config['links-navbar-up']
+
+  const navBarBg = config['styles']['nav-bar-bg-dark']
+  const isDarkLayout = config['layout'] === '2'
   return (
-    <Flex px={10} h={16} alignItems={'end'} justifyContent={'space-between'}>
-      <HStack
-        as={'nav'}
-        display={{ base: 'none', md: 'flex' }}>
-        {linkArray.map((link: any, index: number) => (
-          <NavLink key={index}>{link}</NavLink>
-        ))}
-      </HStack>
-      <Box className="azul-escuro-bck" width="300px" alignSelf="center">
-        <Link href="/">
-          <Image
-            transform="scale(1.0)"
-            src="/LOGO.png"
-            alt="some text"
-            objectFit="contain"
-            width="100%"
-            transition="0.3s ease-in-out"
-            _hover={{
-              transform: "scale(1.05)",
-            }}
-          />
-        </Link>
-      </Box>
-      <Box />
-      <Box />
-    </Flex>
+    <>
+      <Flex px={10} h={16} alignItems={'end'} justifyContent={'space-between'} bg={isDarkLayout ? navBarBg : null}>
+        <HStack
+          as={'nav'}
+          display={{ base: 'none', md: 'flex' }}>
+          {linkArray.map((link: any, index: number) => (
+            <>
+              <NavLink key={index} linkData={link} lightText={isDarkLayout} />
+              {index === (linkArray.length - 1) ? null : <Divider bg={isDarkLayout ? 'white' : 'black'} borderColor={isDarkLayout ? 'white' : 'black'} orientation='vertical' h="15px" w={"1px"} />}
+            </>
+          ))}
+        </HStack>
+        <Box width="300px" alignSelf="center">
+          <Link href="/">
+            <Image
+              transform="scale(1.0)"
+              src="/LOGO.png"
+              alt="some text"
+              objectFit="contain"
+              width="100%"
+              transition="0.3s ease-in-out"
+              _hover={{
+                transform: "scale(1.05)",
+              }}
+            />
+          </Link>
+        </Box>
+        <Box />
+        <Box />
+      </Flex>
+
+    </>
   );
 }
 

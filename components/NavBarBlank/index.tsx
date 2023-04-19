@@ -6,32 +6,38 @@ import {
     Link,
     IconButton,
     useDisclosure,
-    useColorModeValue,
     Stack,
+    Divider,
+    Text
+
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import config from '../../public/siteConfig.json';
 
-const NavLink = ({ children }: { children: ReactNode }) => (
+import { NavLink } from '../NavLink';
+
+/* const NavLink = ({ children }: { children: ReactNode }) => (
     <Link
         px={2}
         py={1}
         rounded={'md'}
         _hover={{
             textDecoration: 'none',
-            bg: useColorModeValue('gray.200', 'gray.700'),
+            bg: 'gray.200',
         }}
         href={children.endereco}>
         {children.nome}
     </Link >
-);
+); */
 
 export default function Simple() {
-    const linkArray = config['links-categorias']
+    const linkArray = config['links-categorias'];
+    const shouldRenderNavDivider = config['layout'] === '2';
+
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
         <>
-            <Box bg={useColorModeValue('gray.200', 'gray.900')} px={4}>
+            <Box bg={shouldRenderNavDivider ? "white" : "gray.200"} px={4}>
                 <Flex h={10} alignItems={'center'} justifyContent={{ md: '', lg: 'center' }}>
                     <IconButton
                         size={'md'}
@@ -45,8 +51,12 @@ export default function Simple() {
                             as={'nav'}
                             spacing={4}
                             display={{ base: 'none', md: 'flex' }}>
-                            {linkArray?.map((link: any) => (
-                                <NavLink key={link}>{link}</NavLink>
+                            {linkArray?.map((link: any, index: number) => (
+                                <>
+                                    <NavLink key={index} linkData={link} />
+                                    {index === (linkArray.length - 1) ? null : <Divider bg={'black'} borderColor={'black'} orientation='vertical' h="15px" w={"1px"} />}
+
+                                </>
                             ))}
                         </HStack>
                     </HStack>
@@ -61,6 +71,8 @@ export default function Simple() {
                     </Box>
                 ) : null}
             </Box>
+            {shouldRenderNavDivider ? <Divider height="1px" bg={'black'} /> : null}
+
         </>
     );
 }

@@ -174,7 +174,7 @@ export default function Index({ homeData }: any) {
                 fontSize={30}>
                 Mais lidos
             </Heading>
-            <Wrap marginTop="5" spacing={30}>
+            <Wrap m="30px" spacing={30}>
                 {noticiasMaisLidas.noticiasMaisLidas?.map((unique: any, index: number) => (
                     <HomeCards key={index} mural={false} data={unique} />
                 ))}

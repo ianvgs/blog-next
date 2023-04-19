@@ -8,7 +8,6 @@ import {
     HStack,
     Tag,
     SpaceProps,
-    useColorModeValue,
     Container,
     Avatar,
 } from "@chakra-ui/react";
@@ -86,10 +85,7 @@ const CategoriesList = () => {
                     </Box>
                     <Box zIndex="1" width="100%" position="absolute" height="100%">
                         <Box
-                            /*  bgGradient={useColorModeValue(
-                                 "radial(orange.600 1px, transparent 1px)",
-                                 "radial(orange.300 1px, transparent 1px)"
-                             )} */
+
                             backgroundSize="20px 20px"
                             opacity="0.4"
                             height="100%"
@@ -112,7 +108,7 @@ const CategoriesList = () => {
                     <Text
                         as="p"
                         marginTop="2"
-                        color={useColorModeValue("gray.700", "gray.200")}
+                        color="gray.700"
                         fontSize="lg"
                     >
                         Lorem Ipsum is simply dummy text of the printing and typesetting

@@ -33,7 +33,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx: {
   try {
     const response = await axiosNest.get('/news/home-news', {
       params: {
-        layoutType: config.layout
+        layoutType: config.layout,
+        idSite: config.idSite
       }
     })
 

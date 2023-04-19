@@ -1,5 +1,5 @@
 {
-    "idSite": "1",
+    "idSite": "2",
     "layout": "1",
     "siteName": "Rabbit MQ",
     "footerDisclaimer": "Nossa equipe preza a qualidade da informação em matérias jornalísticas de diversos setores, ressaltando, no entanto, que não se responsabilizando por perdas, danos (diretos, indiretos e incidentais), custos e lucros cessantes advindos da utilização de informações veiculadas, declaramos ainda que não fazemos qualquer tipo de recomendação de investimento.",
@@ -10,34 +10,38 @@
     },
     "links-navbar-up": [
         {
-            "nome": "Inicio",
+            "nome": "INICIO",
             "endereco": "/"
         },
         {
-            "nome": "Quem Somos",
+            "nome": "QUEM SOMOS",
             "endereco": "quem-somos"
         }
     ],
     "links-categorias": [
         {
-            "nome": "Cultura",
+            "nome": "CULTURA",
             "endereco": "/categoria/cultura"
         },
         {
-            "nome": "Finanças",
+            "nome": "FINANÇAS",
             "endereco": "/categoria/financas"
         },
         {
-            "nome": "Educação",
+            "nome": "EDUCAÇÃO",
             "endereco": "/categoria/educacao"
         },
         {
-            "nome": "Animais",
+            "nome": "ANIMAIS",
             "endereco": "/categoria/animais"
         },
         {
-            "nome": "Sociedade",
+            "nome": "SOCIEDADE",
             "endereco": "/categoria/sociedade"
         }
-    ]
+    ],
+    "styles": {
+        "nav-bar-bg": "#C9C9C9",
+        "nav-bar-bg-dark": "#595959"
+    }
 }

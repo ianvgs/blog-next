@@ -46,7 +46,7 @@ export default function HomeCards({ mural, data, chosenLayout }: any) {
 
     const isCarouselWrapItemSettings = {
         base: "100%",
-        sm: "45%",
+        sm: "100%",
         md: "45%",
         lg: "22%",
     };
