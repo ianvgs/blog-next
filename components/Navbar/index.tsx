@@ -21,7 +21,7 @@ export default function NavBarUp() {
   const isDarkLayout = config['layout'] === '2'
   return (
     <>
-      <Flex px={10} h={16} alignItems={'end'} justifyContent={'space-between'} bg={isDarkLayout ? navBarBg : null}>
+      <Flex px={10} h={16} justifyContent={'center'} bg={isDarkLayout ? navBarBg : null}>
         <HStack
           as={'nav'}
           display={{ base: 'none', md: 'flex' }}>
@@ -32,14 +32,15 @@ export default function NavBarUp() {
             </>
           ))}
         </HStack>
-        <Box width="300px" alignSelf="center">
+        <Box width="300px" alignSelf="top" margin="0 auto" >
           <Link href="/">
             <Image
               transform="scale(1.0)"
               src="/LOGO.png"
               alt="some text"
               objectFit="contain"
-              width="100%"
+
+
               transition="0.3s ease-in-out"
               _hover={{
                 transform: "scale(1.05)",
