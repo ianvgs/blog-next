@@ -28,7 +28,7 @@ export default function NavBarUp() {
           {linkArray.map((link: any, index: number) => (
             <>
               <NavLink key={index} linkData={link} lightText={isDarkLayout} />
-              {index === (linkArray.length - 1) ? null : <Divider bg={isDarkLayout ? 'white' : 'black'} borderColor={isDarkLayout ? 'white' : 'black'} orientation='vertical' h="15px" w={"1px"} />}
+              {index === (linkArray.length - 1) ? null : <Divider key={index} bg={isDarkLayout ? 'white' : 'black'} borderColor={isDarkLayout ? 'white' : 'black'} orientation='vertical' h="15px" w={"1px"} />}
             </>
           ))}
         </HStack>

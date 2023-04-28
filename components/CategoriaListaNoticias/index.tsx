@@ -56,7 +56,7 @@ const CategoriaListaNoticias = (props: any) => {
       <VStack bg="gray.400" width={250} minW={250} rounded={"lg"} minH="100%" />
       <VStack  >
         < Heading as="h1" alignSelf={"start"} mt={{ base: 0, md: -3 }} >
-          {props.categoria?.nome.toUpperCase()}
+          {props.categoria?.nome?.toUpperCase()}
         </Heading >
         {
           props.categoria?.noticias?.map((unique: any) => (
