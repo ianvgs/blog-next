@@ -3,6 +3,7 @@ import { Box, SimpleGrid, Icon, Text, Stack, Flex, TableContainer, Table, TableC
 import { FcPodiumWithSpeaker, FcDonate, FcSalesPerformance } from 'react-icons/fc';
 import axiosNest from '@/services/axiosNest';
 import PaginaNaoEncontrada from '../404';
+import { GetServerSideProps } from 'next';
 
 interface FeatureProps {
     title: string;

@@ -53,7 +53,7 @@ export default function Simple() {
                             display={{ base: 'none', md: 'flex' }}>
                             {linkArray?.map((link: any, index: number) => (
                                 <>
-                                    <NavLink key={index} linkData={link} />
+                                    <NavLink key={index} linkData={link} lightText />
                                     {index === (linkArray.length - 1) ? null : <Divider bg={'black'} borderColor={'black'} orientation='vertical' h="15px" w={"1px"} />}
 
                                 </>
@@ -64,8 +64,8 @@ export default function Simple() {
                 {isOpen ? (
                     <Box pb={4} display={{ md: 'none' }}>
                         <Stack as={'nav'} spacing={4}>
-                            {linkArray?.map((link: any) => (
-                                <NavLink key={link}>{link}</NavLink>
+                            {linkArray?.map((link: any, index: number) => (
+                                <NavLink key={index} linkData={link} lightText />
                             ))}
                         </Stack>
                     </Box>

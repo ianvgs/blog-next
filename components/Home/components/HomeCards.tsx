@@ -10,7 +10,7 @@ import {
     WrapItem,
     SpaceProps,
 } from '@chakra-ui/react';
-import config from '../../public/siteConfig.json';
+
 
 
 interface IBlogTags {

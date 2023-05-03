@@ -21,7 +21,7 @@ export default function NavBarUp() {
   const isDarkLayout = config['layout'] === '2'
   return (
     <>
-      <Flex px={10} h={16} justifyContent={'center'} bg={isDarkLayout ? navBarBg : null}>
+      <Flex px={10} h={16} justifyContent={'center'} bg={isDarkLayout ? navBarBg : "whiteAlpha.100"}>
         <HStack
           as={'nav'}
           display={{ base: 'none', md: 'flex' }}>

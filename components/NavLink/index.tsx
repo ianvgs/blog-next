@@ -1,6 +1,6 @@
 import { Link } from "@chakra-ui/react";
 
-export const NavLink = ({ linkData, lightText }) => (
+export const NavLink = ({ linkData, lightText }: any) => (
     <Link
         color={lightText ? 'white' : 'blackAlpha.800'}
         fontWeight={600}
