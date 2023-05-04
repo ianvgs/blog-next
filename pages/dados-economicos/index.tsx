@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
-import { Box, SimpleGrid, Icon, Text, Stack, Flex, TableContainer, Table, TableCaption, Thead, Tr, Th, Tbody, Td } from '@chakra-ui/react';
+import { SimpleGrid, Icon, Text, Stack, Flex, TableContainer, Table, TableCaption, Thead, Tr, Th, Tbody, Td } from '@chakra-ui/react';
 import { FcPodiumWithSpeaker, FcDonate, FcSalesPerformance } from 'react-icons/fc';
-import axiosNest from '@/services/axiosNest';
+import axiosNest from '../../services/axiosNest';
 import PaginaNaoEncontrada from '../404';
 import { GetServerSideProps } from 'next';
 

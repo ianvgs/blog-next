@@ -1,12 +1,12 @@
-import '@/styles/globals.css';
-import "@/styles/coresBB.css";
-import "@/styles/TinyMCE.css";
+import "styles/globals.css";
+import "styles/coresBB.css";
+import "styles/TinyMCE.css";
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { ChakraProvider, Box } from "@chakra-ui/react";
-import Footer from "@/components/Footer";
-import NavBar from "@/components/Navbar";
-import NavBarBlank from '@/components/NavBarBlank';
+import Footer from "../components/Footer";
+import NavBar from "../components/Navbar";
+import NavBarBlank from '../components/NavBarBlank';
 import config from '../public/siteConfig.json';
 
 

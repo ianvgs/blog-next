@@ -7,7 +7,7 @@ import {
     Button,
     HStack,
 } from "@chakra-ui/react";
-import axiosNest from "@/services/axiosNest";
+import axiosNest from "../../services/axiosNest";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";

@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { GetServerSideProps } from "next";
-import Index from '@/components/Home';
-import axiosNest from '@/services/axiosNest';
+import Index from '../components/Home';
+import axiosNest from '../services/axiosNest';
 import PaginaNaoEncontrada from './404';
 import config from '../public/siteConfig.json'
 

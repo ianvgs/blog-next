@@ -10,11 +10,11 @@ import {
   Flex,
   Stack,
 } from "@chakra-ui/react";
-import axiosNest from "@/services/axiosNest";
+import axiosNest from "../../services/axiosNest";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ReactSelect } from "@/components/Select";
+import { ReactSelect } from "../../components/Select";
 import { noticiaFormValidation } from "./validations";
 import TinyMCE from "../TinyMCE";
 

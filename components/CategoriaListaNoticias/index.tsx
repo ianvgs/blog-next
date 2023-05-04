@@ -10,11 +10,9 @@ import {
   SpaceProps,
   Stack,
   VStack,
-  Icon,
   Divider,
 } from "@chakra-ui/react";
-import { Feature } from "../Home/components/Feature";
-import { ArrowRightIcon, InfoIcon } from "@chakra-ui/icons";
+
 
 interface IBlogTags {
   tags: Array<string>;

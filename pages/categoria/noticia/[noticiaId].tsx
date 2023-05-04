@@ -1,8 +1,8 @@
 
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import NoticiaDetails from "@/components/NoticiaDetails";
-import PaginaNaoEncontrada from "@/pages/404";
-import axiosNest from "@/services/axiosNest";
+import NoticiaDetails from "../../../components/NoticiaDetails";
+import PaginaNaoEncontrada from "../../../pages/404";
+import axiosNest from "../../../services/axiosNest";
 
 const IdeiaHome: NextPage = ({ hasError, noticia }: any) => {
   if (hasError) {
