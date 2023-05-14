@@ -61,9 +61,9 @@ export default function NoticiaDetails(noticia: Noticia) {
             p={2}
             alignSelf={'flex-start'}
             rounded={'md'}>
-            {noticia.categoria.nome}
+            {noticia?.categoria?.nome}
           </Text>
-          <Text fontSize={10} alignSelf={'flex-start'}>Por {noticia.colaborador.nome} {noticia.colaborador.sobrenome}, {moment(noticia.createdAt).format('ll')}</Text>
+          <Text fontSize={10} alignSelf={'flex-start'}>Por {noticia?.colaborador?.nome} {noticia?.colaborador?.sobrenome}, {moment(noticia.createdAt).format('ll')}</Text>
           <Heading>{noticia.titulo}</Heading>
           <Text color={'gray.600'} fontSize={'lg'}>
             {noticia.resumo}

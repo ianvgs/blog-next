@@ -3,9 +3,11 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import CategoriaListaNoticias from "../../components/CategoriaListaNoticias";
 import axiosNest from "../../services/axiosNest";
 import PaginaNaoEncontrada from "../404";
+import config from '../../public/siteConfig.json'
 
 const EventoHome: NextPage = (props: any) => {
-  if (props.hasError) {
+  /* ({ hasError, noticia }: any) */
+  if (props.hasError === true) {
     return (
       <PaginaNaoEncontrada />
     )
@@ -26,20 +28,25 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (ctx: any) => {
   let data: any = [];
   try {
-    const response = await axiosNest.get(`news/categoria/${ctx.params.categoriaName}`);
+    const response = await axiosNest.get(`news/categoria/${ctx.params.categoriaName}`,
+      {
+        params: {
+          idSite: config.idSite
+        }
+      });
     data = response.data;
   } catch (error) {
-
-  }
-  if (!data) {
     return {
       props: { hasError: true },
-    };
+    }
+
   }
+
 
   return {
     props: {
       categoria: data,
+      hasError: false
     },
     revalidate: 10,
   };
