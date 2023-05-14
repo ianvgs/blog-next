@@ -121,7 +121,11 @@ export default function Index({ homeData }: any) {
             marginTop={{ base: '3', sm: '0' }}>
             <Wrap  >
                 {ultimasNoticias.ultimasNoticias?.map((unique: any, index: number) => (
+
+
+
                     <HomeCards key={index} mural data={unique} chosenLayout={chosenLayout} />
+
                 ))}
             </Wrap>
         </Box>

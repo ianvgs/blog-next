@@ -66,7 +66,9 @@ export default function HomeCards({ mural, data, chosenLayout }: any) {
 
 
                 <Box borderRadius="lg" overflow="hidden">
-                    <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
+
+
+                    <Link textDecoration="none" _hover={{ textDecoration: 'none' }} href={`categoria/noticia/${data.id}`} >
                         <Image
                             transform="scale(1.0)"
                             src={

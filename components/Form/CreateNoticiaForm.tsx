@@ -4,11 +4,9 @@ import {
   VStack,
   Input,
   useToast,
-  Box,
   Button,
   HStack,
-  Flex,
-  Stack,
+
 } from "@chakra-ui/react";
 import axiosNest from "../../services/axiosNest";
 import { useForm } from "react-hook-form";
@@ -17,6 +15,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ReactSelect } from "../../components/Select";
 import { noticiaFormValidation } from "./validations";
 import TinyMCE from "../TinyMCE";
+import config from '../../public/siteConfig.json';
 
 type CreateNoticiaFormValues = {
   titulo: string;
@@ -35,6 +34,8 @@ const cadastrarIdeiaSchema = yup
   .required();
 
 export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
+
+  const idSite = config['idSite'];
 
 
   const toast = useToast();
@@ -75,6 +76,7 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
       })
     }
     const noticiaData = {
+      idSite,
       titulo: data?.titulo,
       resumo: data?.resumo,
       idCategoria: data?.idCategoria?.value,
