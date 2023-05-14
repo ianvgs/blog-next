@@ -1,6 +1,7 @@
 import {
   Box,
   Text,
+  Flex
 } from "@chakra-ui/react";
 import config from '../../public/siteConfig.json';
 
@@ -8,12 +9,12 @@ export default function Footer() {
   const footerDisclaimer = config['footerDisclaimer']
   const copyrightInfo = config["copyrightInfo"]
   const navBarBg = config['styles']['nav-bar-bg']
-  const navBarBgDark = config['styles']['nav-bar-bg-dark']
+  const navBarBgDark = config['styles']['nav-bar-bg-darker']
   const isDarkerLayout = config['layout'] === '2'
 
 
   return (
-    <Box>
+    <Flex flexDirection={"column"}>
       <Box bg={isDarkerLayout ? navBarBg : "gray.200"} >
         <Text fontSize={12} textAlign={"center"} m={4} color={isDarkerLayout ? 'white' : 'gray.700'}>
           {footerDisclaimer}
@@ -24,7 +25,7 @@ export default function Footer() {
           {copyrightInfo}
         </Text>
       </Box>
-    </Box>
+    </Flex>
 
   );
 }

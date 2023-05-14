@@ -42,6 +42,7 @@
     ],
     "styles": {
         "nav-bar-bg": "#C9C9C9",
-        "nav-bar-bg-dark": "#595959"
+        "nav-bar-bg-dark": "#595959",
+        "nav-bar-bg-darker": "#2B2B2B"
     }
 }

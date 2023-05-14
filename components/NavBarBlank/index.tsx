@@ -32,12 +32,13 @@ import { NavLink } from '../NavLink';
 
 export default function Simple() {
     const linkArray = config['links-categorias'];
+    const navBarBg = config['styles']['nav-bar-bg-darker']
     const shouldRenderNavDivider = config['layout'] === '2';
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
         <>
-            <Box bg={shouldRenderNavDivider ? "white" : "gray.200"} px={4}>
+            <Box bg={shouldRenderNavDivider ? navBarBg : "gray.200"} px={4}>
                 <Flex h={10} alignItems={'center'} justifyContent={{ md: '', lg: 'center' }}>
                     <IconButton
                         size={'md'}
@@ -54,7 +55,7 @@ export default function Simple() {
                             {linkArray?.map((link: any, index: number) => (
                                 <>
                                     <NavLink key={index} linkData={link} lightText />
-                                    {index === (linkArray.length - 1) ? null : <Divider bg={'black'} borderColor={'black'} orientation='vertical' h="15px" w={"1px"} />}
+                                    {index === (linkArray.length - 1) ? null : <Divider bg={shouldRenderNavDivider ? 'white' : 'black'} borderColor={'black'} orientation='vertical' h="15px" w={"1px"} />}
 
                                 </>
                             ))}
