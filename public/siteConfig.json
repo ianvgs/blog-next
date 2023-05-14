@@ -15,7 +15,7 @@
         },
         {
             "nome": "QUEM SOMOS",
-            "endereco": "quem-somos"
+            "endereco": "/quem-somos"
         }
     ],
     "links-categorias": [
