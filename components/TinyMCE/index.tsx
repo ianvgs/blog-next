@@ -96,6 +96,48 @@ export default function TinyMCE(props: TinyMCEProps) {
       key={key}
       onInit={(evt, editor) => props.editorRef ? props.editorRef.current = editor : null}
       init={{
+
+        selector: "textarea", // change this value according to your HTML
+        automatic_uploads: true,
+        plugins: [
+          "advlist",
+          "autolink",
+          "lists",
+          "link",
+          "image",
+          "charmap",
+          "preview",
+          "anchor",
+          "searchreplace",
+          "visualblocks",
+          "code",
+          "fullscreen",
+          "insertdatetime",
+          "media",
+          "table",
+          "code",
+          "help",
+          "wordcount",
+        ],
+        content_style:
+          "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+
+
+
+
+
+
+        images_upload_url: 'http://localhost:8000/api/news/noticia/upload',
+        images_upload_base_path: '/images',
+        images_upload_credentials: true,
+        /* images_reuse_filename: true, */
+        file_picker_types: 'image',
+        file_picker_callback: (cb, value, meta) => {
+          // Implement your file picker logic here
+        },
+
+
+
         auto_focus: autoFocus,
         relative_urls: false,
         language: language,
@@ -105,7 +147,7 @@ export default function TinyMCE(props: TinyMCEProps) {
         paste_data_images: allowPasteDataImages,
         image_advtab: true,
         emoticons_database: emoticonsDatabase,
-        plugins: pluginsList,
+        /*   plugins: pluginsList, */
         height: height,
         width: width,
         menubar: showMenubar,

@@ -23,6 +23,7 @@ import config from '../../public/siteConfig.json';
 export default function Index({ homeData }: any) {
     const chosenLayout = config.layout;
     const isFinancial = config.layout === '1'
+    const darkerColor = config['styles']['nav-bar-bg-darker']
     const [ultimasNoticias, noticiasMaisLidas, noticiaPrincipal, dadosEconomicos] = homeData;
 
 
@@ -36,7 +37,7 @@ export default function Index({ homeData }: any) {
                 zIndex="2"
                 marginLeft={{ base: '0', sm: '5%' }}
             >
-                <Box position="relative">
+                <Box position={isFinancial ? "relative" : "absolute"}>
                     <Link href={`categoria/noticia/${noticiaPrincipal.noticiaPrincipal.id}`} textDecoration="none" _hover={{ textDecoration: 'none', color: 'blue' }}>
                         <Image
                             transform="scale(1.0)"
@@ -121,11 +122,7 @@ export default function Index({ homeData }: any) {
             marginTop={{ base: '3', sm: '0' }}>
             <Wrap  >
                 {ultimasNoticias.ultimasNoticias?.map((unique: any, index: number) => (
-
-
-
                     <HomeCards key={index} mural data={unique} chosenLayout={chosenLayout} />
-
                 ))}
             </Wrap>
         </Box>
@@ -133,7 +130,6 @@ export default function Index({ homeData }: any) {
 
 
     const RenderLayout = ({ layout }: any) => {
-
         if (layout === '1') {
             console.log('não faz sentido')
             return (
@@ -152,12 +148,8 @@ export default function Index({ homeData }: any) {
                 </>
             );
         }
-        /*    console.log('não faz sentido') */
         return <></>;
-
     };
-
-
 
     return (
         <Container maxW={'8xl'}>
@@ -167,15 +159,12 @@ export default function Index({ homeData }: any) {
                 flexDirection={{ base: 'column', lg: 'row' }}>
                 <RenderLayout layout={chosenLayout} />
             </Box>
-
-
-
-
             <Divider marginTop="5" />
-            <Heading marginTop="5" color={'blue.400'}
+            <Heading marginTop="5"
                 ml={15}
                 fontWeight={700}
-                fontSize={30}>
+                fontSize={30}
+                color={darkerColor}>
                 Mais lidos
             </Heading>
             <Wrap m="30px" spacing={30}>

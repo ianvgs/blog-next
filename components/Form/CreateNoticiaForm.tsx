@@ -16,6 +16,7 @@ import { ReactSelect } from "../../components/Select";
 import { noticiaFormValidation } from "./validations";
 import TinyMCE from "../TinyMCE";
 import config from '../../public/siteConfig.json';
+import UploadArquivo from "../UploadArquivo";
 
 type CreateNoticiaFormValues = {
   titulo: string;
@@ -120,8 +121,11 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
 
   return (
     <HStack paddingY={30} justifyContent="space-around" >
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <VStack border={"1px"} borderColor={"gray.400"} shadow={"lg"} w="400px" minW="400px" padding={3} rounded="lg" >
+          <UploadArquivo />
+
           <Heading fontSize={"lg"} as="h1"> Cadastrar Noticia</Heading >
           <ReactSelect
             key="idColaborador"
@@ -177,8 +181,11 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
               Pré-visualização
             </Button>
           </HStack>
+
         </VStack >
       </form >
+
+
       <TinyMCE width={900} defaultValue={textContent} onEditorChange={onEditorChange} />
     </HStack >
   );

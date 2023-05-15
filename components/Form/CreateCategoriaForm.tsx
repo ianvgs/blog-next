@@ -11,6 +11,7 @@ import axiosNest from "../../services/axiosNest";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import config from '../../public/siteConfig.json';
 
 import { categoriaFormValidation } from "./validations";
 
@@ -30,6 +31,7 @@ const cadastrarCategoriaSchema = yup
     .required();
 
 export default function CreateCategoriaForm() {
+    const idSite = config['idSite'];
     const toast = useToast();
 
     const defaultValues = {
@@ -55,7 +57,7 @@ export default function CreateCategoriaForm() {
             nome: data?.nome,
             sufixurl: data?.sufixurl,
             descricao: data?.descricao,
-            idSite: 1
+            idSite
         }
         axiosNest
             .post("http://localhost:8000/api/news/categoria", {

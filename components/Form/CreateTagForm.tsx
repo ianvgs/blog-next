@@ -14,6 +14,8 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ReactSelect } from "@/components/Select";
 import { tagFormValidation } from "./validations";
+import config from '../../public/siteConfig.json';
+const idSite = config['idSite'];
 
 
 type CreateTagFormValues = {
@@ -50,14 +52,11 @@ export default function CreateTagForm() {
         resolver: yupResolver(cadastrarTagSchema),
     });
 
-
-
     const onTagSubmit = async (data: any) => {
         const tagData = {
             tag: data?.tag,
             color: data?.color.value,
-            //TODO \/ setar o id do site
-            idSite: 1
+            idSite
         }
 
         axiosNest
@@ -87,7 +86,7 @@ export default function CreateTagForm() {
         <HStack paddingY={30} justifyContent="space-around" >
             <form onSubmit={handleSubmit(onTagSubmit)}>
                 <VStack border={"1px"} borderColor={"gray.400"} shadow={"lg"} w="400px" minW="400px" padding={3} rounded="lg" >
-                    <Heading fontSize={"lg"} as="h1"> Cadastrar Noticia</Heading >
+                    <Heading fontSize={"lg"} as="h1"> Cadastrar Tag</Heading >
 
                     <ReactSelect
                         key="color"

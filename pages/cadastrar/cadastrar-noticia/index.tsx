@@ -5,6 +5,7 @@ import axiosNest from "../../../services/axiosNest";
 import { HStack, VStack } from "@chakra-ui/react";
 import CreateCategoriaForm from "../../../components/Form/CreateCategoriaForm";
 import CreateTagForm from "../../../components/Form/CreateTagForm";
+import config from '../../../public/siteConfig.json'
 
 const CadastrarNoticia: NextPage = (props: any) => {
   const { categorias, tags, colaboradores } = props.data;
@@ -26,7 +27,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx: {
   const cookies = ctx.req.cookies;
   let data: any = [];
   try {
-    const response = await axiosNest.get("/news/cad-noticia-form");
+    const response = await axiosNest.get("/news/cad-noticia-form", {
+      params: {
+        idSite: config.idSite
+      }
+    });
     data = response.data[0];
 
   } catch { }

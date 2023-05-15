@@ -1,13 +1,15 @@
 {
+    "comments": "idSite é o id configurado no database, o layout é 1 (financial) ou 2 (noticias)",
     "idSite": "2",
     "layout": "2",
-    "siteName": "Rabbit MQ",
+    "siteName": "Chapéu de Alumínio",
     "footerDisclaimer": "Nossa equipe preza a qualidade da informação em matérias jornalísticas de diversos setores, ressaltando, no entanto, que não se responsabilizando por perdas, danos (diretos, indiretos e incidentais), custos e lucros cessantes advindos da utilização de informações veiculadas, declaramos ainda que não fazemos qualquer tipo de recomendação de investimento.",
     "copyrightInfo": "© 2023 - BMIZ",
     "quemSomos": {
         "titulo": "Quem somos",
         "subTitulo": "Equipe multidisciplinar com profissionais das mais abrangentes áreas como psicologia, ciências sociais, ciências da computação, gestão empresarial que tem como objetivo trazer noticias. Equipe multidisciplinar com profissionais das mais abrangentes áreas como psicologia, ciências sociais, ciências da computação, gestão empresarial que tem como objetivo trazer noticias."
     },
+    "comments-links-navbar-up": "2 links fixos, alterar texto quem-somos acima e imagem no public",
     "links-navbar-up": [
         {
             "nome": "INICIO",
@@ -18,6 +20,7 @@
             "endereco": "/quem-somos"
         }
     ],
+    "comments-links-categorias": "adicionar 5 links, tem que ter no banco de dados  a correspondência",
     "links-categorias": [
         {
             "nome": "CULTURA",

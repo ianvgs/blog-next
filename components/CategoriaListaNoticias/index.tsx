@@ -53,12 +53,12 @@ const CategoriaListaNoticias = (props: any) => {
     <Stack direction={{ base: 'column', lg: 'row' }} justifyContent="space-between">
       <VStack bg="gray.400" width={250} minW={250} rounded={"lg"} minH="100%" />
       <VStack  >
-        < Heading as="h1" alignSelf={"start"} mt={{ base: 0, md: -3 }} >
+        < Heading as="h1" alignSelf={"start"}  >
           {props.categoria?.nome?.toUpperCase()}
         </Heading >
         {
           props.categoria?.noticias?.map((unique: any) => (
-            <>
+            < >
               <Box justifyContent={"space-between"} key={unique.id} display="flex" flexDirection={{ base: 'column', md: 'row' }} alignItems={{ base: "center", lg: "space-between" }} w="100%"
               >
                 <Box w="250px">
@@ -108,13 +108,13 @@ const CategoriaListaNoticias = (props: any) => {
                   />
                 </Box>
               </Box>
-              <Divider height={"1.0px"} bg={"gray."} />
+              <Divider key={unique.id} height={"1.0px"} bg={"gray."} />
             </>
           ))
         }
       </VStack>
       <VStack bg="gray.400" width={250} minW={250} rounded={"lg"} height="100%" />
-    </Stack>
+    </Stack >
 
 
 
