@@ -24,7 +24,30 @@ const CadastrarNoticia: NextPage = (props: any) => {
 export const getServerSideProps: GetServerSideProps = async (ctx: {
   req: { cookies: any };
 }) => {
-  const cookies = ctx.req.cookies;
+  const { jwtToken } = ctx.req.cookies;
+
+  let user = {}
+  try {
+    const response = await axiosNest.get('/user/me', {
+      headers: {
+        'Authorization': `Bearer ${jwtToken}`
+      }
+    })
+    if (response) {
+      user = response.data;
+    }
+  } catch (error) {
+    return {
+      redirect: {
+        destination:
+          "http://localhost:3000/login",
+        permanent: false,
+      },
+    };
+  }
+
+
+
   let data: any = [];
   try {
     const response = await axiosNest.get("/news/cad-noticia-form", {
@@ -37,7 +60,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx: {
   } catch { }
   return {
     props: {
-      data,
+      data
+
     },
   };
 };

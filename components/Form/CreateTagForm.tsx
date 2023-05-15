@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     Heading,
     VStack,
@@ -6,7 +6,6 @@ import {
     useToast,
     Button,
     HStack,
-    Tag,
 } from "@chakra-ui/react";
 import axiosNest from "@/services/axiosNest";
 import { useForm } from "react-hook-form";
@@ -112,11 +111,9 @@ export default function CreateTagForm() {
                         >
                             Cadastrar
                         </Button>
-
                     </HStack>
                 </VStack >
             </form >
-
         </HStack >
 
     );
