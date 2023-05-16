@@ -120,10 +120,10 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
   </Box> */}
 
   return (
-    <HStack paddingY={30} justifyContent="space-around" >
+    <HStack paddingY={30} justifyContent="space-evenly" alignItems={"self-start"} >
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <VStack border={"1px"} borderColor={"gray.400"} shadow={"lg"} w="400px" minW="400px" padding={3} rounded="lg" >
+        <VStack border={"1px"} borderColor={"gray.400"} shadow={"lg"} w="400px" minW="400px" padding={3} rounded="lg" alignItems={"center"}>
           <UploadArquivo />
 
           <Heading fontSize={"lg"} as="h1"> Cadastrar Noticia</Heading >
@@ -174,19 +174,15 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
             >
               Cadastrar
             </Button>
-            <Button
-              _hover={{ bg: "cyan.200" }}
-              variant="link"
-            >
-              Pré-visualização
-            </Button>
           </HStack>
-
         </VStack >
       </form >
 
 
-      <TinyMCE width={900} defaultValue={textContent} onEditorChange={onEditorChange} />
+      <TinyMCE defaultValue={textContent} onEditorChange={onEditorChange} />
+
+
+
     </HStack >
   );
 }
