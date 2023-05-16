@@ -39,6 +39,7 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
   const idSite = config['idSite'];
 
 
+
   const toast = useToast();
   const [textContent, setTextContent] = useState('')
   const onEditorChange = (e: any, editor: any) => {
@@ -65,41 +66,61 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
   });
 
   const onSubmit = async (data: any) => {
-    let tagArray: [] = []
-
-    if (data.tags) {
-      tagArray = data?.tags.map((each: any) => {
-        const userData = {
-          id: ""
-        }
-        userData.id = each?.value
-        return userData
-      })
-    }
-    const noticiaData = {
-      idSite,
-      titulo: data?.titulo,
-      resumo: data?.resumo,
-      idCategoria: data?.idCategoria?.value,
-      idColaborador: data?.idColaborador?.value,
-      tags: tagArray,
-      texto: textContent
-    }
-
     axiosNest
-      .post("http://localhost:8000/api/news/noticia", {
-        ...noticiaData
-      })
+      .post("http://localhost:8000/api/news/noticia/upload",
+        imagemData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+      )
       .then((res) => {
-        reset(defaultValues);
-        setTextContent('')
-        toast({
-          title: "Noticia Cadastrada com sucesso!",
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-        });
+        const { uploadedImageFile } = res.data;
+        let tagArray: [] = []
+        if (data.tags) {
+          tagArray = data?.tags.map((each: any) => {
+            const userData = {
+              id: ""
+            }
+            userData.id = each?.value
+            return userData
+          })
+        }
+        const noticiaData = {
+          idSite,
+          titulo: data?.titulo,
+          resumo: data?.resumo,
+          idCategoria: data?.idCategoria?.value,
+          idColaborador: data?.idColaborador?.value,
+          tags: tagArray,
+          texto: textContent,
+          imgPath: uploadedImageFile.path
+        }
 
+
+        axiosNest
+          .post("http://localhost:8000/api/news/noticia", {
+            ...noticiaData
+          })
+          .then((res) => {
+            reset(defaultValues);
+            setTextContent('')
+            toast({
+              title: "Noticia Cadastrada com sucesso!",
+              status: "success",
+              duration: 3000,
+              isClosable: true,
+            });
+
+          })
+          .catch(() => {
+            toast({
+              title: "Não foi possivel criar a Noticia!",
+              status: "error",
+              duration: 5000,
+              isClosable: true,
+            });
+          });
       })
       .catch(() => {
         toast({
@@ -110,6 +131,18 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
         });
       });
   };
+
+
+  const [imagemData, setImagemData] = useState(null)
+  const onUpload = (event: any) => {
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+    setImagemData(formData)
+  };
+
+
+
 
 
 
@@ -124,7 +157,7 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <VStack border={"1px"} borderColor={"gray.400"} shadow={"lg"} w="400px" minW="400px" padding={3} rounded="lg" alignItems={"center"}>
-          <UploadArquivo />
+          <UploadArquivo onUpload={onUpload} uploadedFile={imagemData} />
 
           <Heading fontSize={"lg"} as="h1"> Cadastrar Noticia</Heading >
           <ReactSelect

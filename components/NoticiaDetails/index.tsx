@@ -46,7 +46,9 @@ type Noticia = {
 }
 
 
-export default function NoticiaDetails(noticia: Noticia) {
+export default function NoticiaDetails(noticia: any) {
+  const base64Data = Buffer.from(noticia.imageData.data).toString('base64');
+  const src = `data:image/jpeg;base64,${base64Data}`;
   return (
     <Stack direction={{ base: 'column', lg: 'row' }} my={5} align="top">
       <VStack bg="gray.400" width={250} minW={250} rounded={"lg"} height="100%" />
@@ -68,7 +70,12 @@ export default function NoticiaDetails(noticia: Noticia) {
           <Text color={'gray.600'} fontSize={'lg'}>
             {noticia.resumo}
           </Text>
+
+          <img src={src} alt="News Image" />
+
         </VStack>
+
+
         <VStack w="100%" p={5}>
           <Text color={'gray.600'}>
             <div dangerouslySetInnerHTML={{ __html: noticia.texto }} />

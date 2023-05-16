@@ -31,6 +31,7 @@ export const getStaticProps: GetStaticProps = async (ctx: any) => {
       }
     );
     data = response.data;
+
   } catch (error) {
     return {
       props: { hasError: true },
@@ -40,6 +41,7 @@ export const getStaticProps: GetStaticProps = async (ctx: any) => {
   return {
     props: {
       noticia: data,
+
       hasError: false
     },
     revalidate: 10,

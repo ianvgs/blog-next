@@ -39,6 +39,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: {
     })
 
     homeData = response.data
+
   } catch (error) {
     return {
       props: { hasError: true },

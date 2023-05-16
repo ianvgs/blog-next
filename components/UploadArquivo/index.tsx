@@ -115,48 +115,28 @@ const PreviewImage = forwardRef<BoxProps, typeof Box>((props, ref) => {
   );
 });
 
-export default function UploadArquivo() {
+export default function UploadArquivo({ onUpload, uploadedFile }: any) {
 
-  const [uploadedImages, setUploadedImages] = useState('');
-  const toast = useToast();
+  const [imagePreview, setImagePreview] = useState(null);
+
+
+  const previewImage = (event: any) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      setImagePreview(e.target.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
+
+
+
   const controls = useAnimation();
   const startAnimation = () => controls.start("hover");
   const stopAnimation = () => controls.stop();
 
-
-  const handleFileChange = (event: any) => {
-    const file = event.target.files[0];
-    const formData = new FormData();
-    formData.append("image", file);
-    axiosNest
-      .post("http://localhost:8000/api/news/noticia/upload",
-        formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      }
-      )
-      .then((res) => {
-        const { uploadedImageFile } = res.data;
-        console.log(uploadedImageFile.filename)
-        setUploadedImages(uploadedImageFile.filename);
-        toast({
-          title: "Imagem carregada com sucesso!",
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-        });
-
-      })
-      .catch(() => {
-        toast({
-          title: "Erro ao salvar imagem!",
-          status: "error",
-          duration: 5000,
-          isClosable: true,
-        });
-      });
-  };
+  console.log(uploadedFile)
 
 
 
@@ -194,27 +174,47 @@ export default function UploadArquivo() {
               justify="center"
               spacing="4"
             >
-              <Box height="16" width="12" position="relative">
-                <PreviewImage
-                  variants={first}
-                  backgroundImage="url('https://image.shutterstock.com/image-photo/paella-traditional-classic-spanish-seafood-600w-1662253543.jpg')"
-                />
-                <PreviewImage
-                  variants={second}
-                  backgroundImage="url('https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2628&q=80')"
-                />
-                <PreviewImage
-                  variants={third}
-                  backgroundImage={`url("https://images.unsplash.com/photo-1563612116625-3012372fccce?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2480&q=80")`}
-                />
-              </Box>
+
+
+
+
+
+              {imagePreview ?
+
+                <Box >
+                  <PreviewImage
+                    backgroundImage={imagePreview}
+                  />
+                </Box>
+                :
+                <Box height="16" width="12" position="relative">
+                  <PreviewImage
+                    variants={first}
+                    backgroundImage="url('https://image.shutterstock.com/image-photo/paella-traditional-classic-spanish-seafood-600w-1662253543.jpg')"
+                  />
+                  <PreviewImage
+                    variants={second}
+                    backgroundImage="url('https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2628&q=80')"
+                  />
+                  <PreviewImage
+                    variants={third}
+                    backgroundImage={`url("https://images.unsplash.com/photo-1563612116625-3012372fccce?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2480&q=80")`}
+                  />
+                </Box>
+
+              }
+
+
+
+
 
               <Stack p="8" textAlign="center" spacing="1">
                 <Heading fontSize="lg" color="gray.700" fontWeight="bold">
-                  Drop images here
+                  Drop image here
                 </Heading>
-                <Text fontWeight="light">or click to upload</Text>
+                <Text fontWeight="light">Clique para Upload.</Text>
               </Stack>
+
 
             </Stack>
           </Box>
@@ -230,7 +230,13 @@ export default function UploadArquivo() {
             accept="image/*"
             onDragEnter={startAnimation}
             onDragLeave={stopAnimation}
-            onChange={handleFileChange}
+            /*  onChange={onUpload} */
+
+            onChange={(event) => {
+              onUpload(event);
+              previewImage(event);
+            }}
+
           />
         </Box>
       </Box>

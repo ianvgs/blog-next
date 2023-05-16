@@ -35,6 +35,16 @@ const BlogTags: React.FC<IBlogTags> = (props: any) => {
 };
 
 export default function HomeCards({ mural, data, chosenLayout }: any) {
+    console.log(data)
+
+
+
+
+    /* const base64Data = Buffer.from(data?.imageData?.data).toString('base64');
+    let scr = `data:image/jpeg;base64,${base64Data}`;
+ */
+
+
 
     const muralConfigs = [
         {
