@@ -38,7 +38,7 @@ export default function SignupCard() {
             )
             .then((res) => {
                 const { access_token } = res.data
-                const setCookie = (name, value, options = {}) => {
+                const setCookie = (name: any, value: any, options: any = {}) => {
                     let expires = options.expires;
                     if (typeof expires == "number" && expires) {
                         const d = new Date();

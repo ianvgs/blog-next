@@ -133,7 +133,7 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
   };
 
 
-  const [imagemData, setImagemData] = useState(null)
+  const [imagemData, setImagemData] = useState<any>(null)
   const onUpload = (event: any) => {
     const file = event.target.files[0];
     const formData = new FormData();

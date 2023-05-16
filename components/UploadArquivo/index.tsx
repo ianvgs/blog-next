@@ -117,14 +117,18 @@ const PreviewImage = forwardRef<BoxProps, typeof Box>((props, ref) => {
 
 export default function UploadArquivo({ onUpload, uploadedFile }: any) {
 
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState<any>(null);
 
 
   const previewImage = (event: any) => {
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.onload = (e) => {
-      setImagePreview(e.target.result);
+      if (e.target?.result) {
+        setImagePreview(e.target.result);
+
+      }
+
     };
     reader.readAsDataURL(file);
   };
