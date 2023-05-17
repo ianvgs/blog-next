@@ -1,7 +1,7 @@
 
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import NoticiaDetails from "../../../components/NoticiaDetails";
-import PaginaNaoEncontrada from "../../../pages/404";
+import PaginaNaoEncontrada from "../../../components/404/404";
 import axiosNest from "../../../services/axiosNest";
 import config from '../../../public/siteConfig.json'
 

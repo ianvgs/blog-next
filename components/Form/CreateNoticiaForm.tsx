@@ -15,10 +15,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ReactSelect } from "../../components/Select";
 import { noticiaFormValidation } from "./validations";
 import TinyMCE from "../TinyMCE";
-import config from '../../public/siteConfig.json';
 import UploadArquivo from "../UploadArquivo";
-
-
+import config from '../../public/siteConfig.json';
 
 
 type CreateNoticiaFormValues = {

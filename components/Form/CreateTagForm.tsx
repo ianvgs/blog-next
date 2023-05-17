@@ -13,8 +13,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ReactSelect } from "@/components/Select";
 import { tagFormValidation } from "./validations";
+
+
+
 import config from '../../public/siteConfig.json';
-const idSite = config['idSite'];
+
 
 
 type CreateTagFormValues = {
@@ -31,6 +34,10 @@ const cadastrarTagSchema = yup
     .required();
 
 export default function CreateTagForm() {
+    const idSite = config['idSite'];
+    const apiUrl = config["apiUrl"]
+
+
     const colorSchemeOptions = [{ value: 'blackAlpha', label: 'blackAlpha', color: 'blackAlpha' }, { value: 'gray', label: 'gray', color: 'gray' }, { value: 'red', label: 'red', color: 'red' }, { value: 'orange', label: 'orange', color: 'orange' }, { value: 'yellow', label: 'yellow', color: 'yellow' }, { value: 'green', label: 'green', color: 'green' }, { value: 'teal', label: 'teal', color: 'teal' }, { value: 'blue', label: 'blue', color: 'blue' }, { value: 'cyan', label: 'cyan', color: 'cyan' }, { value: 'purple', label: 'purple', color: 'purple' }, { value: 'pink', label: 'pink', color: 'pink' }, { value: 'linkedin', label: 'linkedin', color: 'linkedin' }, { value: 'facebook', label: 'facebook', color: 'facebook' }, { value: 'messenger', label: 'messenger', color: 'messenger' }, { value: 'whatsapp', label: 'whatsapp', color: 'whatsapp' }, { value: 'twitter', label: 'twitter', color: 'twitter' }, { value: 'telegram', label: 'telegram', color: 'telegram' }]
 
     const toast = useToast();
@@ -59,7 +66,7 @@ export default function CreateTagForm() {
         }
 
         axiosNest
-            .post("http://localhost:8000/api/news/tag", {
+            .post(`${apiUrl}/news/tag`, {
                 ...tagData
             })
             .then((res) => {

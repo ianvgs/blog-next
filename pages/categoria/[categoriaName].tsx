@@ -2,7 +2,7 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import CategoriaListaNoticias from "../../components/CategoriaListaNoticias";
 import axiosNest from "../../services/axiosNest";
-import PaginaNaoEncontrada from "../404";
+import PaginaNaoEncontrada from "../../components/404/404";
 import config from '../../public/siteConfig.json'
 
 const EventoHome: NextPage = (props: any) => {

@@ -15,14 +15,11 @@ export default function NavBarUp() {
   const navBarBg = config['styles']['nav-bar-bg-dark']
   const isDarkLayout = config['layout'] === '2'
 
-
   return (
-
-    <Flex px={5} h={16} bg={isDarkLayout ? navBarBg : "whiteAlpha.100"} justifyContent="center">
-
+    <Flex px={5} h={20} bg={isDarkLayout ? navBarBg : "whiteAlpha.100"} justifyContent="center">
       <HStack
         as={'nav'}
-        display={{ base: 'none', md: 'flex' }}>
+        display={{ base: 'none', md: 'flex' }} mx={10} >
         {linkArray.map((link: any, index: number) => (
           <>
             <NavLink key={index} linkData={link} lightText={isDarkLayout} />
@@ -30,8 +27,6 @@ export default function NavBarUp() {
           </>
         ))}
       </HStack>
-
-
       <Box width="300px" margin="0 auto"   >
         <Link href="/">
           <Image
@@ -47,10 +42,7 @@ export default function NavBarUp() {
           />
         </Link>
       </Box>
-
     </Flex >
-
-
   );
 }
 

@@ -3,7 +3,7 @@ import React from 'react';
 import { GetServerSideProps } from "next";
 import Index from '../components/Home';
 import axiosNest from '../services/axiosNest';
-import PaginaNaoEncontrada from './404';
+import PaginaNaoEncontrada from '../components/404/404';
 import config from '../public/siteConfig.json'
 
 

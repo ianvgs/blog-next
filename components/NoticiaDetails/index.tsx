@@ -3,6 +3,7 @@ import {
   Text,
   Heading,
   VStack,
+  Container,
 } from "@chakra-ui/react";
 import moment from 'moment';
 import 'moment/locale/pt-br'
@@ -50,40 +51,41 @@ export default function NoticiaDetails(noticia: any) {
   const base64Data = Buffer.from(noticia.imageData.data).toString('base64');
   const src = `data:image/jpeg;base64,${base64Data}`;
   return (
-    <Stack direction={{ base: 'column', lg: 'row' }} my={5} align="top">
-      <VStack bg="gray.400" width={250} minW={250} rounded={"lg"} height="100%" />
+
+    <Container maxW={"7xl"} >
       <VStack>
-        <VStack>
-          <Text
-            textTransform={'uppercase'}
-            color={'blue.400'}
-            fontWeight={600}
-            fontSize={'sm'}
-            bg={'blue.50'}
-            p={2}
-            alignSelf={'flex-start'}
-            rounded={'md'}>
-            {noticia?.categoria?.nome}
-          </Text>
-          <Text fontSize={10} alignSelf={'flex-start'}>Por {noticia?.colaborador?.nome} {noticia?.colaborador?.sobrenome}, {moment(noticia.createdAt).format('ll')}</Text>
-          <Heading>{noticia.titulo}</Heading>
-          <Text color={'gray.600'} fontSize={'lg'}>
-            {noticia.resumo}
-          </Text>
-
-          <img src={src} alt="News Image" />
-
-        </VStack>
+        <img src={src} alt="News Image" width={250} height={250} />
+        <Text
+          textTransform={'uppercase'}
+          color={'blue.400'}
+          fontWeight={600}
+          fontSize={'sm'}
+          bg={'blue.50'}
+          p={2}
+          alignSelf={'flex-start'}
+          rounded={'md'}>
+          {noticia?.categoria?.nome}
+        </Text>
+        <Text fontSize={10} alignSelf={'flex-start'}>Por {noticia?.colaborador?.nome} {noticia?.colaborador?.sobrenome}, {moment(noticia.createdAt).format('ll')}</Text>
+        <Heading>{noticia.titulo}</Heading>
+        <Text color={'gray.600'} fontSize={'lg'}>
+          {noticia.resumo}
+        </Text>
 
 
-        <VStack w="100%" p={5}>
-          <Text color={'gray.600'}>
-            <div dangerouslySetInnerHTML={{ __html: noticia.texto }} />
-          </Text>
-        </VStack>
+
       </VStack>
-      <VStack className="container" bg="gray.400" width={250} minW={250} rounded={"lg"} height="100%" />
-    </Stack>
+
+
+
+      <Text color={'gray.600'}>
+        <div dangerouslySetInnerHTML={{ __html: noticia.texto }} />
+      </Text>
+
+
+
+
+    </Container>
   );
 
 

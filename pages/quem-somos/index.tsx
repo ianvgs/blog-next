@@ -6,57 +6,37 @@ import {
     Heading,
     Text,
     Stack,
+    VStack,
 } from '@chakra-ui/react';
-
 import config from '../../public/siteConfig.json';
 
-import { ReactElement } from 'react';
 
-interface FeatureProps {
-    text: string;
-    iconBg: string;
-    icon?: ReactElement;
-}
 
-const Feature = ({ text, icon, iconBg }: FeatureProps) => {
+
+
+
+export default function QuemSomos() {
     return (
-        <Stack direction={'row'} align={'center'}>
-            <Flex
-                w={8}
-                h={8}
-                align={'center'}
-                justify={'center'}
-                rounded={'full'}
-                bg={iconBg}>
-                {icon}
-            </Flex>
-            <Text fontWeight={600}>{text}</Text>
-        </Stack>
-    );
-};
 
-export default function SplitWithImage() {
-    return (
-        <Container maxW={'5xl'} py={12}>
-            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
-                <Stack spacing={4}>
-
+        <Container maxW={"7xl"}>
+            <SimpleGrid columns={{ base: 1, md: 2 }} >
+                <Flex flexDir={"column"} justifyContent="center">
                     <Heading>{config.quemSomos.titulo}</Heading>
                     <Text color={'gray.500'} fontSize={'md'}>
                         {config.quemSomos.subTitulo}
-
                     </Text>
-
-                </Stack>
-                <Flex>
+                </Flex>
+                <Flex justifyContent="center"  >
                     <Image
+                        w={400}
+                        h={300}
                         rounded={'md'}
-                        alt={'feature image'}
+                        alt={'Team Image'}
                         src="/quemSomos.jpg"
-                        objectFit={'cover'}
                     />
                 </Flex>
             </SimpleGrid>
-        </Container>
+        </Container >
+
     );
 }

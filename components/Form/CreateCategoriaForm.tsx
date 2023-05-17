@@ -13,6 +13,9 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import config from '../../public/siteConfig.json';
 
+
+
+
 import { categoriaFormValidation } from "./validations";
 
 type CreateCategoriaFormValues = {
@@ -32,6 +35,8 @@ const cadastrarCategoriaSchema = yup
 
 export default function CreateCategoriaForm() {
     const idSite = config['idSite'];
+    const apiUrl = config["apiUrl"]
+
     const toast = useToast();
 
     const defaultValues = {
@@ -60,7 +65,7 @@ export default function CreateCategoriaForm() {
             idSite
         }
         axiosNest
-            .post("http://localhost:8000/api/news/categoria", {
+            .post(`${apiUrl}/news/categoria`, {
                 ...categoriaData
             })
             .then((res) => {
