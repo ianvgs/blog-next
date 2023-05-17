@@ -14,6 +14,8 @@ App/public/siteConfig.json(alterar)
 
 //QUEM SOMOS
 
+***APIURL no .env e no siteConfig.json, o front-end(client-side nao consegue acessar o process.env.var)
+
 
 
 

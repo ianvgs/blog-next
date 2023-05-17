@@ -18,6 +18,9 @@ import TinyMCE from "../TinyMCE";
 import config from '../../public/siteConfig.json';
 import UploadArquivo from "../UploadArquivo";
 
+
+
+
 type CreateNoticiaFormValues = {
   titulo: string;
   resumo: string;
@@ -37,6 +40,7 @@ const cadastrarIdeiaSchema = yup
 export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
 
   const idSite = config['idSite'];
+  const apiUrl = config["apiUrl"]
 
 
 
@@ -67,7 +71,7 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
 
   const onSubmit = async (data: any) => {
     axiosNest
-      .post("http://localhost:8000/api/news/noticia/upload",
+      .post(`${apiUrl}/news/noticia/upload`,
         imagemData, {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -99,7 +103,7 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
 
 
         axiosNest
-          .post("http://localhost:8000/api/news/noticia", {
+          .post(`${apiUrl}/news/noticia`, {
             ...noticiaData
           })
           .then((res) => {
