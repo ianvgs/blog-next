@@ -3,15 +3,25 @@ import React from 'react';
 import { GetServerSideProps } from "next";
 import axiosNest from '../services/axiosNest';
 import config from '../public/siteConfig.json'
-import PaginaInicial from '../components/Home';
+import FinancialLayout from '../components/Home/financial';
+import GeneralLayout from '../components/Home/general';
 import PaginaNaoEncontrada from '../components/404/404';
 
 
-export default function Home({ homeData, hasError }: any) {
+export default function PaginaInicial({ homeData, hasError, siteTypeLayout }: any) {
+  //Caso não carregue as informações
   if (hasError) {
     return <PaginaNaoEncontrada />
   }
-  return <PaginaInicial homeData={homeData} />
+  //1 financial
+  if (siteTypeLayout == 1) {
+    return <FinancialLayout homeData={homeData} />
+  }
+
+  //2 noticias gerais
+  if (siteTypeLayout == 2) {
+    return <GeneralLayout homeData={homeData} />
+  }
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -37,6 +47,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
       homeData,
+      siteTypeLayout: config.layout,
     },
   };
 };
