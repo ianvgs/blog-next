@@ -23,10 +23,10 @@ const BlogTags: React.FC<IBlogTags> = (props: any) => {
     const typesVariants = ["subtle", "solid", "outline"]
     return (
         <Wrap spacing={2} marginTop={props.marginTop}>
-            {props.tags.map((tag: any) => {
+            {props.tags.map((tag: any, index: number) => {
                 return (
-                    <WrapItem>
-                        <Tag size={'md'} variant={typesVariants[1]} colorScheme={tag.color} key={tag} >
+                    <WrapItem key={index}>
+                        <Tag size={'md'} variant={typesVariants[1]} colorScheme={tag.color}  >
                             {tag.tag}
                         </Tag>
                     </WrapItem>
@@ -64,8 +64,8 @@ export default function HomeCards({ mural, data, chosenLayout }: any) {
                 {/* #######################Categorias em cima do titulo se  for mural####################### */}
                 {mural ?
                     <Heading fontSize="15" fontWeight={"bold"} color={'gray.600'} position={"relative"} mb={1} >
-                        <Link textDecoration="aqua" _hover={{ color: 'gray' }}>
-                            {data?.categoria.nome.toUpperCase()}
+                        <Link textDecoration="aqua" _hover={{ color: 'gray' }} textTransform={'uppercase'}>
+                            {data?.categoria.nome}
                         </Link>
                     </Heading>
                     :

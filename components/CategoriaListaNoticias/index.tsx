@@ -14,6 +14,7 @@ import {
   WrapItem,
   Wrap
 } from "@chakra-ui/react";
+import moment from "moment";
 
 
 interface IBlogTags {
@@ -86,10 +87,10 @@ const BlogTags: React.FC<IBlogTags> = ({ tags }) => {
 
   return (
     <Wrap justify={"center"} >
-      {tags?.map((tag: any) => {
+      {tags?.map((tag: any, index: number) => {
         return (
-          <WrapItem>
-            <Tag size={"md"} variant="solid" colorScheme={tag.color} key={tag.id}>
+          <WrapItem key={tag.id}>
+            <Tag size={"md"} variant="solid" colorScheme={tag.color}>
               {tag.tag}
             </Tag>
           </WrapItem>
@@ -103,9 +104,11 @@ const BlogTags: React.FC<IBlogTags> = ({ tags }) => {
 
 export const BlogAuthor = ({ date, autor }: BlogAuthorProps) => {
   return (
+
+
     <VStack alignSelf="end">
-      <Text fontWeight="bold">{date.toLocaleDateString()}</Text>
-      <Text fontWeight="bold">{autor.toUpperCase()}</Text>
+      <Text fontWeight="bold" fontSize={14} alignSelf={'end'}>Por {autor}, {moment(date).format('ll')}</Text>
+
     </VStack>
   );
 };
@@ -114,8 +117,8 @@ const CategoriaListaNoticias = ({ categoria }: ListaProps) => {
 
   return (
     <Container maxW={"7xl"}>
-      < Heading as="h1" >
-        {categoria.nome.toUpperCase()}
+      < Heading as="h1" textTransform={'uppercase'}>
+        {categoria.nome}
       </Heading >
       {
         categoria.noticias.map((noticia: NoticiasProps, index: number) => (

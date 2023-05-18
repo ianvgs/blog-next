@@ -4,9 +4,11 @@ import {
   Heading,
   VStack,
   Container,
+  HStack,
 } from "@chakra-ui/react";
 import moment from 'moment';
 import 'moment/locale/pt-br'
+import Image from "next/image";
 
 
 interface Colaborador {
@@ -53,32 +55,34 @@ export default function NoticiaDetails(noticia: any) {
   return (
 
     <Container maxW={"7xl"} >
-      <VStack>
-        <img src={src} alt="News Image" width={250} height={250} />
-        <Text
-          textTransform={'uppercase'}
-          color={'blue.400'}
-          fontWeight={600}
-          fontSize={'sm'}
-          bg={'blue.50'}
-          p={2}
-          alignSelf={'flex-start'}
-          rounded={'md'}>
-          {noticia?.categoria?.nome}
-        </Text>
-        <Text fontSize={10} alignSelf={'flex-start'}>Por {noticia?.colaborador?.nome} {noticia?.colaborador?.sobrenome}, {moment(noticia.createdAt).format('ll')}</Text>
-        <Heading>{noticia.titulo}</Heading>
-        <Text color={'gray.600'} fontSize={'lg'}>
-          {noticia.resumo}
-        </Text>
+
+      <HStack mt={5} mx={10}>
+        <Image src={src} alt="News Image" height={250} width={300} />
+        <VStack>
+          <Text
+
+            textTransform={'uppercase'}
+            color={'blue.400'}
+            fontWeight={600}
+            fontSize={'sm'}
+            bg={'blue.50'}
+            p={2}
+            alignSelf={'flex-start'}
+            rounded={'md'}>
+            {noticia?.categoria?.nome}
+          </Text>
+          <Text fontSize={14} alignSelf={'end'}>Por {noticia?.colaborador?.nome} {noticia?.colaborador?.sobrenome}, {moment(noticia.createdAt).format('ll')}
+          </Text>
+          <Heading>{noticia.titulo}</Heading>
 
 
+          <Text color={'gray.600'} fontSize={'lg'} >
+            {noticia.resumo}
+          </Text>
+        </VStack>
+      </HStack>
 
-      </VStack>
-
-
-
-      <Text color={'gray.600'}>
+      <Text color={'gray.600'} mx={100} my={15}>
         <div dangerouslySetInnerHTML={{ __html: noticia.texto }} />
       </Text>
 
