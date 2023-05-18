@@ -68,6 +68,15 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
   });
 
   const onSubmit = async (data: any) => {
+    if (!imagemData) {
+      return toast({
+        title: "Favor incluir imagem de capa",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+
+    }
     axiosNest
       .post(`${apiUrl}/news/noticia/upload`,
         imagemData, {

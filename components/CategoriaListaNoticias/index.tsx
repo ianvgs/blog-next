@@ -8,68 +8,130 @@ import {
   HStack,
   Tag,
   SpaceProps,
-  Stack,
-  VStack,
   Divider,
   Container,
+  VStack,
+  WrapItem,
+  Wrap
 } from "@chakra-ui/react";
 
 
 interface IBlogTags {
-  tags: Array<string>;
-  marginTop?: SpaceProps["marginTop"];
+  tags: TagsProps[];
+
 }
 
-const BlogTags: React.FC<IBlogTags> = (props) => {
-  return (
-    <HStack spacing={2} marginTop={props.marginTop}>
-      {props.tags?.map((tag: any) => {
-        return (
-          <Tag size={"md"} variant="solid" colorScheme="orange" key={tag}>
-            {tag}
-          </Tag>
-        );
-      })}
-    </HStack>
-  );
-};
+interface TagsProps {
+
+  id: number;
+  tag: string;
+  idSite: number;
+  color: string;
+  createdAt: Date;
+
+}
+
+
 
 interface BlogAuthorProps {
   date: Date;
-  name?: string;
+  autor: string;
 }
 
-export const BlogAuthor: React.FC<BlogAuthorProps> = (props: any) => {
+interface ColaboradorProps {
+  id: number;
+  nome: string;
+  sobrenome: string;
+  apresentacao: string;
+  email: string;
+  ativo: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+interface NoticiasProps {
+  id: number;
+  idSite: number;
+  titulo: string;
+  resumo: string;
+  views: number | null,
+  idCategoria: number;
+  idColaborador: number;
+  ativo: string;
+  imgPath: string;
+  createdAt: Date;
+  updatedAt: Date;
+  colaborador: ColaboradorProps
+  tags: TagsProps[]
+
+
+}
+
+interface Categoria {
+  id: number;
+  nome: string;
+  sufixurl: string;
+  descricao: string;
+  createdAt: Date;
+  idSite: number;
+  noticias: NoticiasProps[]
+}
+
+interface ListaProps {
+  categoria: Categoria
+}
+
+
+const BlogTags: React.FC<IBlogTags> = ({ tags }) => {
+
   return (
-    <HStack marginTop="2" spacing="2" display="flex" alignItems="center" alignSelf="end">
-      <Text fontWeight="medium">{props.name}</Text>
-      <Text>{props.date.toLocaleDateString()}</Text>
-    </HStack>
+    <Wrap justify={"center"} >
+      {tags?.map((tag: any) => {
+        return (
+          <WrapItem>
+            <Tag size={"md"} variant="solid" colorScheme={tag.color} key={tag.id}>
+              {tag.tag}
+            </Tag>
+          </WrapItem>
+        );
+      })}
+    </Wrap>
   );
 };
 
-const CategoriaListaNoticias = (props: any) => {
+
+
+export const BlogAuthor = ({ date, autor }: BlogAuthorProps) => {
+  return (
+    <VStack alignSelf="end">
+      <Text fontWeight="bold">{date.toLocaleDateString()}</Text>
+      <Text fontWeight="bold">{autor.toUpperCase()}</Text>
+    </VStack>
+  );
+};
+
+const CategoriaListaNoticias = ({ categoria }: ListaProps) => {
 
   return (
-
-
-    <Container maxW={"7xl"} >
+    <Container maxW={"7xl"}>
       < Heading as="h1" >
-        {props.categoria?.nome?.toUpperCase()}
+        {categoria.nome.toUpperCase()}
       </Heading >
       {
-        props.categoria?.noticias?.map((unique: any, index: number) => (
-          < >
-            <Box justifyContent={"space-between"} key={unique.id} display="flex" flexDirection={{ base: 'column', md: 'row' }} alignItems={{ base: "center", lg: "space-between" }} w="100%"
-            >
-              <Box w="250px">
+        categoria.noticias.map((noticia: NoticiasProps, index: number) => (
+          <>
+            <HStack key={noticia.id}>
+              {/* BOX IMAGE */}
+              <Box w="250px" key={noticia.id}>
                 <Link
-                  href={`noticia/` + unique.id}
+                  key={noticia.id}
+                  href={`noticia/` + noticia.id}
                   marginLeft={{ base: "0", sm: "5%" }}
                   _hover={{ textDecoration: "none" }}
 
                 >
                   <Image
+                    key={noticia.id}
                     borderRadius="lg"
                     src={
                       "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80"
@@ -78,45 +140,44 @@ const CategoriaListaNoticias = (props: any) => {
                   />
                 </Link>
               </Box>
-              <Box
+
+              {/* BOX TITULO|RESUMO|AUTOR */}
+              <VStack
                 display="flex"
-                flex="3"
-                flexDirection="column"
-                mx="5"
+                flex="1"
+                key={noticia.id}
               >
-                <BlogTags tags={unique?.tags?.map((tag: any) => tag.tag)} />
-                <Heading marginTop="5" fontSize={"lg"}>
+
+                <Heading marginTop="5" fontSize={"lg"} key={noticia.id}>
                   <Link
-                    href={`noticia/${unique.id}`}
+                    key={noticia.id}
+                    href={`noticia/${noticia.id}`}
                     textDecoration="none"
                     _hover={{ textDecoration: "none" }}
                   >
-                    {unique.titulo}
+                    {noticia.titulo}
                   </Link>
                 </Heading>
+
                 <Text
-                  w={"600px"}
+                  key={noticia.id}
                   as="p"
-                  marginTop="2"
-                  color={'gray.700'}
                   fontSize="lg"
                   textAlign={"justify"}
                 >
-                  {unique.resumo}
+                  {noticia.resumo}
                 </Text>
+                <HStack>
+                  <BlogTags key={noticia.id} tags={noticia.tags} />
+                </HStack>
                 <BlogAuthor
-                  date={new Date(unique.createdAt)}
+                  key={noticia.id}
+                  date={new Date(noticia.createdAt)}
+                  autor={noticia.colaborador.nome + noticia.colaborador.sobrenome}
                 />
-              </Box>
-            </Box>
-            {index !== props.categoria?.noticias.length ?
-              <Divider key={unique.id} height={"1.0px"} bg={"gray."} />
-              :
-              null
-
-
-            }
-
+              </VStack>
+            </HStack>
+            <Divider height={"1.0px"} bg={"gray."} key={noticia.id} mt={5} />
           </>
         ))
       }
