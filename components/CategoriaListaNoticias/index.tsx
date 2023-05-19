@@ -6,122 +6,23 @@ import {
   Image,
   Text,
   HStack,
-  Tag,
-  SpaceProps,
   Divider,
   Container,
   VStack,
-  WrapItem,
-  Wrap
 } from "@chakra-ui/react";
-import moment from "moment";
+import { ListaCategoriaProps, NoticiaDetailsProps } from "../@types";
+import { BlogTags } from "../Tags";
+import { Author } from "../Author";
 
-
-interface IBlogTags {
-  tags: TagsProps[];
-
-}
-
-interface TagsProps {
-
-  id: number;
-  tag: string;
-  idSite: number;
-  color: string;
-  createdAt: Date;
-
-}
-
-
-
-interface BlogAuthorProps {
-  date: Date;
-  autor: string;
-}
-
-interface ColaboradorProps {
-  id: number;
-  nome: string;
-  sobrenome: string;
-  apresentacao: string;
-  email: string;
-  ativo: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-interface NoticiasProps {
-  id: number;
-  idSite: number;
-  titulo: string;
-  resumo: string;
-  views: number | null,
-  idCategoria: number;
-  idColaborador: number;
-  ativo: string;
-  imgPath: string;
-  createdAt: Date;
-  updatedAt: Date;
-  colaborador: ColaboradorProps
-  tags: TagsProps[]
-
-
-}
-
-interface Categoria {
-  id: number;
-  nome: string;
-  sufixurl: string;
-  descricao: string;
-  createdAt: Date;
-  idSite: number;
-  noticias: NoticiasProps[]
-}
-
-interface ListaProps {
-  categoria: Categoria
-}
-
-
-const BlogTags: React.FC<IBlogTags> = ({ tags }) => {
-
-  return (
-    <Wrap justify={"center"} >
-      {tags?.map((tag: any, index: number) => {
-        return (
-          <WrapItem key={tag.id}>
-            <Tag size={"md"} variant="solid" colorScheme={tag.color}>
-              {tag.tag}
-            </Tag>
-          </WrapItem>
-        );
-      })}
-    </Wrap>
-  );
-};
-
-
-
-export const BlogAuthor = ({ date, autor }: BlogAuthorProps) => {
-  return (
-
-
-    <VStack alignSelf="end">
-      <Text fontWeight="bold" fontSize={14} alignSelf={'end'}>Por {autor}, {moment(date).format('ll')}</Text>
-
-    </VStack>
-  );
-};
-
-const CategoriaListaNoticias = ({ categoria }: ListaProps) => {
-
+const CategoriaListaNoticias = ({ categoria }: ListaCategoriaProps) => {
+  console.log(categoria)
   return (
     <Container maxW={"7xl"}>
       < Heading as="h1" textTransform={'uppercase'}>
         {categoria.nome}
       </Heading >
       {
-        categoria.noticias.map((noticia: NoticiasProps, index: number) => (
+        categoria.noticias.map((noticia: NoticiaDetailsProps, index: number) => (
           <>
             <HStack key={noticia.id}>
               {/* BOX IMAGE */}
@@ -150,7 +51,6 @@ const CategoriaListaNoticias = ({ categoria }: ListaProps) => {
                 flex="1"
                 key={noticia.id}
               >
-
                 <Heading marginTop="5" fontSize={"lg"} key={noticia.id}>
                   <Link
                     key={noticia.id}
@@ -173,7 +73,7 @@ const CategoriaListaNoticias = ({ categoria }: ListaProps) => {
                 <HStack>
                   <BlogTags key={noticia.id} tags={noticia.tags} />
                 </HStack>
-                <BlogAuthor
+                <Author
                   key={noticia.id}
                   date={new Date(noticia.createdAt)}
                   autor={noticia.colaborador.nome + noticia.colaborador.sobrenome}
@@ -185,15 +85,6 @@ const CategoriaListaNoticias = ({ categoria }: ListaProps) => {
         ))
       }
     </Container>
-
-
-
-
-
-
-
-
-
   );
 };
 
