@@ -71,22 +71,6 @@ export default function SignupCard() {
     };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     return (
         <Flex
             minH={'100vh'}

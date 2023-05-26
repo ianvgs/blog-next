@@ -5,14 +5,8 @@ import {
     Flex,
     Heading,
     Text,
-    Stack,
-    VStack,
 } from '@chakra-ui/react';
 import config from '../../public/siteConfig.json';
-
-
-
-
 
 
 export default function QuemSomos() {
