@@ -140,7 +140,7 @@ export default function UploadArquivo({ onUpload, uploadedFile }: any) {
   const startAnimation = () => controls.start("hover");
   const stopAnimation = () => controls.stop();
 
-  console.log(uploadedFile)
+
 
 
 

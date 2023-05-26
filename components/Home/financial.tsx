@@ -131,7 +131,7 @@ export default function Index({ homeData }: any) {
 
     const RenderLayout = ({ layout }: any) => {
         if (layout === '1') {
-            console.log('não faz sentido')
+
             return (
                 <>
                     {manchete}

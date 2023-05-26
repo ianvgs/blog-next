@@ -37,7 +37,7 @@ const BlogTags: React.FC<IBlogTags> = (props: any) => {
 };
 
 export default function HomeCards({ mural, data, chosenLayout }: any) {
-    console.log(data)
+    /*   console.log(data) */
     /* const base64Data = Buffer.from(data?.imageData?.data).toString('base64');
     let scr = `data:image/jpeg;base64,${base64Data}`;*/
 
@@ -77,11 +77,12 @@ export default function HomeCards({ mural, data, chosenLayout }: any) {
                     <Link href={`categoria/noticia/${data.id}`} >
                         <Image
                             transform="scale(1.0)"
-                            src={
+                            src={data?.imgPath ??
                                 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
                             }
                             alt="Mural Image"
-                            /* minW="230px" */
+                            maxW={400}
+                            maxH={200}
                             transition="0.3s ease-in-out"
                             _hover={{
                                 transform: 'scale(1.05)',

@@ -15,7 +15,7 @@ import { BlogTags } from "../Tags";
 import { Author } from "../Author";
 
 const CategoriaListaNoticias = ({ categoria }: ListaCategoriaProps) => {
-  console.log(categoria)
+
   return (
     <Container maxW={"7xl"}>
       < Heading as="h1" textTransform={'uppercase'}>

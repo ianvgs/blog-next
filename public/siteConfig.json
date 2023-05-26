@@ -5,8 +5,9 @@
     "siteName": "Chapéu de Alumínio",
     "footerDisclaimer": "Nossa equipe preza a qualidade da informação em matérias jornalísticas de diversos setores, ressaltando, no entanto, que não se responsabilizando por perdas, danos (diretos, indiretos e incidentais), custos e lucros cessantes advindos da utilização de informações veiculadas, declaramos ainda que não fazemos qualquer tipo de recomendação de investimento.",
     "copyrightInfo": "© 2023 - BMIZ",
-    "apiUrl2": "http://localhost:8000/api",
-    "apiUrl": "http://54.166.199.201:8000/api",
+    "apiUrl": "http://localhost:8000/api",
+    "apiUrl2": "http://54.166.199.201:8000/api",
+    "s3FolderName": "chapeudealuminio",
     "quemSomos": {
         "titulo": "Quem somos",
         "subTitulo": "Equipe multidisciplinar com profissionais das mais abrangentes áreas como psicologia, ciências sociais, ciências da computação, gestão empresarial que tem como objetivo trazer noticias. Equipe multidisciplinar com profissionais das mais abrangentes áreas como psicologia, ciências sociais, ciências da computação, gestão empresarial que tem como objetivo trazer noticias."

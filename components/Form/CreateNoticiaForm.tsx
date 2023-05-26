@@ -39,6 +39,7 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
 
   const idSite = config['idSite'];
   const apiUrl = config["apiUrl"]
+  const folderBucketName = config["s3FolderName"]
 
 
 
@@ -78,7 +79,7 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
 
     }
     axiosNest
-      .post(`${apiUrl}/news/noticia/upload`,
+      .post(`${apiUrl}/uploader/${folderBucketName}`,
         imagemData, {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -86,7 +87,8 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
       }
       )
       .then((res) => {
-        const { uploadedImageFile } = res.data;
+        console.log(res.data)
+        const { createdUrl } = res.data;
         let tagArray: [] = []
         if (data.tags) {
           tagArray = data?.tags.map((each: any) => {
@@ -105,7 +107,7 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
           idColaborador: data?.idColaborador?.value,
           tags: tagArray,
           texto: textContent,
-          imgPath: uploadedImageFile.path
+          imgPath: createdUrl
         }
 
 
