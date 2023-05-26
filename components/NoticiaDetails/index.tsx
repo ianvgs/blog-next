@@ -14,15 +14,14 @@ import { BlogTags } from "../Tags";
 
 
 export default function NoticiaDetails(noticia: NoticiaDetailsProps) {
-  const base64Data = Buffer.from(noticia.imageData.data).toString('base64');
-  const src = `data:image/jpeg;base64,${base64Data}`;
+
   return (
     <Container maxW={"7xl"} >
       <Box
         display="flex"
         alignItems={"center"}
         flexDirection={{ base: 'column', lg: 'row' }}>
-        <Image mb="2" src={src} alt="News Image" height={250} width={300}
+        <Image mb="2" src={noticia?.imgPath} alt="News Image" height={250} width={300}
 
         />
         <VStack>
@@ -37,17 +36,17 @@ export default function NoticiaDetails(noticia: NoticiaDetailsProps) {
             rounded={'md'}>
             {noticia?.categoria?.nome}
           </Text>
-          <Text fontSize={14} alignSelf={'end'}>Por {noticia?.colaborador?.nome} {noticia?.colaborador?.sobrenome}, {moment(noticia.createdAt).format('ll')}
+          <Text fontSize={14} alignSelf={'end'}>Por {noticia?.colaborador?.nome} {noticia?.colaborador?.sobrenome}, {moment(noticia?.createdAt).format('ll')}
           </Text>
-          <Heading>{noticia.titulo}</Heading>
+          <Heading>{noticia?.titulo}</Heading>
           <Text color={'gray.600'} fontSize={'lg'} >
-            {noticia.resumo}
+            {noticia?.resumo}
           </Text>
         </VStack>
       </Box>
-      <BlogTags tags={noticia.tags} key={noticia.id} />
+      <BlogTags tags={noticia?.tags} key={noticia?.id} />
       <Text color={'gray.600'} mx={100} my={15}>
-        <div dangerouslySetInnerHTML={{ __html: noticia.texto }} />
+        <div dangerouslySetInnerHTML={{ __html: noticia?.texto }} />
       </Text>
     </Container>
   );

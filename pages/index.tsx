@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import axiosNest from '../services/axiosNest';
 import config from '../public/siteConfig.json'
 import FinancialLayout from '../components/Home/financial';
@@ -24,7 +24,9 @@ export default function PaginaInicial({ homeData, hasError, siteTypeLayout }: an
   }
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+
+export const getStaticProps: GetStaticProps = async () => {
+
   let homeData: any = [];
   try {
     const response = await axiosNest.get('/news/home-news', {
@@ -48,9 +50,13 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: {
       homeData,
       siteTypeLayout: config.layout,
+      revalidate: 60//,(1minuto)
     },
   };
 };
+
+
+
 
 
 

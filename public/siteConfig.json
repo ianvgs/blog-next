@@ -27,23 +27,28 @@
     "links-categorias": [
         {
             "nome": "CULTURA",
-            "endereco": "/categoria/cultura"
+            "endereco": "/categoria/cultura",
+            "next-path": "cultura"
         },
         {
             "nome": "FINANÇAS",
-            "endereco": "/categoria/financas"
+            "endereco": "/categoria/financas",
+            "next-path": "financas"
         },
         {
             "nome": "EDUCAÇÃO",
-            "endereco": "/categoria/educacao"
+            "endereco": "/categoria/educacao",
+            "next-path": "educacao"
         },
         {
             "nome": "ANIMAIS",
-            "endereco": "/categoria/animais"
+            "endereco": "/categoria/animais",
+            "next-path": "animais"
         },
         {
             "nome": "SOCIEDADE",
-            "endereco": "/categoria/sociedade"
+            "endereco": "/categoria/sociedade",
+            "next-path": "sociedade"
         }
     ],
     "styles": {

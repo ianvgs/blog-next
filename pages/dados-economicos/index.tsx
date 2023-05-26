@@ -3,7 +3,7 @@ import { SimpleGrid, Icon, Text, Stack, Flex, TableContainer, Table, TableCaptio
 import { FcPodiumWithSpeaker, FcDonate, FcSalesPerformance } from 'react-icons/fc';
 import axiosNest from '../../services/axiosNest';
 import PaginaNaoEncontrada from '../../components/404/404';
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, GetStaticProps } from 'next';
 
 interface FeatureProps {
     title: string;
@@ -140,9 +140,7 @@ export default function SimpleThreeColumns({ dadosEconomicos, hasError }: any) {
     );
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx: {
-    req: { cookies: any };
-}) => {
+export const getStaticProps: GetStaticProps = async () => {
 
     let dadosEconomicos: any = [];
 
@@ -165,5 +163,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: {
         props: {
             dadosEconomicos
         },
+        revalidate: 10,
     };
 };

@@ -13,9 +13,34 @@ const IdeiaHome: NextPage = ({ hasError, noticia }: any) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  let paths = [{ params: { noticiaId: '1' } }]
+  /*   try {
+      const response = await axiosNest.get(
+        `/news/noticia/get-to-build/${config.idSite}`
+      );
+      if (response.data) {
+        paths = await response?.data.map((noticia: any) => {
+          return {
+            params: {
+              noticiaId: noticia.id.toString()
+            }
+          }
+        })
+      } else {
+        paths = [{ params: { noticiaId: '1' } }]
+      }
+    } catch (error) {
+      paths = [{ params: { noticiaId: '1' } }]
+    } */
+
+
   return {
-    paths: [],
-    fallback: "blocking",
+    //revalidate: 60//,(1minuto)
+    paths,
+    fallback: "blocking",//espera a pagina ficar pronta(nao pisca)
+    //Nao encontrei o caminho, o que faço?
+    //fallback: false, => sinto muito
+    //fallback: true, => renderizo a pagina sem json (pisca0 necessario usar elvis?)
   };
 };
 
@@ -32,6 +57,8 @@ export const getStaticProps: GetStaticProps = async (ctx: any) => {
     );
     data = response.data;
 
+    console.log(response.data)
+
   } catch (error) {
     return {
       props: { hasError: true },
@@ -41,10 +68,9 @@ export const getStaticProps: GetStaticProps = async (ctx: any) => {
   return {
     props: {
       noticia: data,
-
       hasError: false
     },
-    revalidate: 10,
+
   };
 };
 

@@ -5,6 +5,7 @@ import axiosNest from "../../services/axiosNest";
 import PaginaNaoEncontrada from "../../components/404/404";
 import config from '../../public/siteConfig.json'
 
+
 const EventoHome: NextPage = (props: any) => {
   /* ({ hasError, noticia }: any) */
   if (props.hasError === true) {
@@ -19,9 +20,15 @@ const EventoHome: NextPage = (props: any) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = config["links-categorias"].map((item) => ({
+    params: {
+      categoriaName: item["next-path"],
+    },
+  }));
   return {
-    paths: [],
+    paths,
     fallback: "blocking",
+    /*  revalidate: 60, */
   };
 };
 
@@ -39,16 +46,12 @@ export const getStaticProps: GetStaticProps = async (ctx: any) => {
     return {
       props: { hasError: true },
     }
-
   }
-
-
   return {
     props: {
       categoria: data,
       hasError: false
     },
-    revalidate: 10,
   };
 };
 
