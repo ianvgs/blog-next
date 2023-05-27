@@ -11,6 +11,10 @@ import {
     Heading,
     useColorModeValue,
     Container,
+    useToast,
+    Alert,
+    AlertIcon,
+    AlertDescription,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
@@ -18,12 +22,15 @@ import axiosNest from '@/services/axiosNest';
 import { useRouter } from 'next/router';
 
 export default function SignupCard() {
+    const toast = useToast();
     const { push } = useRouter();
     const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({
         email: '',
         password: ''
     });
+
+    const [errorLogin, setErrorLogin] = useState("");
 
     const handleInputChange = (event: any) => {
         const { name, value } = event.target;
@@ -32,7 +39,7 @@ export default function SignupCard() {
 
     const handleSubmit = async () => {
         axiosNest
-            .post("http://localhost:8000/api/login", {
+            .post("http://localhost:8000/api/auth/login", {
                 email: formData.email,
                 password: formData.password
             }
@@ -65,23 +72,41 @@ export default function SignupCard() {
                     document.cookie = updatedCookie;
                 }
                 setCookie('jwtToken', access_token, { expires: 7 });
+                toast({
+                    title: "Usuario logado com sucesso!",
+                    status: "success",
+                    duration: 3000,
+                    isClosable: true,
+                });
                 push('/cadastrar/cadastrar-noticia')
             })
-            .catch(() => {
+            .catch((err) => {
                 console.log('deu erro')
+                setErrorLogin('Faha ao efetuar o login.')
+                toast({
+                    title: "Erro ao efetuar o login!",
+                    status: "error",
+                    duration: 3000,
+                    isClosable: true,
+                });
             });
     };
 
 
     return (
         <Container
-            /*  alignItems={'center'}
-             justifyContent={'center'} */
             alignItems="center"
             justifyContent="center"
             bg={useColorModeValue('gray.50', 'gray.800')}
         >
             <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+
+                {errorLogin && (
+                    <Alert status="error" mt={4}>
+                        <AlertIcon />
+                        <AlertDescription>{errorLogin}</AlertDescription>
+                    </Alert>
+                )}
 
                 <Box
                     rounded={'lg'}

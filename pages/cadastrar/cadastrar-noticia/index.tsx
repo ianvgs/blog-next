@@ -69,6 +69,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx: {
     const response = await axiosNest.get("/news/cad-noticia-form", {
       params: {
         idSite: config.idSite
+      },
+      headers: {
+        //Talvez fosse interessante...
+        /* 'Authorization': `Bearer ${jwtToken}`, */
+        'Project': 'abc'
       }
     });
     data = response.data[0];

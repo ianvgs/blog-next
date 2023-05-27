@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Heading,
   VStack,
@@ -36,28 +36,27 @@ const cadastrarIdeiaSchema = yup
   })
   .required();
 
+const defaultValues = {
+  titulo: "",
+  alternativo: "",
+  resumo: "",
+  idColaborador: null,
+  idCategoria: null,
+  tags: [""],
+};
+
+
 export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
-
-  const idSite = config['idSite'];
-  const apiUrl = config["apiUrl"]
-  const folderBucketName = config["s3FolderName"]
-
-
-
   const toast = useToast();
   const [textContent, setTextContent] = useState('')
   const onEditorChange = (e: any, editor: any) => {
     setTextContent(editor.getContent())
   }
-
-  const defaultValues = {
-    titulo: "",
-    alternativo: "",
-    resumo: "",
-    idColaborador: null,
-    idCategoria: null,
-    tags: [""],
-  };
+  const [jwtToken, setJwtToken] = useState('')
+  const idSite = config['idSite'];
+  const apiUrl = config["apiUrl"]
+  const folderBucketName = config["s3FolderName"]
+  const [imagemData, setImagemData] = useState<any>(null)
 
   const {
     register,
@@ -70,6 +69,24 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
     resolver: yupResolver(cadastrarIdeiaSchema),
   });
 
+  useEffect(() => {
+    const cookieString = document.cookie;
+    const cookies = cookieString.split(';');
+    cookies.forEach((cookie) => {
+      const [name, value] = cookie.split('=');
+      const cookieName = name.trim();
+      const cookieValue = value.trim();
+      if (cookieName === 'jwtToken') {
+        setJwtToken(cookieValue)
+        /*         jwtToken = cookieValue; */
+      }
+    });
+
+    console.log(jwtToken); // Display the value of jwtToken cookie
+  }, []);
+
+
+
   const onSubmit = async (data: any) => {
     if (!imagemData) {
       return toast({
@@ -78,7 +95,6 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
         duration: 5000,
         isClosable: true,
       });
-
     }
     axiosNest
       .post(`${apiUrl}/uploader/${folderBucketName}`,
@@ -112,12 +128,17 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
           imgPath: createdUrl,
           imgAlterText: data?.alternativo
         }
-
+        /* 
+                headers: {
+                  'Authorization': `Bearer ${jwtToken}`,
+                  'Project': 'abc'
+                }
+         */
 
         axiosNest
           .post(`${apiUrl}/news/noticia`, {
             ...noticiaData
-          })
+          }, { headers: { authorization: `Bearer ${jwtToken}`, 'Project': 'abc' } })
           .then((res) => {
             reset(defaultValues);
             setTextContent('')
@@ -148,8 +169,6 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
       });
   };
 
-
-  const [imagemData, setImagemData] = useState<any>(null)
   const onUpload = (event: any) => {
     const file = event.target.files[0];
     const formData = new FormData();
