@@ -43,6 +43,7 @@ export const getStaticProps: GetStaticProps = async () => {
   } catch (error) {
     return {
       props: { hasError: true },
+      /*       revalidate: 3600, */
     };
   }
 
@@ -50,7 +51,8 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       homeData,
       siteTypeLayout: config.layout,
-      revalidate: 60//,(1minuto)
+      /*   revalidate: 60 *///,(1minuto)
+      /* revalidate: 3600, 1 hora */
     },
   };
 };

@@ -184,7 +184,6 @@ export default function UploadArquivo({ onUpload, uploadedFile }: any) {
 
 
               {imagePreview ?
-
                 <Box >
                   <PreviewImage
                     backgroundImage={imagePreview}
@@ -205,7 +204,6 @@ export default function UploadArquivo({ onUpload, uploadedFile }: any) {
                     backgroundImage={`url("https://images.unsplash.com/photo-1563612116625-3012372fccce?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2480&q=80")`}
                   />
                 </Box>
-
               }
 
 
@@ -216,10 +214,7 @@ export default function UploadArquivo({ onUpload, uploadedFile }: any) {
                 <Heading fontSize="lg" color="gray.700" fontWeight="bold">
                   Drop image here
                 </Heading>
-                <Text fontWeight="light">Clique para Upload.</Text>
               </Stack>
-
-
             </Stack>
           </Box>
           <Input
@@ -234,7 +229,7 @@ export default function UploadArquivo({ onUpload, uploadedFile }: any) {
             accept="image/*"
             onDragEnter={startAnimation}
             onDragLeave={stopAnimation}
-            /*  onChange={onUpload} */
+
 
             onChange={(event) => {
               onUpload(event);

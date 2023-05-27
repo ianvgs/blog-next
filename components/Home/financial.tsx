@@ -38,7 +38,7 @@ export default function Index({ homeData }: any) {
                 marginLeft={{ base: '0', sm: '5%' }}
             >
                 <Box position={isFinancial ? "relative" : "absolute"}>
-                    <Link href={`categoria/noticia/${noticiaPrincipal.noticiaPrincipal.id}`} textDecoration="none" _hover={{ textDecoration: 'none', color: 'blue' }}>
+                    <Link href={`categoria/noticia/${noticiaPrincipal?.noticiaPrincipal?.id}`} textDecoration="none" _hover={{ textDecoration: 'none', color: 'blue' }}>
                         <Image
                             transform="scale(1.0)"
                             src={
@@ -56,7 +56,7 @@ export default function Index({ homeData }: any) {
                         />
 
                         <Heading position="absolute" bottom="5%" mx={5} color={'gray.800'}>
-                            {noticiaPrincipal.noticiaPrincipal.titulo}
+                            {noticiaPrincipal?.noticiaPrincipal?.titulo}
                         </Heading>
                     </Link>
                 </Box>

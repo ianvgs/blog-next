@@ -28,7 +28,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths,
     fallback: "blocking",
-    /*  revalidate: 60, */
+    //fallback: false,
+
   };
 };
 
@@ -45,6 +46,7 @@ export const getStaticProps: GetStaticProps = async (ctx: any) => {
   } catch (error) {
     return {
       props: { hasError: true },
+      revalidate: 3600,
     }
   }
   return {
@@ -52,6 +54,7 @@ export const getStaticProps: GetStaticProps = async (ctx: any) => {
       categoria: data,
       hasError: false
     },
+    revalidate: 3600,
   };
 };
 

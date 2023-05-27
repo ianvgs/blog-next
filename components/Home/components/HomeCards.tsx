@@ -76,13 +76,13 @@ export default function HomeCards({ mural, data, chosenLayout }: any) {
                 <Box borderRadius="md" overflow="hidden" >
                     <Link href={`categoria/noticia/${data.id}`} >
                         <Image
-                            transform="scale(1.0)"
                             src={data?.imgPath ??
                                 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
                             }
-                            alt="Mural Image"
-                            maxW={400}
-                            maxH={200}
+                            alt={data?.imgAlterText ?? "Texto explicativo..."}
+                            h="200px"
+                            w="340px"
+                            transform="scale(1.0)"
                             transition="0.3s ease-in-out"
                             _hover={{
                                 transform: 'scale(1.05)',
@@ -113,6 +113,10 @@ export default function HomeCards({ mural, data, chosenLayout }: any) {
         </WrapItem>
     )
 }
+
+
+
+
 
 
 

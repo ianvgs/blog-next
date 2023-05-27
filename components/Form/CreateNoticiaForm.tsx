@@ -21,6 +21,7 @@ import config from '../../public/siteConfig.json';
 
 type CreateNoticiaFormValues = {
   titulo: string;
+  alternativo: string;
   resumo: string;
   texto: string;
   idColaborador: number | null;
@@ -51,6 +52,7 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
 
   const defaultValues = {
     titulo: "",
+    alternativo: "",
     resumo: "",
     idColaborador: null,
     idCategoria: null,
@@ -107,7 +109,8 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
           idColaborador: data?.idColaborador?.value,
           tags: tagArray,
           texto: textContent,
-          imgPath: createdUrl
+          imgPath: createdUrl,
+          imgAlterText: data?.alternativo
         }
 
 
@@ -170,9 +173,12 @@ export default function CreateNoticiaForm({ categs, tags, colabs }: any) {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <VStack border={"1px"} borderColor={"gray.400"} shadow={"lg"} w="400px" minW="400px" padding={3} rounded="lg" alignItems={"center"}>
-          <UploadArquivo onUpload={onUpload} uploadedFile={imagemData} />
-
           <Heading fontSize={"lg"} as="h1"> Cadastrar Noticia</Heading >
+          <UploadArquivo onUpload={onUpload} uploadedFile={imagemData} />
+          <Input margin={2} type="text" placeholder="Texto Alternativo da Imagem" {...register("alternativo")} />
+          <span role="alert">{errors.alternativo?.message}</span>
+
+
           <ReactSelect
             key="idColaborador"
             name={"idColaborador"}

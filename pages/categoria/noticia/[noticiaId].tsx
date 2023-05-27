@@ -62,12 +62,14 @@ export const getStaticProps: GetStaticProps = async (ctx: any) => {
   } catch (error) {
     return {
       props: { hasError: true },
+      revalidate: 3600,
     };
   }
 
   return {
     props: {
       noticia: data,
+      revalidate: 3600,
       hasError: false
     },
 
