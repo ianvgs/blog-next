@@ -27,6 +27,7 @@ export default function PaginaInicial({ homeData, hasError, siteTypeLayout }: an
 
 export const getStaticProps: GetStaticProps = async () => {
 
+
   let homeData: any = [];
   try {
     const response = await axiosNest.get('/news/home-news', {
@@ -35,7 +36,7 @@ export const getStaticProps: GetStaticProps = async () => {
         idSite: config.idSite
       },
       headers: {
-        //Authorization: Api Simple Authorization
+        'Project': 'abc'
       }
     })
     homeData = response.data

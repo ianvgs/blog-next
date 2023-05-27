@@ -32,23 +32,21 @@ const CadastrarNoticia: NextPage = (props: any) => {
           </TabPanel>
         </TabPanels>
       </Tabs>
-
     </Box >
-
-
   )
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx: {
   req: { cookies: any };
 }) => {
-  /* const { jwtToken } = ctx.req.cookies;
+  const { jwtToken } = ctx.req.cookies;
 
   let user = {}
   try {
-    const response = await axiosNest.get('/user/me', {
+    const response = await axiosNest.get('/auth/user', {
       headers: {
-        'Authorization': `Bearer ${jwtToken}`
+        'Authorization': `Bearer ${jwtToken}`,
+        'Project': 'abc'
       }
     })
     if (response) {
@@ -62,7 +60,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: {
         permanent: false,
       },
     };
-  } */
+  }
 
 
 

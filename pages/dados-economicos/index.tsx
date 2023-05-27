@@ -145,7 +145,13 @@ export const getStaticProps: GetStaticProps = async () => {
     let dadosEconomicos: any = [];
 
     try {
-        const response = await axiosNest.get('/news/dados-economicos-ipca-inpc-igpm')
+        const response = await axiosNest.get('/news/dados-economicos-ipca-inpc-igpm',
+            {
+                headers: {
+                    'Project': 'abc'
+                }
+            }
+        )
         dadosEconomicos = response.data
     } catch (error) {
         return {

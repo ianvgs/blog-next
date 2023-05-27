@@ -10,6 +10,7 @@ import {
     Button,
     Heading,
     useColorModeValue,
+    Container,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
@@ -67,34 +68,38 @@ export default function SignupCard() {
                 push('/cadastrar/cadastrar-noticia')
             })
             .catch(() => {
+                console.log('deu erro')
             });
     };
 
 
     return (
-        <Flex
-            minH={'100vh'}
-            align={'center'}
-            justify={'center'}
-            bg={useColorModeValue('gray.50', 'gray.800')}>
+        <Container
+            /*  alignItems={'center'}
+             justifyContent={'center'} */
+            alignItems="center"
+            justifyContent="center"
+            bg={useColorModeValue('gray.50', 'gray.800')}
+        >
             <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
-                <Stack align={'center'}>
-                    <Heading fontSize={'4xl'} textAlign={'center'}>
-                        Login
-                    </Heading>
-                </Stack>
+
                 <Box
                     rounded={'lg'}
                     bg={useColorModeValue('white', 'gray.700')}
                     boxShadow={'lg'}
                     p={8}
                 >
+                    <Stack align={'center'} mb={10}>
+                        <Heading fontSize={'4xl'} textAlign={'center'}>
+                            Login
+                        </Heading>
+                    </Stack>
                     <Stack spacing={4}>
-                        <FormControl id="email" isRequired>
-                            <FormLabel>Email address</FormLabel>
+                        <FormControl id="email" /* isRequired */>
+                            <FormLabel>Email</FormLabel>
                             <Input type="email" name="email" value={formData.email} onChange={handleInputChange} />
                         </FormControl>
-                        <FormControl id="password" isRequired>
+                        <FormControl id="password" /* isRequired */>
                             <FormLabel>Password</FormLabel>
                             <InputGroup>
                                 <Input type={showPassword ? 'text' : 'password'} name="password" value={formData.password} onChange={handleInputChange} />
@@ -117,10 +122,10 @@ export default function SignupCard() {
                                 onClick={handleSubmit}
                                 loadingText="Submitting"
                                 size="lg"
-                                bg={'blue.400'}
+                                bg={'gray.400'}
                                 color={'white'}
                                 _hover={{
-                                    bg: 'blue.500',
+                                    bg: 'gray.600',
                                 }}>
                                 Login
                             </Button>
@@ -128,7 +133,7 @@ export default function SignupCard() {
 
                     </Stack>
                 </Box>
-            </Stack>
-        </Flex>
+            </Stack >
+        </Container >
     );
 }

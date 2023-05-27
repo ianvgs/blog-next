@@ -40,7 +40,12 @@ export const getStaticProps: GetStaticProps = async (ctx: any) => {
       {
         params: {
           idSite: config.idSite
+        },
+        headers: {
+          'Project': 'abc'
         }
+
+
       });
     data = response.data;
   } catch (error) {

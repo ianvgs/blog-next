@@ -11,7 +11,6 @@ import config from '../../public/siteConfig.json';
 
 export default function QuemSomos() {
     return (
-
         <Container maxW={"7xl"}>
             <SimpleGrid columns={{ base: 1, md: 2 }} >
                 <Flex flexDir={"column"} justifyContent="center">
@@ -31,6 +30,5 @@ export default function QuemSomos() {
                 </Flex>
             </SimpleGrid>
         </Container >
-
     );
 }
