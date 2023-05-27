@@ -5,7 +5,7 @@ import {
   Link,
   Image,
   Text,
-  HStack,
+
   Divider,
   Container,
   VStack,
@@ -79,14 +79,14 @@ const CategoriaListaNoticias = ({ categoria }: ListaCategoriaProps) => {
                 </Link>
 
 
-
-                <Author
+                {noticia && <Author
                   key={noticia.id}
-                  date={new Date(noticia.createdAt)}
+                  date={noticia.createdAt}
                   autor={noticia.colaborador.nome + noticia.colaborador.sobrenome}
-                />
+                />}
+
               </VStack>
-              {/*       </HStack> */}
+
             </Box>
             <Divider height={"1.0px"} bg={"gray."} key={noticia.id} mt={5} />
           </>

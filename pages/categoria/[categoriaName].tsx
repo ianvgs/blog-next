@@ -54,7 +54,7 @@ export const getStaticProps: GetStaticProps = async (ctx: any) => {
       categoria: data,
       hasError: false
     },
-    revalidate: 3600,
+    revalidate: 30,
   };
 };
 

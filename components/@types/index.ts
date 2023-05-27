@@ -2,6 +2,7 @@ export interface NoticiaType {
     id: number;
     idSite: number;
     titulo: string;
+    imgAlterText: string;
     resumo: string;
     texto: string;
     views: number | null,

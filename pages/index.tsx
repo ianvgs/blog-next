@@ -51,7 +51,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       homeData,
       siteTypeLayout: config.layout,
-      /*   revalidate: 60 *///,(1minuto)
+      revalidate: 30///,(1minuto)
       /* revalidate: 3600, 1 hora */
     },
   };
