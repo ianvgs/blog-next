@@ -41,7 +41,8 @@ export default function SignupCard() {
         axiosNest
             .post("http://localhost:8000/api/auth/login", {
                 email: formData.email,
-                password: formData.password
+                password: formData.password,
+                where: 'admin'
             }
             )
             .then((res) => {
