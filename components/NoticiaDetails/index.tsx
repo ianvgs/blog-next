@@ -28,7 +28,7 @@ export default function NoticiaDetails(noticia: NoticiaDetailsProps) {
         alignItems={"center"}
         flexDirection={{ base: 'column', lg: 'row' }}>
         <Image mb="2" src={currentNoticia?.imgPath} alt={currentNoticia?.imgAlterText} height={250} width={300} />
-        <VStack>
+        <VStack margin={10}>
           <Text
             textTransform={'uppercase'}
             color={'blue.400'}

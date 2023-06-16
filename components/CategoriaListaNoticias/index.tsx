@@ -56,6 +56,7 @@ const CategoriaListaNoticias = ({ categoria }: ListaCategoriaProps) => {
                 display="flex"
                 flex="1"
                 key={noticia.id}
+                margin={10}
               >
                 <Link
                   key={noticia.id}

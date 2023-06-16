@@ -5,15 +5,9 @@ import {
     Heading,
     Link,
     Image,
-    Text,
     Divider,
     Wrap,
     Container,
-    VStack,
-    StackDivider,
-    Icon,
-    SimpleGrid,
-    Flex,
 } from '@chakra-ui/react';
 import HomeCards from './components/HomeCards';
 import config from '../../public/siteConfig.json';
@@ -26,12 +20,19 @@ export default function GeneralSite({ homeData }: any) {
 
     const Manchete = () => {
         return (
-
-
             <Link href={`categoria/noticia/${noticiaPrincipal?.noticiaPrincipal?.id}`}>
-                <Box position={"relative"}>
+                <Container
+                    display={"flex"}
+                    flex={"1"}
+                    flexDir={"column"}
+                    background={{ base: "gray.400", lg: "none" }}
+                    minW={"100%"}
+                    py={50}
+
+                >
                     <Image
-                        h={500} w={500}
+                        mx="auto" // 
+                        h={350} w={500}
                         transform="scale(1.0)"
                         src={
                             noticiaPrincipal?.noticiaPrincipal?.imgPath
@@ -46,45 +47,34 @@ export default function GeneralSite({ homeData }: any) {
                         borderRadius="lg"
                     />
                     <Heading
-                        position="absolute"
-                        color={'gray.700'}
-                        bottom="0">
+                        color={'gray.700'}                    >
                         {noticiaPrincipal?.noticiaPrincipal?.titulo}
                     </Heading>
-                </Box >
+                </Container>
             </Link>
-
-
-
         )
     }
 
     const Mural = () => {
         return (
-            <Box
-                justifyContent="flex-start"
-                display="flex"
-                flexFlow={"wrap"}
+            <Wrap
                 flex="1"
-                flexDirection="row"
-                marginTop={{ base: '3', sm: '0' }}>
-                <Wrap>
-                    {ultimasNoticias.ultimasNoticias?.map((unique: any, index: number) => (
-                        <HomeCards key={index} mural data={unique} chosenLayout={chosenLayout} />
-                    ))}
-                </Wrap>
-            </Box>
+            >
+                {ultimasNoticias.ultimasNoticias?.map((unique: any, index: number) => (
+                    <HomeCards key={index} mural data={unique} chosenLayout={chosenLayout} />
+                ))}
+            </Wrap>
         )
-
     }
 
     return (
         <Container maxW={'7xl'}>
             <Box
-                marginTop={{ base: '1', sm: '5' }}
                 display="flex"
-                flexDirection={{ base: 'column', lg: 'row' }}>
-                {ultimasNoticias && <Mural />}
+                flexDirection={{ base: 'column', lg: 'row' }}
+                minW={"100%"}>
+                {ultimasNoticias &&
+                    <Mural />}
                 {noticiaPrincipal?.noticiaPrincipal &&
                     <Manchete />}
             </Box>
@@ -101,24 +91,14 @@ export default function GeneralSite({ homeData }: any) {
                     </Heading>
                     <Divider my="5" />
 
-
-                    <Wrap justify='center' >
+                    <Wrap justify='space-between'
+                    >
                         {noticiasMaisLidas.noticiasMaisLidas?.map((unique: any, index: number) => (
                             <HomeCards key={index} mural={false} data={unique} />
                         ))}
                     </Wrap>
                 </>
             }
-
-
-
-
-
-
-
-
-
-
         </Container >
     )
 
